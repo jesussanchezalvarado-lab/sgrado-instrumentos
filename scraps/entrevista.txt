@@ -1,0 +1,26 @@
+--- ppt/slides/slide1.xml ---
+SEMINARIO DE GRADO | ENTREVISTAS  | DRA. NORMA CÁRDENAS SALDAÑA | LÍNEA LICENCIATURA EN EDUCACIÓN | DEPARTAMENTO DE EDUCACIÓN
+
+--- ppt/slides/slide2.xml ---
+OBJETIVO USO ENTREVISTA | Propósito: Facilitar la conversación, el intercambio y la recopilación de información a través de un encuentro formal. | Participantes: Un entrevistado(a) y un entrevistador(a). | Método: Mediante un formato de preguntas y respuestas, se establece una comunicación efectiva que permite la construcción conjunta de significados en torno a un fenómeno de estudio.
+
+--- ppt/slides/slide3.xml ---
+TIPOS DE ENTREVISTAS | ESTRUCTURADAS. | SEMIESTRUCTURADAS. | ABIERTAS
+
+--- ppt/slides/slide4.xml ---
+TIPOS DE ENTREVISTAS | ENTREVISTADOR/A | Consiste en un conjunto fijo de preguntas predeterminadas, realizadas en el mismo orden a todos los entrevistados. Es útil para obtener información comparable. | ESTRUCTURADAS
+
+--- ppt/slides/slide5.xml ---
+TIPOS DE ENTREVISTAS | ENTREVISTADOR/A | Combina preguntas predeterminadas con la flexibilidad de incorporar preguntas emergentes. Permite obtener información detallada manteniendo cierta estructura. | SEMIESTRUCTURADAS
+
+--- ppt/slides/slide6.xml ---
+TIPOS DE ENTREVISTAS | ENTREVISTADOR/A | Es más abierta y flexible, sin un esquema fijo o predeterminado. Se centra en la exploración profunda del tema, permitiendo que las respuestas del entrevistado guíen la conversación. | ABIERTA
+
+--- ppt/slides/slide7.xml ---
+TIPOS DE PREGUNTAS* | TIPOS PREGUNTAS | CARACTERÍSTICAS | EJEMPLOS | PREGUNTAS GENERALES | Parten de planteamientos globales para dirigirse al tema que interesa. Propio de entrevistas abiertas. | ¿Qué opina de la violencia en los establecimientos educacionales?  | ¿Cuáles son sus metas profesionales? | ¿Qué opinión tiene de la Ley General de Educación? | ¿Cómo es el clima de convivencia en su establecimiento educacional? | PREGUNTAS PARA EJEMPLIFICAR | Sirven como iniciadores de preguntas más profundas. Se le solicita al entrevistado que proporcione un ejemplo, un evento, una categoría.  | ¿Usted ha comentado que el clima de convivencia en el establecimiento no es adecuado, podría darnos un ejemplo de aquello? | ¿Qué situaciones referidas a la evaluación docente, le han generado dificultades?  |   |   | PREGUNTAS DE ESTRUCTURA O ESTRUCTURALES | El entrevistador solicita al entrevistado una lista de conceptos a manera de conjuntos o categorías. | ¿Qué tipo de adecuaciones curriculares son las que más utiliza usted en su planificación de clase? | ¿Qué clase de dificultades tuvo usted para adecuarse a las clases presenciales, luego de la pandemia? | ¿Qué aspectos consideró para elegir estudiar en esta universidad y esta carrera? |   | PREGUNTAS DE CONTRASTE | Al entrevistado se le consulta  sobre similitudes y diferencias respecto a ciertos temas y se le pide que clasifique sus categorías. | Hay directores que han garantizado horas de la jornada de trabajo para que los profesores preparen su evaluación docente y otros directores han contratado asesorías para apoyar a los profesores ¿usted qué prefiere?  | ¿ Qué oportunidades y desafíos trae para usted, el uso de herramientas tic en sus prácticas docentes? |   |   | *Según Grinnell, Williams y Unrau (2009)
+
+--- ppt/slides/slide8.xml ---
+CLASIFICACIÓN DE PREGUNTAS | * | TIPOS PREGUNTAS | EJEMPLOS  | DE OPINIÓN | ¿Considera usted que el proceso de prácticas pedagógicas en la institución, favorece el desarrollo de competencias en estudiantes? Cree que hay algunas dificultades con este proceso de practicas en la actualidad? ¿ a qué cree que se debe? | DE EXPRESIÓN DE SENTIMIENTOS | ¿Con qué sensación se queda cuando se publican los resultados Simce de su establecimiento en la prensa local? | ¿Cómo describiría lo que experimentó cuando retorno a la docencia presencial? | DE CONOCIMIENTOS | ¿Qué sabe usted respecto a los programas de acceso que existen para ingresar a las universidades? Por qué cree que está bajando la matrícula de estudiantes de carreras pedagógicas?  | DE ANTECEDENTES | ¿Cuánto tiempo le tomó completar su portafolio docente? ¿En cuántos establecimientos trabajó antes de desempeñarse en este trabajo actual? ¿Estudió alguna otra carrera universitaria antes? | DE SIMULACIÓN | Suponga que usted es Director/a del Daem de la ciudad, ¿cuál sería el principal tema del que se ocuparía a la hora de asignar recursos a los establecimientos?   | Si usted fuera Director de este establecimiento educacional y debiera elegir una capacitación para sus colegas en el establecimiento, ¿sobre qué temática la propondría y por qué? | * |   | Mertens (2015 | )
+
+--- ppt/slides/slide9.xml ---
+RECOMENDACIONES | Atenta escucha. | No caer en un interrogatorio. | Generar clima confianza. | No inducir respuestas. | Evitar elementos que obstruyan conversación ( sonidos/notificaciones teléfonos). | No ir de un tema a otro, abruptamente. | Dejar que las respuestas fluyan.

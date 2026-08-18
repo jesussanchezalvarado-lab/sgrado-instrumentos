@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+<script src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;padding:0;background:#ffffff;font-family:'Open Sans',sans-serif;color:#1a232b;line-height:1.6;overflow-x:hidden}
+  a{color:#0055B7}
+  a:hover{color:#003d85}
+  h1,h2,h3,h4{font-family:'Roboto Condensed',sans-serif;margin:0;line-height:1.15}
+  img{display:block;max-width:100%;height:auto}
+  .skip-link{position:absolute;left:-999px;top:0;background:#0055B7;color:#fff;padding:10px 18px;z-index:200;border-radius:0 0 6px 0}
+  .skip-link:focus{left:0}
+  html{scroll-behavior:smooth}
+  section[id]{scroll-margin-top:96px}
+  main > section{padding:64px clamp(20px,6vw,56px)}
+  main > section > div{width:min(100%,1080px);margin:0 auto}
+  ::selection{background:#8FC6E8}
+  @media (max-width:650px){ .ab-arrow{display:none!important} }
+  .header-sub{margin:10px 0 0;font-size:16px;line-height:1.5;max-width:900px;color:#e9f2fb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  @media (max-width:650px){ .header-sub{white-space:normal;max-width:100%;font-size:clamp(14px,2.6vw,16px)} }
+  @keyframes eslabon-in{from{opacity:0;transform:translateY(10px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
+  .eslabon-anim{animation:eslabon-in .45s ease both}
+  @keyframes flecha-in{from{opacity:0}to{opacity:1}}
+  .flecha-anim{animation:flecha-in .3s ease .1s both}
+  .card-hover{transition:transform .18s ease,box-shadow .18s ease;position:relative}
+  .card-hover:hover{transform:scale(1.025);box-shadow:0 8px 18px rgba(13,27,42,.12);z-index:2}
+</style>
+</helmet>
+
+<a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+<div style="display:flex;flex-direction:column;min-height:100vh">
+
+<header style="background:#0055B7;color:#fff;padding:42px clamp(20px,6vw,56px) 34px;display:flex;align-items:center;gap:32px;flex-wrap:wrap">
+  <img src="logoula.png" alt="Universidad de Los Lagos" style="height:76px;width:auto;border-radius:6px;flex:none">
+  <div style="flex:1;min-width:260px">
+    <p style="margin:0 0 6px;font:600 12px/1.4 'Open Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8FC6E8">Seminario de Grado · SEM2-2026</p>
+    <h1 style="font-size:clamp(32px,5vw,52px);line-height:1.05;font-weight:700">Instrumentos</h1>
+    <p class="header-sub">Línea Licenciatura en Educación · Departamento de Educación · Carreras Pedagógicas</p>
+  </div>
+</header>
+
+<nav aria-label="Secciones" style="position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:1px solid #e2e6ea;box-shadow:0 2px 8px rgba(0,0,0,.04)">
+  <div style="display:flex;gap:4px;overflow-x:auto;padding:0 clamp(20px,6vw,56px);scrollbar-width:thin">
+    <sc-for list="&#123;&#123; navItems &#125;&#125;" as="item" hint-placeholder-count="14">
+      <a href="&#123;&#123; item.href &#125;&#125;" style="flex:none;padding:14px 14px;font:600 13px 'Open Sans',sans-serif;color:#1a232b;text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap" style-hover="color:#0055B7;border-bottom:3px solid #0055B7">&#123;&#123; item.label &#125;&#125;</a>
+    </sc-for>
+  </div>
+</nav>
+
+<main id="contenido-principal" style="flex:1">
+
+<section id="activacion" style="padding:64px clamp(20px,6vw,56px);background:#fff8e6">
+  <div style="max-width:900px;margin:0 auto">
+    <p style="display:inline-block;background:#fff1c2;color:#8a6d1f;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">Antes de comenzar</p>
+    <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:8px;color:#0d1b2a">¿Qué sabes ya sobre instrumentos de investigación?</h2>
+    <p style="font-size:15px;color:#55606b;margin-bottom:28px">Responde estas 4 preguntas rápidas antes de avanzar. Esto te ayudará a activar lo que ya sabes y a identificar qué conceptos conviene reforzar durante la lectura.</p>
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <sc-for list="&#123;&#123; diagnosticoPreguntas &#125;&#125;" as="preg" hint-placeholder-count="4">
+        <div style="background:#fff;border-radius:12px;padding:22px 24px;border:1px solid #f0dca0">
+          <p style="font:700 15px 'Roboto Condensed',sans-serif;color:#0d1b2a;margin-bottom:14px">&#123;&#123; preg.n &#125;&#125;. &#123;&#123; preg.pregunta &#125;&#125;</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px">
+            <sc-for list="&#123;&#123; preg.opciones &#125;&#125;" as="op" hint-placeholder-count="4">
+              <button sc-onclick="&#123;&#123; op.onClick &#125;&#125;" style="padding:11px 14px;border-radius:8px;font:600 13px 'Open Sans',sans-serif;cursor:pointer;text-align:left" sc-style-background="&#123;&#123; op.bg &#125;&#125;" sc-style-color="&#123;&#123; op.color &#125;&#125;" sc-style-border="1.5px solid &#123;&#123; op.border &#125;&#125;">&#123;&#123; op.texto &#125;&#125;</button>
+            </sc-for>
+          </div>
+          <sc-if value="&#123;&#123; preg.mostrarFeedback &#125;&#125;" hint-placeholder-val="&#123;&#123; false &#125;&#125;">
+            <div style="margin-top:14px;padding:14px 16px;border-radius:8px" sc-style-background="&#123;&#123; preg.feedbackBg &#125;&#125;" sc-style-border-left="4px solid &#123;&#123; preg.feedbackBorder &#125;&#125;">
+              <p style="font:700 13px 'Open Sans',sans-serif;margin-bottom:4px" sc-style-color="&#123;&#123; preg.feedbackBorder &#125;&#125;">&#123;&#123; preg.feedbackTitulo &#125;&#125;</p>
+              <p style="font-size:13.5px;line-height:1.5;color:#3a4551;margin:0">&#123;&#123; preg.explicacion &#125;&#125;</p>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="inicio" style="padding:64px clamp(20px,6vw,56px) 56px;max-width:920px;margin:0 auto">
+  <p style="display:inline-block;background:#e9f2fb;color:#0055B7;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">1 · Introducción</p>
+  <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:18px;color:#0d1b2a">¿Qué es un instrumento de investigación?</h2>
+  <p style="font-size:17px;line-height:1.7;color:#3a4551">Un <strong>instrumento de investigación</strong> es el recurso concreto (entrevista, cuestionario, pauta de observación) que un investigador utiliza para <strong>recoger la información necesaria</strong> para responder a sus objetivos específicos. No es un formulario aislado, pues, es la última pieza de una cadena que comienza en el problema de investigación y pasa por el marco teórico, las variables o conceptos y, según el enfoque, las dimensiones (cuantitativo) o las categorías de análisis (cualitativo), antes de llegar a las preguntas concretas que se le harán a una muestra.</p>
+  <p style="font-size:17px;line-height:1.7;color:#3a4551">En esta asignatura, trabajaremos con <strong>dimensiones </strong> en los estudios cuantitativos y con <strong>categorías de análisis</strong> en los estudios cualitativos. Este recurso te guiará con con ejemplos concretos, y te entregarán plantillas y ejercicios para aplicarla en tu trabajo.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:32px">
+    <div class="card-hover" style="background:#f4f6f8;border-radius:10px;padding:20px;border-left:4px solid #0055B7">
+      <p style="font:700 15px 'Roboto Condensed',sans-serif;margin-bottom:6px;color:#0055B7">Coherencia</p>
+      <p style="font-size:14px;line-height:1.5;color:#55606b;margin:0">Cada pregunta del instrumento debe responder a tu objetivo específico empírico y, por consiguiente, el objetivo general. Además, el marco teórico debe sostener al instrumento.</p>
+    </div>
+    <div class="card-hover" style="background:#f4f6f8;border-radius:10px;padding:20px;border-left:4px solid #3FAE29">
+      <p style="font:700 15px 'Roboto Condensed',sans-serif;margin-bottom:6px;color:#3FAE29">Pertinencia</p>
+      <p style="font-size:14px;line-height:1.5;color:#55606b;margin:0">El instrumento se elige según lo que necesitas comprender o medir, no al revés. Tus objetivos y tu marco teórico son tu guías para ello.</p>
+    </div>
+    <div class="card-hover" style="background:#f4f6f8;border-radius:10px;padding:20px;border-left:4px solid #9F26B4">
+      <p style="font:700 15px 'Roboto Condensed',sans-serif;margin-bottom:6px;color:#9F26B4">Rigor</p>
+      <p style="font-size:14px;line-height:1.5;color:#55606b;margin:0">Validez (y confiabilidad) no son trámites; garantizan que mides lo que dices medir de acuerdo a tus objetivos.</p>
+    </div>
+  </div>
+</section>
+
+<section id="escoger" style="padding:64px clamp(20px,6vw,56px);background:#f9fafb">
+  <div style="max-width:980px;margin:0 auto">
+    <p style="display:inline-block;background:#eafbe6;color:#2f8b21;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">2 · Guía práctica</p>
+    <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:8px;color:#0d1b2a">¿Cómo escoger un instrumento?</h2>
+    <p style="font-size:14px;color:#55606b;margin-bottom:24px">Ve paso a paso, o haz clic directamente sobre cualquiera para revisarlo.</p>
+    <div style="display:flex;flex-direction:column;gap:0">
+      <sc-for list="&#123;&#123; pasosGuia &#125;&#125;" as="paso" hint-placeholder-count="5">
+        <div>
+          <button sc-onclick="&#123;&#123; paso.onClick &#125;&#125;" style="display:flex;gap:20px;align-items:flex-start;width:100%;background:none;border:none;padding:0;margin:0;font:inherit;text-align:left;cursor:pointer">
+            <div class="eslabon-anim" style="flex:none;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 18px 'Roboto Condensed',sans-serif;transition:background .25s,color .25s" sc-style-background="&#123;&#123; paso.circuloBg &#125;&#125;" sc-style-color="&#123;&#123; paso.circuloColor &#125;&#125;">&#123;&#123; paso.circuloTexto &#125;&#125;</div>
+            <div style="flex:1;border-radius:10px;padding:18px 22px;transition:background .25s,border-color .25s" sc-style-background="&#123;&#123; paso.tarjetaBg &#125;&#125;" sc-style-border="&#123;&#123; paso.tarjetaBorde &#125;&#125;">
+              <p style="font:700 16px 'Roboto Condensed',sans-serif;margin-bottom:6px" sc-style-color="&#123;&#123; paso.tituloColor &#125;&#125;">&#123;&#123; paso.titulo &#125;&#125;</p>
+              <sc-if value="&#123;&#123; paso.activo &#125;&#125;" hint-placeholder-val="&#123;&#123; true &#125;&#125;">
+                <p class="eslabon-anim" style="font-size:14.5px;line-height:1.6;color:#55606b;margin:0">&#123;&#123; paso.desc &#125;&#125;</p>
+              </sc-if>
+            </div>
+          </button>
+          <sc-if value="&#123;&#123; paso.mostrarFlecha &#125;&#125;" hint-placeholder-val="&#123;&#123; true &#125;&#125;">
+            <div style="display:flex;align-items:flex-start;min-height:34px;margin-left:22px;padding-top:6px">
+              <div style="width:0;height:100%;min-height:28px;border-left:2px dashed #b6c6d6;transition:border-color .25s" sc-style-border-left="2px dashed &#123;&#123; paso.lineaColor &#125;&#125;"></div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;justify-content:center;gap:12px;margin-top:20px">
+      <sc-if value="&#123;&#123; mostrarAnteriorGuia &#125;&#125;" hint-placeholder-val="&#123;&#123; true &#125;&#125;">
+        <button sc-onclick="&#123;&#123; anteriorPasoGuia &#125;&#125;" style="background:#fff;color:#0055B7;border:1.5px solid #0055B7;padding:11px 22px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer">← Paso anterior</button>
+      </sc-if>
+      <button sc-onclick="&#123;&#123; siguientePasoGuia &#125;&#125;" style="background:#0055B7;color:#fff;border:none;padding:11px 22px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer">&#123;&#123; guiaBoton &#125;&#125;</button>
+    </div>
+  </div>
+</section>
+
+<section id="arbol" style="padding:64px clamp(20px,6vw,56px)">
+  <div style="max-width:980px;margin:0 auto">
+    <p style="display:inline-block;background:#f3e8f7;color:#9F26B4;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">3 · Diagrama</p>
+    <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:8px;color:#0d1b2a">Ruta de selección</h2>
+    <p style="font-size:15px;color:#55606b;margin-bottom:28px">Responde Sí o No a cada pregunta. En cuanto la respuesta sea "sí", ese es tu instrumento candidato.</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <sc-for list="&#123;&#123; arbolPreguntas &#125;&#125;" as="q" hint-placeholder-count="4">
+        <sc-if value="&#123;&#123; q.mostrar &#125;&#125;" hint-placeholder-val="&#123;&#123; true &#125;&#125;">
+          <div>
+            <sc-if value="&#123;&#123; q.esDescartada &#125;&#125;" hint-placeholder-val="&#123;&#123; false &#125;&#125;">
+              <div class="eslabon-anim" style="display:flex;align-items:center;gap:12px;padding:10px 14px;color:#8a97a3;font-size:13.5px">
+                <span style="flex:none;width:24px;height:24px;border-radius:50%;background:#eef1f4;color:#8a97a3;display:flex;align-items:center;justify-content:center;font:700 11px 'Roboto Condensed',sans-serif">&#123;&#123; q.n &#125;&#125;</span>
+                <span style="flex:1">&#123;&#123; q.pregunta &#125;&#125;</span>
+                <span style="flex:none;font:700 11px 'Open Sans',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#b0392b;background:#fdeeee;padding:3px 9px;border-radius:12px">No</span>
+              </div>
+            </sc-if>
+            <sc-if value="&#123;&#123; q.esActiva &#125;&#125;" hint-placeholder-val="&#123;&#123; false &#125;&#125;">
+              <div class="eslabon-anim" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;background:#fff;border:1.5px solid #d7dee5;border-radius:10px;padding:18px 20px">
+                <p style="flex:2;min-width:220px;font-size:15px;line-height:1.5;color:#1a232b;margin:0"><strong>&#123;&#123; q.n &#125;&#125;.</strong> &#123;&#123; q.pregunta &#125;&#125;</p>
+                <div style="flex:none;display:flex;gap:10px">
+                  <button sc-onclick="&#123;&#123; q.onSi &#125;&#125;" style="padding:11px 22px;border-radius:8px;border:none;color:#fff;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer" sc-style-background="&#123;&#123; q.color &#125;&#125;">Sí</button>
+                  <button sc-onclick="&#123;&#123; q.onNo &#125;&#125;" style="padding:11px 22px;border-radius:8px;border:1.5px solid #d7dee5;background:#fff;color:#55606b;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer">No</button>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="&#123;&#123; q.esSeleccionada &#125;&#125;" hint-placeholder-val="&#123;&#123; false &#125;&#125;">
+              <div class="eslabon-anim" style="display:flex;gap:16px;align-items:stretch;flex-wrap:wrap">
+                <div style="flex:2;min-width:220px;background:#fff;border:1.5px solid #d7dee5;border-radius:10px;padding:18px 20px;display:flex;align-items:center">
+                  <p style="font-size:15px;line-height:1.5;color:#1a232b;margin:0"><strong>&#123;&#123; q.n &#125;&#125;.</strong> &#123;&#123; q.pregunta &#125;&#125;</p>
+                </div>
+                <div class="ab-arrow" style="flex:none;display:flex;align-items:center;color:#9aa7b3;font-size:22px;padding:0 4px">→</div>
+                <div style="flex:1;min-width:200px;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;justify-content:center;color:#fff" sc-style-background="&#123;&#123; q.color &#125;&#125;">
+                  <p style="font:700 11px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px;opacity:.85">✓ Tu instrumento</p>
+                  <p style="font:700 18px 'Roboto Condensed',sans-serif;margin:0">&#123;&#123; q.resultado &#125;&#125;</p>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+      </sc-for>
+    </div>
+    <sc-if value="&#123;&#123; rutaAgotada &#125;&#125;" hint-placeholder-val="&#123;&#123; false &#125;&#125;">
+      <div class="eslabon-anim" style="margin-top:14px;background:#fff8e6;border:1px solid #f0dca0;border-radius:10px;padding:16px 20px;font-size:14px;color:#6b5a1e">Ninguna respuesta fue "sí" con claridad: es probable que necesites <strong>combinar dos instrumentos</strong> (ej. entrevista + encuesta tipo Likert). Consulta a tus profesores.</div>
+    </sc-if>
+    <sc-if value="&#123;&#123; rutaMostrarReiniciar &#125;&#125;" hint-placeholder-val="&#123;&#123; false &#125;&#125;">
+      <div style="display:flex;justify-content:center;margin-top:20px">
+        <button sc-onclick="&#123;&#123; reiniciarRuta &#125;&#125;" style="background:#fff;color:#9F26B4;border:1.5px solid #9F26B4;padding:11px 22px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer">Reiniciar ruta ↺</button>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<section id="enfoque" style="padding:64px clamp(20px,6vw,56px);background:#f9fafb">
+  <div style="max-width:1080px;margin:0 auto">
+    <p style="display:inline-block;background:#e9f2fb;color:#0055B7;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">4 · Enfoque e instrumento</p>
+    <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:8px;color:#0d1b2a">Relación entre enfoque e instrumento</h2>
+    <p style="font-size:14px;color:#55606b;margin-bottom:20px">Haz clic en un enfoque para ver una pista rápida sobre cuándo elegirlo.</p>
+    <div style="overflow-x:auto;background:#fff;border-radius:12px;border:1px solid #e2e6ea">
+      <sc-raw-table style="width:100%;border-collapse:collapse;min-width:680px">
+        <sc-raw-thead>
+          <sc-raw-tr style="background:#0055B7">
+            <sc-raw-th style="text-align:left;padding:14px 18px;color:#fff;font:700 13px 'Open Sans',sans-serif">Enfoque</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:14px 18px;color:#fff;font:700 13px 'Open Sans',sans-serif">Finalidad</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:14px 18px;color:#fff;font:700 13px 'Open Sans',sans-serif">Instrumento recomendado</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:14px 18px;color:#fff;font:700 13px 'Open Sans',sans-serif">Ejemplo</sc-raw-th>
+          </sc-raw-tr>
+        </sc-raw-thead>
+        <sc-raw-tbody>
+          <sc-for list="&#123;&#123; enfoqueFilas &#125;&#125;" as="fila" hint-placeholder-count="3">
+            <sc-raw-tr style="border-top:1px solid #e2e6ea;transition:background .25s,opacity .25s" sc-style-background="&#123;&#123; fila.filaBg &#125;&#125;" sc-style-opacity="&#123;&#123; fila.filaOpacity &#125;&#125;">
+              <sc-raw-td style="padding:8px 10px">
+                <button sc-onclick="&#123;&#123; fila.onClick &#125;&#125;" style="background:none;border:none;padding:8px 10px;margin:0;font:700 14px 'Roboto Condensed',sans-serif;cursor:pointer;text-align:left;border-radius:6px;white-space:nowrap" sc-style-color="&#123;&#123; fila.color &#125;&#125;">&#123;&#123; fila.etiqueta &#125;&#125;</button>
+              </sc-raw-td>
+              <sc-raw-td style="padding:16px 18px;font-size:13.5px;color:#3a4551;line-height:1.5">&#123;&#123; fila.finalidad &#125;&#125;</sc-raw-td>
+              <sc-raw-td style="padding:16px 18px;font-size:13.5px;color:#1a232b;font-weight:600">&#123;&#123; fila.instrumento &#125;&#125;</sc-raw-td>
+              <sc-raw-td style="padding:16px 18px;font-size:13.5px;color:#55606b;line-height:1.5">&#123;&#123; fila.ejemplo &#125;&#125;</sc-raw-td>
+            </sc-raw-tr>
+          </sc-for>
+        </sc-raw-tbody>
+      </sc-raw-table>
+    </div>
+    <sc-if value="&#123;&#123; enfoqueTipVisible &#125;&#125;" hint-placeholder-val="&#123;&#123; false &#125;&#125;">
+      <div class="eslabon-anim" style="margin-top:14px;border-radius:10px;padding:16px 20px;font-size:14px;line-height:1.6" sc-style-background="&#123;&#123; enfoqueTipBg &#125;&#125;" sc-style-color="&#123;&#123; enfoqueTipColor &#125;&#125;">
+        <strong>&#123;&#123; enfoqueTipNombre &#125;&#125;:</strong> &#123;&#123; enfoqueTipTexto &#125;&#125;
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<section id="trazabilidad" style="padding:64px clamp(20px,6vw,56px)">
+  <div style="max-width:1080px;margin:0 auto">
+    <p style="display:inline-block;background:#eafbe6;color:#2f8b21;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">5 · La sección clave</p>
+    <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:8px;color:#0d1b2a">La trazabilidad: del objetivo al ítem</h2>
+    <p style="font-size:15.5px;line-height:1.6;color:#3a4551;margin-bottom:10px">Un instrumento nunca se construye "al ojo". Cada pregunta debe poder justificarse siguiendo esta cadena hacia atrás. Si no puedes explicar de qué apartado del marco teórico viene una pregunta, probablemente sobra.</p>
+    <p style="font-size:14.5px;line-height:1.6;color:#55606b;margin-bottom:24px"><strong>En palabras simples:</strong> en <strong>cuantitativo</strong> se trabaja con <strong>variable → dimensiones → pregunta</strong>; en <strong>cualitativo</strong> se  trabaja con <strong>concepto → categorías de análisis → pregunta</strong>. La idea es la misma: pasar de lo general a lo concreto sin perder coherencia.</p>
+    <div style="display:flex;justify-content:center;flex-wrap:wrap;row-gap:12px">
+      <sc-for list="&#123;&#123; cadenaTrazabilidad &#125;&#125;" as="eslabon" hint-placeholder-count="6">
+        <sc-if value="&#123;&#123; eslabon.visible &#125;&#125;" hint-placeholder-val="&#123;&#123; true &#125;&#125;">
+          <div style="display:flex;align-items:stretch;flex:none">
+            <div class="eslabon-anim" style="width:150px;border-radius:10px;padding:16px 14px;color:#fff;display:flex;flex-direction:column;gap:6px;justify-content:center" sc-style-background="&#123;&#123; eslabon.color &#125;&#125;">
+              <p style="font:700 10.5px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;margin:0;opacity:.85">&#123;&#123; eslabon.tipo &#125;&#125;</p>
+              <p style="font:700 14.5px 'Roboto Condensed',sans-serif;margin:0;line-height:1.25">&#123;&#123; eslabon.titulo &#125;&#125;</p>
+            </div>
+            <sc-if value="&#123;&#123; eslabon.mostrarFlecha &#125;&#125;" hint-placeholder-val="&#123;&#123; true &#125;&#125;">
+              <div class="flecha-anim" style="width:36px;flex:none;display:flex;align-items:center;justify-content:center;color:#c3ccd4;font-size:20px">→</div>
+            </sc-if>
+          </div>
+        </sc-if>
+      </sc-for>
+    </div>
+    <div style="display:flex;justify-content:center;margin-top:18px">
+      <button sc-onclick="&#123;&#123; avanzarTrazabilidad &#125;&#125;" style="background:#0055B7;color:#fff;border:none;padding:11px 22px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer">&#123;&#123; trazabilidadBoton &#125;&#125;</button>
+    </div>
+    <div style="margin-top:28px;background:#f4f6f8;border-radius:14px;padding:26px 28px">
+      <p style="font:700 13px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#0055B7;margin-bottom:14px">Ejemplo (plantilla institucional de trazabilidad)</p>
+      <p style="font-size:13.5px;line-height:1.6;color:#3a4551;margin:0 0 14px">En un estudio <strong>cuantitativo</strong> puede decirse: variable → dimensiones → preguntas. En uno <strong>cualitativo</strong> así: concepto → categorías → preguntas. Esto ayuda a evitar confundir el propósito de la pregunta con la lógica del diseño.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+        <sc-for list="&#123;&#123; ejemploTrazabilidad &#125;&#125;" as="campo" hint-placeholder-count="5">
+          <div style="background:#fff;border-radius:8px;padding:14px 16px;border:1px solid #e2e6ea">
+            <p style="font:700 10.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px" sc-style-color="&#123;&#123; campo.color &#125;&#125;">&#123;&#123; campo.etiqueta &#125;&#125;</p>
+            <p style="font-size:13.5px;line-height:1.5;color:#3a4551;margin:0">&#123;&#123; campo.valor &#125;&#125;</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="plantilla" style="padding:64px clamp(20px,6vw,56px);background:#f9fafb">
+  <div style="max-width:1180px;margin:0 auto">
+    <p style="display:inline-block;background:#f3e8f7;color:#9F26B4;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">6 · Herramienta</p>
+    <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:8px;color:#0d1b2a">Plantilla descargable de trazabilidad</h2>
+    <p style="font-size:15px;color:#55606b;margin-bottom:24px">Complétala directamente en la página con tus propios objetivos específicos. Se guarda automáticamente en este navegador y también puedes respaldarla con un clic.</p>
+    <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap">
+      <button sc-onclick="&#123;&#123; saveToBrowser &#125;&#125;" style="background:#166534;color:#fff;border:none;padding:11px 20px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer">Guardar en navegador</button>
+      <button sc-onclick="&#123;&#123; restoreFromBrowser &#125;&#125;" style="background:#fff;color:#166534;border:1.5px solid #166534;padding:11px 20px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer">Restaurar copia</button>
+      <button sc-onclick="&#123;&#123; downloadExcel &#125;&#125;" style="background:#0055B7;color:#fff;border:none;padding:11px 20px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer">Descargar Excel</button>
+      <button sc-onclick="&#123;&#123; downloadWord &#125;&#125;" style="background:#fff;color:#0055B7;border:1.5px solid #0055B7;padding:11px 20px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer">Descargar Word</button>
+      <button sc-onclick="&#123;&#123; downloadPDF &#125;&#125;" style="background:#fff;color:#9F26B4;border:1.5px solid #9F26B4;padding:11px 20px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer">Descargar PDF</button>
+      <button sc-onclick="&#123;&#123; addRow &#125;&#125;" style="background:#eafbe6;color:#2f8b21;border:1.5px solid #ACDA90;padding:11px 20px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer;margin-left:auto">+ Agregar fila</button>
+    </div>
+    <div style="overflow-x:auto;background:#fff;border-radius:12px;border:1px solid #e2e6ea">
+      <sc-raw-table style="width:100%;border-collapse:collapse;min-width:920px">
+        <sc-raw-thead>
+          <sc-raw-tr style="background:#0d1b2a">
+            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:22%">Objetivo específico</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:20%">Apartado del marco teórico</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:18%">Instrumento/técnica</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:22%">Posibles preguntas</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:14%">Informantes</sc-raw-th>
+            <sc-raw-th style="width:4%"></sc-raw-th>
+          </sc-raw-tr>
+        </sc-raw-thead>
+        <sc-raw-tbody>
+          <sc-for list="&#123;&#123; filasPlantilla &#125;&#125;" as="fila" hint-placeholder-count="3">
+            <sc-raw-tr style="border-top:1px solid #e2e6ea;vertical-align:top">
+              <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onObjetivo &#125;&#125;" value="&#123;&#123; fila.objetivo &#125;&#125;" placeholder="Ej: Comprender la percepción de..." style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
+              <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onMarco &#125;&#125;" value="&#123;&#123; fila.marco &#125;&#125;" placeholder="Ej: Concepto de evaluación, Cap. I" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
+              <sc-raw-td style="padding:6px"><input sc-oninput="&#123;&#123; fila.onInstrumento &#125;&#125;" value="&#123;&#123; fila.instrumento &#125;&#125;" placeholder="Ej: Entrevista" style="width:100%;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;box-sizing:border-box"></sc-raw-td>
+              <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onPreguntas &#125;&#125;" value="&#123;&#123; fila.preguntas &#125;&#125;" placeholder="Ej: ¿Qué entiende por...?" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
+              <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onInformantes &#125;&#125;" value="&#123;&#123; fila.informantes &#125;&#125;" placeholder="Ej: Docentes de..." style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
+              <sc-raw-td style="padding:6px;text-align:center"><button sc-onclick="&#123;&#123; fila.onEliminar &#125;&#125;" title="Eliminar fila" style="background:none;border:none;color:#c0392b;font-size:18px;cursor:pointer">×</button></sc-raw-td>
+            </sc-raw-tr>
+          </sc-for>
+        </sc-raw-tbody>
+      </sc-raw-table>
+    </div>
+  </div>
+</section>
+
+<section id="entrevista" style="padding:64px clamp(20px,6vw,56px)">
+  <div style="max-width:1080px;margin:0 auto">
+    <p style="display:inline-block;background:#e9f2fb;color:#0055B7;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">7 · Instrumento</p>
+    <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:8px;color:#0d1b2a">La entrevista</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3a4551;margin-bottom:12px">Facilita el intercambio y la recopilación de información a través de un encuentro formal entre un entrevistador(a) y un entrevistado(a). Mediante un formato de preguntas y respuestas se construyen conjuntamente los significados en torno a un fenómeno de estudio.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:20px 0 32px">
+      <div class="card-hover" style="background:#eafbe6;border-radius:10px;padding:16px 18px">
+        <p style="font:700 13px 'Roboto Condensed',sans-serif;color:#2f8b21;margin-bottom:6px">Úsala cuando…</p>
+        <p style="font-size:13.5px;line-height:1.5;color:#3a4551;margin:0">necesitas comprender experiencias, percepciones o significados en profundidad, con flexibilidad para explorar.</p>
+      </div>
+      <div class="card-hover" style="background:#fdeeee;border-radius:10px;padding:16px 18px">
+        <p style="font:700 13px 'Roboto Condensed',sans-serif;color:#b0392b;margin-bottom:6px">Límites</p>
+        <p style="font-size:13.5px;line-height:1.5;color:#3a4551;margin:0">demanda tiempo, requiere de un análisis cualitativo cuidadoso; no permite comparar grandes muestras.</p>
+      </div>
+    </div>
+    <h3 style="font-size:19px;margin-bottom:14px;color:#0d1b2a">Tipos de entrevista</h3>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:32px">
+      <sc-for list="&#123;&#123; entrevistaTipos &#125;&#125;" as="tipo" hint-placeholder-count="3">
+        <div style="border:1px solid #e2e6ea;border-radius:10px;overflow:hidden">
+          <button sc-onclick="&#123;&#123; tipo.toggle &#125;&#125;" style="width:100%;text-align:left;background:#fff;border:none;padding:16px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px">
+            <span style="font:700 15px 'Roboto Condensed',sans-serif;color:#0d1b2a">&#123;&#123; tipo.nombre &#125;&#125;</span>
+            <span style="color:#0055B7;font-size:14px">&#123;&#123; tipo.simboloToggle &#125;&#125;</span>
+          </button>
+          <sc-if value="&#123;&#123; tipo.open &#125;&#125;" hint-placeholder-val="&#123;&#123; false &#125;&#125;">
+            <div style="padding:0 20px 18px;font-size:14px;line-height:1.6;color:#55606b">&#123;&#123; tipo.desc &#125;&#125;</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <h3 style="font-size:19px;margin-bottom:14px;color:#0d1b2a">Tipos de preguntas (Grinnell, Williams y Unrau, 2009)</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:32px">
+      <sc-for list="&#123;&#123; preguntaTipos &#125;&#125;" as="tp" hint-placeholder-count="4">
+        <div class="card-hover" style="background:#f4f6f8;border-radius:10px;padding:18px 20px">
+          <p style="font:700 14.5px 'Roboto Condensed',sans-serif;color:#0055B7;margin-bottom:6px">&#123;&#123; tp.nombre &#125;&#125;</p>
+          <p style="font-size:13px;line-height:1.5;color:#3a4551;margin:0 0 10px">&#123;&#123; tp.desc &#125;&#125;</p>
+          <sc-for list="&#123;&#123; tp.ejemplos &#125;&#125;" as="ej" hint-placeholder-count="2">
+            <p style="font-size:12.5px;line-height:1.5;color:#55606b;margin:0 0 4px;padding-left:12px;border-left:2px solid #c3ccd4">&#123;&#123; ej &#125;&#125;</p>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <h3 style="font-size:19px;margin-bottom:14px;color:#0d1b2a">Clasificación según contenido (Mertens, 2015)</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:32px">
+      <sc-for list="&#123;&#123; clasificacionPreguntas &#125;&#125;" as="cp" hint-placeholder-count="5">
+        <div class="card-hover" style="background:#fff;border:1px solid #e2e6ea;border-radius:10px;padding:18px 20px">
+          <p style="font:700 14px 'Roboto Condensed',sans-serif;color:#9F26B4;margin-bottom:8px">&#123;&#123; cp.nombre &#125;&#125;</p>
+          <sc-for list="&#123;&#123; cp.ejemplos &#125;&#125;" as="ej" hint-placeholder-count="1">
+            <p style="font-size:12.5px;line-height:1.55;color:#55606b;margin:0 0 6px;font-style:italic">"&#123;&#123; ej &#125;&#125;"</p>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div style="background:#0d1b2a;border-radius:14px;padding:26px 28px">
+      <p style="font:700 13px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#8FC6E8;margin-bottom:14px">Recomendaciones para entrevistar</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <sc-for list="&#123;&#123; recomendacionesEntrevista &#125;&#125;" as="r" hint-placeholder-count="6">
+          <p style="font-size:13.5px;line-height:1.5;color:#e9f2fb;margin:0;display:flex;gap:8px"><span style="color:#3FAE29">✓</span>&#123;&#123; r &#125;&#125;</p>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="encuesta" style="padding:64px clamp(20px,6vw,56px);background:#f9fafb">
+  <div style="max-width:1080px;margin:0 auto">
+    <p style="display:inline-block;background:#eafbe6;color:#2f8b21;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">8 · Instrumento</p>
+    <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:8px;color:#0d1b2a">La encuesta y las escalas Likert</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3a4551;margin-bottom:12px">Un cuestionario permite <strong>medir variables</strong> en muestras amplias mediante preguntas cerradas (con opciones fijas) y, ocasionalmente, preguntas abiertas. Las escalas Likert son el formato cerrado más usado; cada ítem pide graduar una percepción entre 4 y 5 niveles. Se sugiere omitir el neutro.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:20px 0 32px">
+      <div class="card-hover" style="background:#fff;border-radius:10px;padding:16px 18px;border:1px solid #e2e6ea">
+        <p style="font:700 13px 'Roboto Condensed',sans-serif;color:#0055B7;margin-bottom:6px">Validez</p>
+        <p style="font-size:13.5px;line-height:1.5;color:#3a4551;margin:0">el instrumento mide realmente lo que dice medir (revisión de expertos).</p>
+      </div>
+      <div class="card-hover" style="background:#fff;border-radius:10px;padding:16px 18px;border:1px solid #e2e6ea">
+        <p style="font:700 13px 'Roboto Condensed',sans-serif;color:#0055B7;margin-bottom:6px">Confiabilidad</p>
+        <p style="font-size:13.5px;line-height:1.5;color:#3a4551;margin:0">resultados consistentes si se aplica de nuevo.</p>
+      </div>
+    </div>
+    <h3 style="font-size:19px;margin-bottom:14px;color:#0d1b2a">Tipos de escala Likert</h3>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:32px">
+      <sc-for list="&#123;&#123; likertEscalas &#125;&#125;" as="esc" hint-placeholder-count="6">
+        <div style="border:1px solid #e2e6ea;border-radius:10px;overflow:hidden;background:#fff">
+          <button sc-onclick="&#123;&#123; esc.toggle &#125;&#125;" style="width:100%;text-align:left;background:none;border:none;padding:16px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px">
+            <span style="font:700 15px 'Roboto Condensed',sans-serif;color:#0d1b2a">De &#123;&#123; esc.nombre &#125;&#125;</span>
+            <span style="color:#3FAE29;font-size:14px">&#123;&#123; esc.simboloToggle &#125;&#125;</span>
+          </button>
+          <sc-if value="&#123;&#123; esc.open &#125;&#125;" hint-placeholder-val="&#123;&#123; false &#125;&#125;">
+            <div style="padding:0 20px 18px">
+              <p style="font-size:14px;line-height:1.6;color:#55606b;margin:0 0 10px">&#123;&#123; esc.desc &#125;&#125;</p>
+              <p style="font-size:13.5px;font-style:italic;color:#0d1b2a;margin:0 0 8px">"&#123;&#123; esc.ejemplo &#125;&#125;"</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <sc-for list="&#123;&#123; esc.opciones &#125;&#125;" as="op" hint-placeholder-count="4">
+                  <span style="background:#ACDA90;color:#1f5c15;font:600 12px 'Open Sans',sans-serif;padding:5px 12px;border-radius:16px">&#123;&#123; op &#125;&#125;</span>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <h3 style="font-size:19px;margin-bottom:14px;color:#0d1b2a">Errores frecuentes al redactar ítems</h3>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="&#123;&#123; erroresLikert &#125;&#125;" as="err" hint-placeholder-count="3">
+        <div class="card-hover" style="background:#fff;border:1px solid #e2e6ea;border-radius:10px;padding:18px 20px">
+          <p style="font:700 14px 'Roboto Condensed',sans-serif;color:#0d1b2a;margin-bottom:10px">&#123;&#123; err.titulo &#125;&#125;</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div style="background:#fdeeee;border-radius:8px;padding:12px 14px">
+              <p style="font:700 11px 'Open Sans',sans-serif;color:#b0392b;letter-spacing:.05em;text-transform:uppercase;margin-bottom:5px">Error</p>
+              <p style="font-size:13px;line-height:1.5;color:#3a4551;margin:0">&#123;&#123; err.error &#125;&#125;</p>
+            </div>
+            <div style="background:#eafbe6;border-radius:8px;padding:12px 14px">
+              <p style="font:700 11px 'Open Sans',sans-serif;color:#2f8b21;letter-spacing:.05em;text-transform:uppercase;margin-bottom:5px">Corrección</p>
+              <p style="font-size:13px;line-height:1.5;color:#3a4551;margin:0">&#123;&#123; err.correccion &#125;&#125;</p>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="comparacion" style="padding:64px clamp(20px,6vw,56px)">
+  <div style="max-width:1080px;margin:0 auto">
+    <p style="display:inline-block;background:#f3e8f7;color:#9F26B4;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">9 · Comparación</p>
+    <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:24px;color:#0d1b2a">Entrevista vs. encuesta</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px">
+      <sc-for list="&#123;&#123; comparacionCards &#125;&#125;" as="card" hint-placeholder-count="2">
+        <div class="card-hover" style="border-radius:14px;overflow:hidden;border:1px solid #e2e6ea">
+          <div style="padding:18px 22px" sc-style-background="&#123;&#123; card.color &#125;&#125;">
+            <p style="font:700 20px 'Roboto Condensed',sans-serif;color:#fff;margin:0">&#123;&#123; card.titulo &#125;&#125;</p>
+          </div>
+          <div style="padding:20px 22px;background:#fff">
+            <p style="font:700 12px 'Open Sans',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#2f8b21;margin-bottom:8px">Ventajas</p>
+            <sc-for list="&#123;&#123; card.ventajas &#125;&#125;" as="v" hint-placeholder-count="3">
+              <p style="font-size:13.5px;line-height:1.55;color:#3a4551;margin:0 0 6px;display:flex;gap:8px"><span style="color:#3FAE29">+</span>&#123;&#123; v &#125;&#125;</p>
+            </sc-for>
+            <p style="font:700 12px 'Open Sans',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#b0392b;margin:16px 0 8px">Limitaciones</p>
+            <sc-for list="&#123;&#123; card.limitaciones &#125;&#125;" as="l" hint-placeholder-count="3">
+              <p style="font-size:13.5px;line-height:1.55;color:#3a4551;margin:0 0 6px;display:flex;gap:8px"><span style="color:#c0392b">−</span>&#123;&#123; l &#125;&#125;</p>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="ejemplos" style="padding:64px clamp(20px,6vw,56px);background:#f9fafb">
+  <div style="max-width:1080px;margin:0 auto">
+    <p style="display:inline-block;background:#e9f2fb;color:#0055B7;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">10 · Ejemplos</p>
+    <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:24px;color:#0d1b2a">Construyendo la pregunta</h2>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <sc-for list="&#123;&#123; ejemplosCadenas &#125;&#125;" as="cad" hint-placeholder-count="2">
+        <div class="card-hover" style="background:#fff;border:1px solid #e2e6ea;border-radius:12px;padding:22px 24px">
+          <p style="font:700 13px 'Open Sans',sans-serif;letter-spacing:.05em;text-transform:uppercase;margin-bottom:16px" sc-style-color="&#123;&#123; cad.color &#125;&#125;">&#123;&#123; cad.titulo &#125;&#125;</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
+            <sc-for list="&#123;&#123; cad.pasos &#125;&#125;" as="paso" hint-placeholder-count="4">
+              <div style="background:#f4f6f8;border-radius:8px;padding:12px 16px">
+                <p style="font:700 10px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#9aa7b3;margin:0 0 4px">&#123;&#123; paso.label &#125;&#125;</p>
+                <p style="font-size:13px;line-height:1.4;color:#1a232b;margin:0">&#123;&#123; paso.valor &#125;&#125;</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="errores" style="padding:64px clamp(20px,6vw,56px)">
+  <div style="max-width:1080px;margin:0 auto">
+    <p style="display:inline-block;background:#fdeeee;color:#b0392b;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">11 · Ojo</p>
+    <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:24px;color:#0d1b2a">Errores frecuentes al seleccionar instrumentos</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;align-items:stretch">
+      <sc-for list="&#123;&#123; erroresGenerales &#125;&#125;" as="err" hint-placeholder-count="6">
+        <div class="card-hover" style="background:#f4f6f8;border-radius:10px;padding:18px 20px;border-left:4px solid #b0392b">
+          <p style="font:700 14px 'Roboto Condensed',sans-serif;color:#0d1b2a;margin-bottom:6px">&#123;&#123; err.titulo &#125;&#125;</p>
+          <p style="font-size:13.5px;line-height:1.55;color:#55606b;margin:0">&#123;&#123; err.desc &#125;&#125;</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="checklist" style="padding:64px clamp(20px,6vw,56px);background:#f9fafb">
+  <div style="max-width:780px;margin:0 auto">
+    <p style="display:inline-block;background:#eafbe6;color:#2f8b21;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">12 · Checklist</p>
+    <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:24px;color:#0d1b2a">Lista de verificación antes de aplicar</h2>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <sc-for list="&#123;&#123; checklistItems &#125;&#125;" as="it" hint-placeholder-count="10">
+        <label style="display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #e2e6ea;border-radius:10px;padding:14px 16px;cursor:pointer">
+          <input type="checkbox" checked="&#123;&#123; it.checked &#125;&#125;" sc-onchange="&#123;&#123; it.toggle &#125;&#125;" style="margin-top:3px;width:18px;height:18px;flex:none;accent-color:#3FAE29">
+          <span style="font-size:14.5px;line-height:1.5;color:#1a232b">&#123;&#123; it.texto &#125;&#125;</span>
+        </label>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="actividad" style="padding:64px clamp(20px,6vw,56px)">
+  <div style="max-width:900px;margin:0 auto">
+    <p style="display:inline-block;background:#f3e8f7;color:#9F26B4;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">13 · Actividad interactiva</p>
+    <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:8px;color:#0d1b2a">¿Qué instrumento usarías?</h2>
+    <p style="font-size:15px;color:#55606b;margin-bottom:28px">Lee cada situación y elige el instrumento más adecuado. Recibirás retroalimentación inmediata.</p>
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <sc-for list="&#123;&#123; actividadEscenarios &#125;&#125;" as="esc" hint-placeholder-count="4">
+        <div style="background:#f4f6f8;border-radius:12px;padding:22px 24px">
+          <p style="font:700 15px 'Roboto Condensed',sans-serif;color:#0d1b2a;margin-bottom:14px">&#123;&#123; esc.pregunta &#125;&#125;</p>
+          <sc-if value="&#123;&#123; esc.mostrarPista &#125;&#125;" hint-placeholder-val="&#123;&#123; false &#125;&#125;">
+            <p style="font-size:12.5px;color:#9F26B4;margin:0 0 12px;font-style:italic">Pista: &#123;&#123; esc.pista &#125;&#125;</p>
+          </sc-if>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px">
+            <sc-for list="&#123;&#123; esc.opciones &#125;&#125;" as="op" hint-placeholder-count="4">
+              <button sc-onclick="&#123;&#123; op.onClick &#125;&#125;" style="padding:11px 14px;border-radius:8px;font:600 13px 'Open Sans',sans-serif;cursor:pointer;text-align:left" sc-style-background="&#123;&#123; op.bg &#125;&#125;" sc-style-color="&#123;&#123; op.color &#125;&#125;" sc-style-border="1.5px solid &#123;&#123; op.border &#125;&#125;">&#123;&#123; op.texto &#125;&#125;</button>
+            </sc-for>
+          </div>
+          <sc-if value="&#123;&#123; esc.mostrarFeedback &#125;&#125;" hint-placeholder-val="&#123;&#123; false &#125;&#125;">
+            <div style="margin-top:14px;padding:14px 16px;border-radius:8px" sc-style-background="&#123;&#123; esc.feedbackBg &#125;&#125;" sc-style-border-left="4px solid &#123;&#123; esc.feedbackBorder &#125;&#125;">
+              <p style="font:700 13px 'Open Sans',sans-serif;margin-bottom:4px" sc-style-color="&#123;&#123; esc.feedbackBorder &#125;&#125;">&#123;&#123; esc.feedbackTitulo &#125;&#125;</p>
+              <p style="font-size:13.5px;line-height:1.5;color:#3a4551;margin:0">&#123;&#123; esc.explicacion &#125;&#125;</p>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="referencias" style="padding:64px clamp(20px,6vw,56px);background:#f9fafb">
+  <div style="max-width:780px;margin:0 auto">
+    <p style="display:inline-block;background:#eef0f2;color:#55606b;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">Referencias</p>
+    <h2 style="font-size:clamp(24px,3vw,32px);margin-bottom:20px;color:#0d1b2a">Referencias</h2>
+    <div style="display:flex;flex-direction:column;gap:14px;font-size:14px;line-height:1.6;color:#3a4551">
+      <p style="margin:0;padding-left:28px;text-indent:-28px">Cárdenas Saldaña, N. (2025). <em>Entrevistas: Seminario de grado, línea Licenciatura en Educación</em> [Presentación de PowerPoint]. Departamento de Educación, Universidad de Los Lagos.</p>
+      <p style="margin:0;padding-left:28px;text-indent:-28px">Cárdenas Saldaña, N. (2025). <em>Encuestas escala tipo Likert: Seminario de grado, línea Licenciatura en Educación</em> [Presentación de PowerPoint]. Universidad de Los Lagos.</p>
+      <p style="margin:0;padding-left:28px;text-indent:-28px">Grinnell, R. M., Williams, M., y Unrau, Y. A. (2009). <em>Research methods for BSW and MSW students</em> (9.ª ed.). Peosta, IA: Eddie Bowers Publishing.</p>
+      <p style="margin:0;padding-left:28px;text-indent:-28px">Mertens, D. M. (2015). <em>Research and evaluation in education and psychology: Integrating diversity with quantitative, qualitative, and mixed methods</em> (4.ª ed.). SAGE Publications.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<sc-if value="&#123;&#123; showBackTop &#125;&#125;" hint-placeholder-val="&#123;&#123; false &#125;&#125;">
+  <button id="btn-arriba" title="Volver arriba" aria-label="Volver arriba" sc-onclick="&#123;&#123; volverArriba &#125;&#125;" style="position:fixed;bottom:24px;right:24px;width:50px;height:50px;border-radius:50%;background:#0055B7;color:#fff;border:none;font-size:20px;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.18);z-index:150">↑</button>
+</sc-if>
+
+<footer class="site-footer" style="background:#0d1b2a;color:#e9f2fb;padding:36px clamp(20px,6vw,56px);text-align:center">
+  <p style="margin-bottom: 10px;">
+    <strong>Universidad de Los Lagos</strong> · Departamento de Educación · Seminario de Grado
+  </p>
+  <div class="cc-license" style="margin-top: 15px;display:inline-block;text-align:center;max-width:760px;">
+    <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" style="display:inline-block;">
+      <img alt="Licencia Creative Commons" style="border-width:0; margin-bottom: 5px;" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" onerror="this.style.display='none'">
+    </a>
+    <br>
+    <small style="display:block;line-height:1.5;">
+      Esta obra de <strong>Jesús Sánchez Alvarado</strong> está bajo una
+      <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" style="color: inherit;">
+        Licencia Creative Commons Atribución-NoComercial 4.0 Internacional.
+      </a>
+    </small>
+  </div>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;filasPlantillaPorDefecto&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:3,&quot;min&quot;:1,&quot;max&quot;:6,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Plantilla&quot;},&quot;mostrarPistasActividad&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Actividad interactiva&quot;},&quot;revelarRespuestaInmediata&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Actividad interactiva&quot;&#125;&#125;">
+class Component extends DCLogic {
+  state = { open: {}, checklist: {}, activity: {}, diagnostico: {}, templateRows: null, showBackTop: false };
+
+  componentDidMount() {
+    try {
+      const saved = localStorage.getItem('ulagos-instrumentos-plantilla-v1');
+      if (saved) this.setState({ templateRows: JSON.parse(saved) });
+    } catch (e) {}
+    this._onScroll = () => {
+      const show = window.scrollY > 500;
+      if (show !== this.state.showBackTop) this.setState({ showBackTop: show });
+    };
+    window.addEventListener('scroll', this._onScroll);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+  }
+
+  volverArriba = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  toggleOpen = (key) => this.setState(s => ({ open: { ...s.open, [key]: !s.open[key] } }));
+  trazabilidadTotal = 5;
+  avanzarTrazabilidad = () => this.setState(s => {
+    const actual = s.trazoStep || 1;
+    return { trazoStep: actual >= this.trazabilidadTotal ? 1 : actual + 1 };
+  });
+  pasosGuiaTotal = 5;
+  siguientePasoGuia = () => this.setState(s => {
+    const actual = s.pasoActivo || 0;
+    return { pasoActivo: actual >= this.pasosGuiaTotal - 1 ? 0 : actual + 1 };
+  });
+  anteriorPasoGuia = () => this.setState(s => ({ pasoActivo: Math.max(0, (s.pasoActivo || 0) - 1) }));
+  irAPasoGuia = (i) => this.setState({ pasoActivo: i });
+  rutaTotal = 4;
+  responderRuta = (i, esSi) => {
+    if (esSi) { this.setState({ rutaResultado: i }); return; }
+    if (i >= this.rutaTotal - 1) this.setState({ rutaAgotada: true });
+    else this.setState({ rutaPaso: i + 1 });
+  };
+  reiniciarRuta = () => this.setState({ rutaPaso: 0, rutaResultado: null, rutaAgotada: false });
+  seleccionarEnfoque = (nombre) => this.setState(s => ({ enfoqueSel: s.enfoqueSel === nombre ? null : nombre }));
+  toggleCheck = (id) => this.setState(s => ({ checklist: { ...s.checklist, [id]: !s.checklist[id] } }));
+  selectDiagnostico = (id, idx, correctIdx) => this.setState(s => ({ diagnostico: { ...s.diagnostico, [id]: { selected: idx, correct: idx === correctIdx } } }));
+
+  defaultTemplateRows() {
+    const n = Math.max(1, Math.min(6, this.props.filasPlantillaPorDefecto ?? 3));
+    const rows = [{ id: 1, objetivo: '1. Comprender la percepción de los académicos, en torno a las prácticas evaluativas utilizadas durante el periodo de la pandemia COVID-19', marco: 'Definición de evaluación, concepto de prácticas evaluativas, tipos de prácticas evaluativas (Cap. I, subcap. II)', instrumento: 'Entrevista semiestructurada', preguntas: '¿Qué entiende por evaluación? ¿Por práctica evaluativa convencional? ¿Cómo adaptó sus prácticas al modelo virtual?', informantes: 'Docentes de carreras pedagógicas, Sede Osorno ULAGOS' }];
+    for (let i = 0; i < n; i++) rows.push({ id: rows.length + 1, objetivo: '', marco: '', instrumento: '', preguntas: '', informantes: '' });
+    return rows;
+  }
+  getRows() { return this.state.templateRows || this.defaultTemplateRows(); }
+
+  browserTemplateKey = 'ulagos-instrumentos-plantilla-v1';
+  browserBackupKey = 'ulagos-instrumentos-plantilla-backup-v1';
+
+  readSavedRows() {
+    try {
+      const saved = localStorage.getItem(this.browserTemplateKey);
+      if (!saved) return null;
+      const parsed = JSON.parse(saved);
+      return Array.isArray(parsed) ? parsed : null;
+    } catch (e) {
+      return null;
+    }
+  }
+  saveRows(rows) {
+    try {
+      localStorage.setItem(this.browserTemplateKey, JSON.stringify(rows));
+      localStorage.setItem(this.browserBackupKey, JSON.stringify({ savedAt: new Date().toISOString(), rows }));
+    } catch (e) {}
+    this.setState({ templateRows: rows });
+  }
+  saveToBrowser() {
+    const rows = this.getRows();
+    this.saveRows(rows);
+    alert('La plantilla quedó guardada en este navegador del equipo.');
+  }
+  restoreFromBrowser() {
+    const rows = this.readSavedRows();
+    if (!rows || !rows.length) {
+      alert('Todavía no hay una copia guardada en este navegador para restaurar.');
+      return;
+    }
+    this.saveRows(rows);
+    alert('Se restauró la última copia guardada en este navegador.');
+  }
+  updateCell(rowId, field, value) { this.saveRows(this.getRows().map(r => r.id === rowId ? { ...r, [field]: value } : r)); }
+  addRow() {
+    const rows = this.getRows();
+    const nextId = Math.max(...rows.map(r => r.id)) + 1;
+    this.saveRows([...rows, { id: nextId, objetivo: '', marco: '', instrumento: '', preguntas: '', informantes: '' }]);
+  }
+  removeRow(rowId) { this.saveRows(this.getRows().filter(r => r.id !== rowId)); }
+
+  buildTableHtml() {
+    const rows = this.getRows();
+    const header = ['Objetivo específico', 'Apartado marco teórico', 'Instrumento/técnica', 'Posibles preguntas', 'Informantes'];
+    const esc = (v) => String(v || '').replace(/</g, '&lt;');
+    let html = '<table border="1" style="border-collapse:collapse;font-family:Arial,sans-serif"><tr>' + header.map(h => `<th style="background:#0055B7;color:#fff;padding:6px">${h}</th>`).join('') + '</tr>';
+    rows.forEach(r => { html += '<tr>' + [r.objetivo, r.marco, r.instrumento, r.preguntas, r.informantes].map(v => `<td style="padding:6px;vertical-align:top">${esc(v)}</td>`).join('') + '</tr>'; });
+    return html + '</table>';
+  }
+  waitForLib(getLib, name) {
+    return new Promise((resolve, reject) => {
+      const started = Date.now();
+      const tick = () => {
+        const lib = getLib();
+        if (lib) return resolve(lib);
+        if (Date.now() - started > 8000) return reject(new Error(name + ' no cargó a tiempo'));
+        setTimeout(tick, 150);
+      };
+      tick();
+    });
+  }
+  async downloadExcel() {
+    let XLSX;
+    try { XLSX = await this.waitForLib(() => window.XLSX, 'La librería de Excel'); }
+    catch (e) { alert('La librería de Excel aún está cargando. Intenta de nuevo en unos segundos.'); return; }
+
+    const rows = this.getRows();
+    const header = ['Objetivo específico', 'Apartado del marco teórico', 'Instrumento/técnica', 'Posibles preguntas', 'Informantes'];
+    const data = [header, ...rows.map(r => [r.objetivo, r.marco, r.instrumento, r.preguntas, r.informantes])];
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    ws['!cols'] = [{ wch: 42 }, { wch: 38 }, { wch: 24 }, { wch: 48 }, { wch: 28 }];
+    ws['!rows'] = [{ hpx: 22 }, ...rows.map(() => ({ hpx: 60 }))];
+    const range = XLSX.utils.decode_range(ws['!ref']);
+    for (let R = range.s.r; R <= range.e.r; R++) {
+      for (let C = range.s.c; C <= range.e.c; C++) {
+        const ref = XLSX.utils.encode_cell({ r: R, c: C });
+        if (!ws[ref]) continue;
+        ws[ref].s = { alignment: { wrapText: true, vertical: 'top', horizontal: 'left' }, font: R === 0 ? { bold: true } : {} };
+      }
+    }
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Trazabilidad');
+    XLSX.writeFile(wb, 'trazabilidad_instrumentos.xlsx');
+  }
+  async downloadWord() {
+    let docx;
+    try { docx = await this.waitForLib(() => window.docx, 'La librería de Word'); }
+    catch (e) { alert('La librería de Word aún está cargando. Intenta de nuevo en unos segundos.'); return; }
+    const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, WidthType, BorderStyle, AlignmentType, VerticalAlign } = docx;
+
+    const rows = this.getRows();
+    const headers = ['Objetivo específico', 'Apartado del marco teórico', 'Instrumento/técnica', 'Posibles preguntas', 'Informantes'];
+    // Ancho de página A4 (11906 twips) menos márgenes de 1" (1440 c/u) = 9026 twips utilizables.
+    const colDxa = [1986, 1805, 1444, 2347, 1444];
+    const TABLE_WIDTH = colDxa.reduce((a, b) => a + b, 0);
+    const FONT = 'Times New Roman';
+    const SIZE = 24;
+    const noBorder = { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' };
+    const rule = { style: BorderStyle.SINGLE, size: 6, color: '000000' };
+
+    const cell = (text, { header = false, top = false, bottom = false, dxa } = {}) => new TableCell({
+      width: { size: dxa, type: WidthType.DXA },
+      borders: { top: top ? rule : noBorder, bottom: bottom ? rule : noBorder, left: noBorder, right: noBorder },
+      verticalAlign: VerticalAlign.CENTER,
+      margins: { top: 120, bottom: 120, left: 100, right: 100 },
+      children: [new Paragraph({
+        alignment: header ? AlignmentType.CENTER : AlignmentType.LEFT,
+        spacing: { line: 480, lineRule: 'auto' },
+        children: [new TextRun({ text: text || '', font: FONT, size: SIZE })],
+      })],
+    });
+
+    const headerRow = new TableRow({
+      tableHeader: true,
+      children: headers.map((h, i) => cell(h, { header: true, top: true, bottom: true, dxa: colDxa[i] })),
+    });
+    const bodyRows = rows.map((r, i) => new TableRow({
+      children: [r.objetivo, r.marco, r.instrumento, r.preguntas, r.informantes].map((v, ci) =>
+        cell(v, { bottom: i === rows.length - 1, dxa: colDxa[ci] })
+      ),
+    }));
+
+    const table = new Table({
+      width: { size: TABLE_WIDTH, type: WidthType.DXA },
+      columnWidths: colDxa,
+      borders: { top: noBorder, bottom: noBorder, left: noBorder, right: noBorder, insideHorizontal: noBorder, insideVertical: noBorder },
+      rows: [headerRow, ...bodyRows],
+    });
+
+    const doc = new Document({
+      sections: [{
+        properties: {
+          page: {
+            size: { width: 11906, height: 16838 },
+            margin: { top: 1440, bottom: 1440, left: 1440, right: 1440 },
+          },
+        },
+        children: [
+          new Paragraph({
+            spacing: { line: 480, lineRule: 'auto' },
+            children: [new TextRun({ text: 'Tabla 1', bold: true, font: FONT, size: SIZE })],
+          }),
+          new Paragraph({
+            spacing: { line: 480, lineRule: 'auto', after: 200 },
+            children: [new TextRun({ text: 'Trazabilidad de objetivos, marco teórico e instrumentos de investigación', italics: true, font: FONT, size: SIZE })],
+          }),
+          table,
+          new Paragraph({
+            spacing: { line: 480, lineRule: 'auto', before: 200 },
+            children: [
+              new TextRun({ text: 'Nota. ', italics: true, font: FONT, size: SIZE }),
+              new TextRun({ text: 'Elaboración propia. Describe aquí la fuente de los datos, el procedimiento seguido para construir el instrumento y cualquier otra aclaración pertinente para esta tabla.', font: FONT, size: SIZE }),
+            ],
+          }),
+        ],
+      }],
+    });
+
+    const blob = await Packer.toBlob(doc);
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'trazabilidad_instrumentos.docx';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  }
+  downloadPDF() {
+    const win = window.open('', '_blank');
+    if (!win) return;
+    win.document.write(`<html><head><title>Plantilla de trazabilidad - ULagos</title><meta charset="utf-8"><style>body{font-family:Arial,sans-serif;padding:24px}h1{color:#0055B7}</style></head><body><h1>Plantilla de trazabilidad de instrumentos</h1><p>Universidad de Los Lagos · Seminario de Grado</p>${this.buildTableHtml()}</body></html>`);
+    win.document.close(); win.focus();
+    setTimeout(() => win.print(), 300);
+  }
+
+  selectActivity(id, idx, correctIdx) {
+    const inmediato = this.props.revelarRespuestaInmediata ?? true;
+    this.setState(s => ({ activity: { ...s.activity, [id]: { selected: idx, revealed: inmediato, correct: idx === correctIdx } } }));
+  }
+  revealActivity(id) {
+    this.setState(s => ({ activity: { ...s.activity, [id]: { ...s.activity[id], revealed: true } } }));
+  }
+
+  renderVals() {
+    const navRaw = [
+      ['activacion','Antes de empezar'],['inicio','Inicio'],['escoger','Cómo escoger'],['arbol','Ruta de selección'],['enfoque','Enfoque'],
+      ['trazabilidad','Trazabilidad'],['plantilla','Plantilla'],['entrevista','Entrevista'],['encuesta','Encuesta'],
+      ['comparacion','Comparación'],['ejemplos','Ejemplos'],['errores','Errores'],['checklist','Checklist'],
+      ['actividad','Actividad'],['referencias','Referencias']
+    ];
+    const navItems = navRaw.map(([id,label]) => ({ href: '#' + id, label }));
+
+    const pasosGuiaRaw = [
+      ['Seguir el objetivo específico empírico', 'Ten en cuenta el verbo que define qué quieres lograr con esa parte de tu investigación (reconocer, describir, comparar…).'],
+      ['Identifica qué información necesitas obtener', 'Revisa la variable o concepto(s), las dimensiones (si es cuantitativo) o la categorías (si es cualitativo) que ese objetivo exige levantar.'],
+      ['Revisa si necesitas comprender experiencias o medir variables', 'Esta es la distinción clave: enfoque cualitativo (comprender) vs. cuantitativo (medir).'],
+      ['Elegir el instrumento', 'Usa la Ruta de selección y la tabla de enfoques para seleccionar entrevista, encuesta, observación o análisis documental.'],
+      ['Verificar coherencia con el marco teórico', 'Cada pregunta debe asociarse a: una normativa, concepto, teoría o autor, que debe ya haber sido desarrollado en tu marco teórico. Si no aparece ahí, no debería aparecer en el instrumento.'],
+    ];
+    const pasoActivo = this.state.pasoActivo || 0;
+    const pasosGuia = pasosGuiaRaw.map(([titulo,desc],i)=>{
+      const activo = i === pasoActivo;
+      const completado = i < pasoActivo;
+      return {
+        n: i+1, titulo, desc, activo,
+        mostrarFlecha: i < pasosGuiaRaw.length-1,
+        circuloBg: completado ? '#3FAE29' : activo ? '#0055B7' : '#eef1f4',
+        circuloColor: completado || activo ? '#fff' : '#8a97a3',
+        circuloTexto: completado ? '✓' : String(i+1),
+        tarjetaBg: activo ? '#eaf2fb' : '#fff',
+        tarjetaBorde: activo ? '1.5px solid #0055B7' : completado ? '1px solid #bfe3c1' : '1px solid #e2e6ea',
+        tituloColor: activo || completado ? '#0d1b2a' : '#8a97a3',
+        lineaColor: completado ? '#3FAE29' : '#b6c6d6',
+        onClick: () => this.irAPasoGuia(i),
+      };
+    });
+    const guiaBoton = pasoActivo >= pasosGuiaRaw.length-1 ? 'Volver a empezar ↺' : 'Siguiente paso →';
+    const mostrarAnteriorGuia = pasoActivo > 0;
+
+    const arbolPreguntasRaw = [
+      ['¿Buscas comprender experiencias, significados o percepciones en profundidad?', 'Entrevista', '#0055B7'],
+      ['¿Necesitas medir variables en una muestra amplia y comparar datos numéricamente?', 'Encuesta / escala Likert', '#3FAE29'],
+      ['¿Requieres registrar comportamientos o interacciones en su contexto natural, sin intervenir?', 'Observación', '#9F26B4'],
+      ['¿La información ya existe en registros, actas, currículos u otros documentos?', 'Análisis documental', '#1C6AA0'],
+    ];
+    const rutaPaso = this.state.rutaPaso || 0;
+    const rutaResultadoIdx = this.state.rutaResultado ?? null;
+    const rutaAgotada = !!this.state.rutaAgotada;
+    const rutaFinalizada = rutaResultadoIdx != null || rutaAgotada;
+    const arbolPreguntas = arbolPreguntasRaw.map(([pregunta,resultado,color],i)=>{
+      const esSeleccionada = i === rutaResultadoIdx;
+      const esActiva = !rutaFinalizada && i === rutaPaso;
+      const esDescartada = !esSeleccionada && (i < rutaPaso || rutaAgotada);
+      return {
+        n:i+1, pregunta, resultado, color,
+        mostrar: esSeleccionada || esActiva || esDescartada,
+        esSeleccionada, esActiva, esDescartada,
+        onSi: () => this.responderRuta(i, true),
+        onNo: () => this.responderRuta(i, false),
+      };
+    });
+    const rutaMostrarReiniciar = rutaPaso > 0 || rutaFinalizada;
+
+    const enfoqueSel = this.state.enfoqueSel || null;
+    const enfoqueFilasRaw = [
+      ['Cualitativo','#0055B7','#e9f2fb','Comprender significados, experiencias y procesos desde la perspectiva de los actores.','Entrevista (estructurada, semiestructurada o abierta)','Percepción docente sobre prácticas evaluativas durante la pandemia.','Si tu objetivo usa verbos como comprender, interpretar o explorar, este es tu enfoque.'],
+      ['Cuantitativo','#3FAE29','#eafbe6','Medir variables, describir frecuencias y establecer relaciones estadísticas.','Encuesta con escala Likert','Nivel de satisfacción estudiantil con la infraestructura escolar.','Si tu objetivo usa verbos como medir, comparar o determinar el nivel de, este es tu enfoque.'],
+      ['Mixto','#9F26B4','#f3e8f7','Combinar profundidad interpretativa con generalización estadística.','Encuesta + entrevista semiestructurada a un subgrupo','Medir uso de TIC (encuesta) y explorar barreras percibidas (entrevista).','Si necesitas explicar tanto el "cuánto" como el "por qué", combina ambos enfoques en tu diseño.'],
+    ];
+    const enfoqueFilas = enfoqueFilasRaw.map(([enfoque,color,tint,finalidad,instrumento,ejemplo,consejo])=>{
+      const seleccionada = enfoqueSel === enfoque;
+      const atenuada = enfoqueSel != null && !seleccionada;
+      return {
+        enfoque, color, finalidad, instrumento, ejemplo,
+        etiqueta: seleccionada ? enfoque + ' ✕' : enfoque,
+        filaBg: seleccionada ? tint : '#fff',
+        filaOpacity: atenuada ? '0.45' : '1',
+        onClick: () => this.seleccionarEnfoque(enfoque),
+      };
+    });
+    const enfoqueTipActivo = enfoqueFilasRaw.find(([enfoque]) => enfoque === enfoqueSel) || null;
+    const enfoqueTipVisible = !!enfoqueTipActivo;
+    const enfoqueTipNombre = enfoqueTipActivo ? enfoqueTipActivo[0] : '';
+    const enfoqueTipColor = enfoqueTipActivo ? enfoqueTipActivo[1] : '';
+    const enfoqueTipBg = enfoqueTipActivo ? enfoqueTipActivo[2] : '';
+    const enfoqueTipTexto = enfoqueTipActivo ? enfoqueTipActivo[6] : '';
+
+    const cadenaTrazabilidadRaw = [
+      ['Objetivo específico','Comprender la percepción docente sobre prácticas evaluativas','#0055B7'],
+      ['Categoría de análisis','Prácticas evaluativas docentes','#3FAE29'],
+      ['Dimensión / categoría','Adaptación al modelo virtual','#9F26B4'],
+      ['Instrumento','Entrevista semiestructurada','#1C6AA0'],
+      ['Pregunta','"¿Cómo cambió su forma de retroalimentar tras pasar a modalidad virtual?"','#D6336C'],
+    ];
+    const trazoStep = this.state.trazoStep || 1;
+    const trazabilidadCompleta = trazoStep >= cadenaTrazabilidadRaw.length;
+    const cadenaTrazabilidad = cadenaTrazabilidadRaw.map(([tipo,titulo,color],i)=>({
+      tipo, titulo, color,
+      visible: i < trazoStep,
+      mostrarFlecha: i < cadenaTrazabilidadRaw.length-1 && i < trazoStep-1,
+    }));
+    const trazabilidadBoton = trazabilidadCompleta ? 'Volver a empezar ↺' : 'Revelar siguiente eslabón →';
+
+    const ejemploTrazabilidad = [
+      { etiqueta:'Objetivo específico', valor:'Comprender la percepción de los académicos en torno a las prácticas evaluativas utilizadas durante la pandemia COVID-19.', color:'#0055B7' },
+      { etiqueta:'Apartado del marco teórico', valor:'Definición de evaluación, concepto y tipos de prácticas evaluativas (Cap. I, subcap. II).', color:'#3FAE29' },
+      { etiqueta:'Instrumento / técnica', valor:'Entrevista semiestructurada.', color:'#9F26B4' },
+      { etiqueta:'Posible pregunta', valor:'¿Qué entiende por evaluación? ¿Cómo adaptó su práctica evaluativa al modelo virtual?', color:'#1C6AA0' },
+      { etiqueta:'Informantes', valor:'Docentes de carreras pedagógicas, Sede Osorno ULAGOS.', color:'#D6336C' },
+    ];
+
+    const entrevistaTiposRaw = [
+      ['Estructurada','Conjunto fijo de preguntas predeterminadas, realizadas en el mismo orden a todos los entrevistados. Útil para obtener información comparable entre casos.'],
+      ['Semiestructurada','Combina preguntas predeterminadas con la flexibilidad de incorporar preguntas emergentes. Permite información detallada manteniendo cierta estructura.'],
+      ['Abierta','Más flexible, sin esquema fijo. Se centra en la exploración profunda del tema, dejando que las respuestas del entrevistado guíen la conversación.'],
+    ];
+    const entrevistaTipos = entrevistaTiposRaw.map(([nombre,desc],i)=>{
+      const id = 'entr-tipo-'+i;
+      return { id, nombre, desc, open: !!this.state.open[id], simboloToggle: this.state.open[id] ? '−' : '+', toggle: () => this.toggleOpen(id) };
+    });
+
+    const preguntaTiposRaw = [
+      ['Generales','Parten de planteamientos globales para dirigirse al tema que interesa. Propio de entrevistas abiertas.', ['¿Qué opina de la violencia en los establecimientos educacionales?','¿Cómo es el clima de convivencia en su establecimiento?']],
+      ['Para ejemplificar','Sirven como iniciadores de preguntas más profundas: se pide un ejemplo, evento o categoría concreta.', ['Usted comentó que el clima de convivencia no es adecuado, ¿podría dar un ejemplo?','¿Qué situaciones de evaluación docente le generaron dificultades?']],
+      ['De estructura','El entrevistador solicita una lista de conceptos a manera de conjuntos o categorías.', ['¿Qué adecuaciones curriculares utiliza más en su planificación?','¿Qué dificultades tuvo para adaptarse a clases presenciales tras la pandemia?']],
+      ['De contraste','Se consulta sobre similitudes y diferencias respecto a ciertos temas, pidiendo clasificar categorías.', ['¿Qué oportunidades y desafíos trae el uso de TIC en su práctica docente?']],
+    ];
+    const preguntaTipos = preguntaTiposRaw.map(([nombre,desc,ejemplos])=>({ nombre, desc, ejemplos }));
+
+    const clasificacionPreguntasRaw = [
+      ['De opinión', ['¿Considera que las prácticas pedagógicas favorecen el desarrollo de competencias en los estudiantes?']],
+      ['De expresión de sentimientos', ['¿Con qué sensación se queda cuando se publican los resultados SIMCE de su establecimiento?']],
+      ['De conocimientos', ['¿Qué sabe respecto a los programas de acceso para ingresar a la universidad?']],
+      ['De antecedentes', ['¿Cuánto tiempo le tomó completar su portafolio docente?']],
+      ['De simulación', ['Si usted fuera director(a) del establecimiento, ¿qué capacitación propondría para sus colegas?']],
+    ];
+    const clasificacionPreguntas = clasificacionPreguntasRaw.map(([nombre,ejemplos])=>({ nombre, ejemplos }));
+
+    const recomendacionesEntrevista = ['Escucha atenta.','No caer en un interrogatorio.','Genera un clima de confianza.','No induzcas respuestas.','Evita interrupciones (notificaciones, sonidos).','No saltes de un tema a otro abruptamente.','Deja que las respuestas fluyan.','Graba el audio con más de un dispositivo.'];
+
+    const likertEscalasRaw = [
+      ['satisfacción','Pregunta por el nivel de agrado o conformidad respecto a una temática conocida o experimentada.','¿Qué tan satisfecho(a) está usted con la calidad del texto escolar proporcionado por el MINEDUC?',['Muy satisfecho(a)','Satisfecho(a)','Insatisfecho(a)','Muy insatisfecho(a)']],
+      ['importancia','Indaga lo que los informantes consideran valioso o relevante.','¿Qué tan importante es para usted contar con infraestructura adecuada para su aprendizaje?',['Muy importante','Importante','Poco importante','No es importante']],
+      ['frecuencia','Mide la regularidad con la que se realiza una actividad o comportamiento específico.','¿Con qué frecuencia dedica tiempo a la lectura fuera del horario de clases?',['Más de 4 veces/semana','2 a 3 veces/semana','1 vez/semana','Nunca']],
+      ['valor','Evalúa la percepción sobre el valor o calidad de un objeto, documento, servicio o proceso.','¿Qué le parece la implementación del manual de convivencia escolar?',['Excelente','Bueno','Regular','Malo']],
+      ['acuerdo','Mide el grado de concordancia o disconformidad con afirmaciones específicas.','¿Está de acuerdo con que la participación de las familias es clave para prevenir el bullying?',['Totalmente de acuerdo','De acuerdo','En desacuerdo','Totalmente en desacuerdo']],
+      ['dificultad','Identifica experiencias en relación a la realización de actividades, detectando barreras.','¿Qué tan difícil le resultó rendir la Evaluación Nacional Diagnóstica (END)?',['Muy fácil','Fácil','Difícil','Muy difícil']],
+    ];
+    const likertEscalas = likertEscalasRaw.map(([nombre,desc,ejemplo,opciones])=>{
+      const id = 'likert-'+nombre;
+      return { id, nombre, desc, ejemplo, opciones, open: !!this.state.open[id], simboloToggle: this.state.open[id] ? '−' : '+', toggle: () => this.toggleOpen(id) };
+    });
+
+    const erroresLikert = [
+      { titulo:'1. Preguntas ambiguas o poco claras', error:'"¿Considera que la infraestructura de su escuela es adecuada?" (¿adecuada en qué sentido: seguridad, comodidad, recursos?)', correccion:'"¿Considera que la infraestructura de su escuela es adecuada para el desarrollo de las clases?"' },
+      { titulo:'2. Uso de términos absolutos', error:'"¿Usted siempre utiliza los recursos digitales que entrega el liceo?" (exige un cumplimiento absoluto poco realista)', correccion:'"¿Con qué frecuencia utiliza los recursos digitales que entrega el liceo?"' },
+      { titulo:'3. Ítems con doble afirmación', error:'"¿Está satisfecho con los profesores y con los materiales educativos?" (puede estar satisfecho con uno y no con el otro)', correccion:'"¿Está satisfecho con los materiales educativos que se utilizan en clases?"' },
+    ];
+
+    const comparacionCards = [
+      { titulo:'Entrevista', color:'#0055B7', ventajas:['Profundidad y riqueza de significados.','Flexibilidad para explorar temas emergentes.','Permite aclarar y repreguntar en el momento.'], limitaciones:['No es generalizable a grandes poblaciones.','Alto costo de tiempo y análisis.'] },
+      { titulo:'Encuesta Likert', color:'#3FAE29', ventajas:['Permite medir en muestras amplias.','Análisis estadístico y comparación de datos.','Aplicación rápida y estandarizada.'], limitaciones:['Menor profundidad interpretativa.','No permite indagar el "por qué" en el momento.'] },
+    ];
+
+    const ejemplosCadenasRaw = [
+      ['Cadena hacia una pregunta de encuesta','#3FAE29',[['Objetivo','Medir el nivel de satisfacción estudiantil con la biblioteca'],['Variable','Satisfacción con recursos institucionales'],['Dimensión / indicador','Percepción de calidad del material bibliográfico'],['Pregunta (Likert)','"¿Qué tan satisfecho(a) está con el material bibliográfico disponible?"']]],
+      ['Cadena hacia una pregunta de entrevista','#0055B7',[['Objetivo','Comprender la percepción docente sobre la evaluación remota'],['concepto','Prácticas evaluativas docentes'],['Categoría de análisis','Cambios en la retroalimentación durante la pandemia'],['Pregunta (entrevista)','"¿Cómo cambió su forma de retroalimentar a sus estudiantes durante la modalidad virtual?"']]],
+    ];
+    const ejemplosCadenas = ejemplosCadenasRaw.map(([titulo,color,pasosRaw])=>({
+      titulo, color,
+      pasos: pasosRaw.map(([label,valor])=>({ label, valor }))
+    }));
+
+    const erroresGenerales = [
+      { titulo:'Elegir el instrumento antes que el objetivo', desc:'Decidir "haré una encuesta" antes de saber qué se necesita comprender o medir invierte el orden lógico.' },
+      { titulo:'Preguntas sin respaldo teórico', desc:'Incluir ítems que no derivan de ningún concepto desarrollado en el marco teórico.' },
+      { titulo:'Ignorar el enfoque metodológico', desc:'Usar una escala Likert en un estudio cualitativo, o solo entrevistas en un estudio que busca generalizar (cuantitativo).' },
+      { titulo:'Ignorar el enfoque metodológico', desc:'Usar una escala Likert en un estudio fenomenológico, o solo entrevistas en un estudio que busca generalizar.' },
+      { titulo:'No validar el instrumento', desc:'Aplicar el instrumento sin validar previamente la univocidad, pertinencia e importancia de las preguntas.' },
+      { titulo:'Instrumentos demasiado largos', desc:'Saturar al informante con preguntas repetidas o irrelevantes para el objetivo, afectando la calidad de las respuestas.' },
+    ];
+
+    const checklistItemsRaw = [
+      '¿Cada pregunta del instrumento se alinea con un capítulo/subcapítulo del marco teórico?',
+      '¿El instrumento elegido es coherente con el enfoque metodológico de tu investigación?',
+      '¿Revisaste el instrumento con tu profesor(a) antes de aplicarlo?',
+      '¿Traspasaste tu instrumento a la validación de expertos?',
+      '¿Las preguntas evitan ambigüedad, términos absolutos y doble afirmación?',
+      '¿Consideraste el consentimiento informado de los participantes?',
+      '¿El lenguaje del instrumento es adecuado para tus informantes?',
+      '¿Tienes un plan claro para registrar y analizar las respuestas?',
+      '¿El instrumento tiene una extensión razonable?',
+      '¿Verificaste la coherencia entre tu marco teórico e instrumento?',
+    ];
+    const checklistItems = checklistItemsRaw.map((texto,i)=>{
+      const id = 'chk-'+i;
+      return { id, texto, checked: !!this.state.checklist[id], toggle: () => this.toggleCheck(id) };
+    });
+
+    const diagnosticoPreguntasRaw = [
+      { pregunta:'¿Cuál de estas opciones describe mejor qué es una "variable" en una investigación?', opciones:['Una pregunta que se le hace a un entrevistado','Una característica o propiedad que puede tomar distintos valores y que se busca estudiar','El nombre del instrumento usado para recoger datos','El resultado final de la investigación'], correcta:1, explicacion:'Una variable es la característica que se quiere estudiar (ej. "prácticas evaluativas"). De ella se desprenden las dimensiones o categorías de análisis, según el enfoque, y finalmente las preguntas del instrumento.' },
+      { pregunta:'¿Cuál es la diferencia principal entre un enfoque cualitativo y uno cuantitativo?', opciones:['El cualitativo busca comprender significados; el cuantitativo busca medir y comparar numéricamente','El cualitativo usa números; el cuantitativo usa palabras','No hay ninguna diferencia real entre ambos','El cualitativo es más rápido de aplicar que el cuantitativo'], correcta:0, explicacion:'Esta distinción es clave para elegir instrumento: comprender en profundidad (entrevista) o medir en una muestra amplia (encuesta).' },
+      { pregunta:'¿Cuál de las siguientes opciones NO es un instrumento de investigación?', opciones:['Entrevista','Cuestionario con escala Likert','Marco teórico','Pauta de observación'], correcta:2, explicacion:'El marco teórico sustenta y justifica el instrumento, pero no es en sí mismo una herramienta para recoger datos.' },
+      { pregunta:'Antes de aplicar un instrumento, ¿qué es imprescindible verificar?', opciones:['Que tenga muchas preguntas','Que sea visualmente atractivo','Su validez y confiabilidad','Que se complete en menos de 5 minutos'], correcta:2, explicacion:'Validez (mide lo que dice medir) y confiabilidad (resultados consistentes) son las garantías de rigor de cualquier instrumento.' },
+    ];
+    const diagnosticoPreguntas = diagnosticoPreguntasRaw.map((preg,i)=>{
+      const id = 'diag-'+i;
+      const st = this.state.diagnostico[id];
+      const mostrarFeedback = !!st;
+      const esCorrecta = st ? st.correct : false;
+      return {
+        id, n: i+1, pregunta: preg.pregunta,
+        mostrarFeedback,
+        feedbackBg: esCorrecta ? '#eafbe6' : '#fdeeee',
+        feedbackBorder: esCorrecta ? '#2f8b21' : '#b0392b',
+        feedbackTitulo: esCorrecta ? '¡Exacto!' : 'Aquí tienes una pista para seguir pensando',
+        explicacion: preg.explicacion,
+        opciones: preg.opciones.map((texto,idx)=>{
+          const selected = st && st.selected === idx;
+          const isCorrectOpt = mostrarFeedback && idx === preg.correcta;
+          let bg = '#fff', color = '#1a232b', border = '#d7dee5';
+          if (selected && mostrarFeedback) { bg = esCorrecta ? '#eafbe6' : '#fdeeee'; color = esCorrecta ? '#2f8b21' : '#b0392b'; border = esCorrecta ? '#3FAE29' : '#c0392b'; }
+          else if (isCorrectOpt) { bg = '#eafbe6'; color = '#2f8b21'; border = '#3FAE29'; }
+          return { texto, bg, color, border, onClick: () => this.selectDiagnostico(id, idx, preg.correcta) };
+        }),
+      };
+    });
+
+    const mostrarPistas = this.props.mostrarPistasActividad ?? true;
+    const actividadEscenariosRaw = [
+      { pregunta:'Quieres comprender en profundidad por qué un grupo de docentes rechaza un nuevo modelo de evaluación.', pista:'Piensa en significados y experiencias individuales.', opciones:['Entrevista semiestructurada','Encuesta Likert','Observación no participante','Análisis documental'], correcta:0, explicacion:'La entrevista semiestructurada permite explorar en profundidad percepciones y razones, con flexibilidad para repreguntar.' },
+      { pregunta:'Necesitas medir el nivel de satisfacción de 300 estudiantes con la plataforma virtual del colegio.', pista:'Piensa en una muestra grande y datos comparables.', opciones:['Entrevista abierta','Encuesta con escala Likert','Análisis documental','Grupo focal'], correcta:1, explicacion:'Una encuesta Likert permite recoger y comparar datos cuantificables en una muestra amplia de manera eficiente.' },
+      { pregunta:'Quieres registrar cómo interactúan los estudiantes durante el recreo, sin intervenir en la situación.', pista:'Piensa en comportamientos en su contexto natural.', opciones:['Encuesta Likert','Entrevista estructurada','Observación no participante','Análisis documental'], correcta:2, explicacion:'La observación permite registrar comportamientos reales en su contexto, sin alterar la situación con preguntas directas.' },
+      { pregunta:'Quieres analizar cómo ha cambiado el currículo de una asignatura en los últimos 10 años.', pista:'La información ya existe en algún soporte.', opciones:['Entrevista semiestructurada','Encuesta Likert','Observación participante','Análisis documental'], correcta:3, explicacion:'El análisis documental permite estudiar información ya registrada (programas, mallas, actas) sin necesidad de nuevos informantes.' },
+    ];
+    const actividadEscenarios = actividadEscenariosRaw.map((esc,i)=>{
+      const id = 'act-'+i;
+      const st = this.state.activity[id];
+      const mostrarFeedback = !!(st && st.revealed);
+      const esCorrecta = st ? st.correct : false;
+      return {
+        id,
+        pregunta: esc.pregunta,
+        pista: esc.pista,
+        mostrarPista: mostrarPistas && !st,
+        mostrarFeedback,
+        feedbackBg: esCorrecta ? '#eafbe6' : '#fdeeee',
+        feedbackBorder: esCorrecta ? '#2f8b21' : '#b0392b',
+        feedbackTitulo: esCorrecta ? '¡Correcto!' : 'Revisa esta respuesta',
+        explicacion: esc.explicacion,
+        opciones: esc.opciones.map((texto,idx)=>{
+          const selected = st && st.selected === idx;
+          const isCorrectOpt = mostrarFeedback && idx === esc.correcta;
+          let bg = '#fff', color = '#1a232b', border = '#d7dee5';
+          if (selected && mostrarFeedback) { bg = esCorrecta ? '#eafbe6' : '#fdeeee'; color = esCorrecta ? '#2f8b21' : '#b0392b'; border = esCorrecta ? '#3FAE29' : '#c0392b'; }
+          else if (isCorrectOpt) { bg = '#eafbe6'; color = '#2f8b21'; border = '#3FAE29'; }
+          return { texto, bg, color, border, onClick: () => this.selectActivity(id, idx, esc.correcta) };
+        }),
+      };
+    });
+
+    const rows = this.getRows();
+    const filasPlantilla = rows.map(r => ({
+      objetivo: r.objetivo, marco: r.marco, instrumento: r.instrumento, preguntas: r.preguntas, informantes: r.informantes,
+      onObjetivo: (e) => this.updateCell(r.id, 'objetivo', e.target.value),
+      onMarco: (e) => this.updateCell(r.id, 'marco', e.target.value),
+      onInstrumento: (e) => this.updateCell(r.id, 'instrumento', e.target.value),
+      onPreguntas: (e) => this.updateCell(r.id, 'preguntas', e.target.value),
+      onInformantes: (e) => this.updateCell(r.id, 'informantes', e.target.value),
+      onEliminar: () => this.removeRow(r.id),
+    }));
+
+    return {
+      navItems, showBackTop: this.state.showBackTop, volverArriba: this.volverArriba,
+      diagnosticoPreguntas,
+      pasosGuia, guiaBoton, mostrarAnteriorGuia, siguientePasoGuia: this.siguientePasoGuia, anteriorPasoGuia: this.anteriorPasoGuia,
+      arbolPreguntas, rutaAgotada, rutaMostrarReiniciar, reiniciarRuta: this.reiniciarRuta,
+      enfoqueFilas, enfoqueTipVisible, enfoqueTipNombre, enfoqueTipColor, enfoqueTipBg, enfoqueTipTexto,
+      cadenaTrazabilidad, ejemploTrazabilidad,
+      trazabilidadBoton, avanzarTrazabilidad: this.avanzarTrazabilidad,
+      entrevistaTipos, preguntaTipos, clasificacionPreguntas, recomendacionesEntrevista,
+      likertEscalas, erroresLikert, comparacionCards, ejemplosCadenas, erroresGenerales,
+      checklistItems, actividadEscenarios,
+      filasPlantilla, addRow: () => this.addRow(), downloadWord: () => this.downloadWord(), downloadExcel: () => this.downloadExcel(), downloadPDF: () => this.downloadPDF(),
+    };
+  }
+}
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash;
+    if (hash) {
+      const target = document.querySelector(hash);
+      if (target) {
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 80);
+      }
+    }
+  });
+</script>
+</body>
+</html>

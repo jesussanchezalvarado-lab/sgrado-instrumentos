@@ -1,0 +1,26 @@
+--- ppt/slides/slide1.xml ---
+SEMINARIO DE GRADO | ENCUESTAS ESCALA TIPO LIKERT | LÍNEA LICENCIATURA EN EDUCACIÓN | DEPARTAMENTO DE EDUCACIÓN
+
+--- ppt/slides/slide2.xml ---
+ESCALAS LIKERT | De satisfacción. | De importancia. | De frecuencia o repetición. | De valor. | De acuerdo. | De dificultad.
+
+--- ppt/slides/slide3.xml ---
+1. Preguntas ambiguas o poco claras | Error: |   | “¿Considera que la infraestructura de su escuela es adecuada?”                    (¿Adecuada en qué sentido? ¿seguridad, comodidad, recursos, estética?). | Corrección: “¿Considera que la infraestructura de su escuela es adecuada para el desarrollo de las clases?” | 2. Uso de términos absolutos (“siempre”, “nunca”) | Error: “¿Usted siempre utiliza los recursos digitales que entrega el liceo?” (Exige un nivel absoluto de cumplimiento que pocas veces se da). | Corrección: “¿Con qué frecuencia utiliza los recursos digitales que entrega el liceo?” | 3. Ítems con doble afirmación (doble barra) | Error: “¿Está satisfecho con los profesores y con los materiales educativos?” (El encuestado puede estar satisfecho con uno, pero no con el otro). |  Corrección: “¿Está satisfecho con los materiales educativos que se utilizan en clases?”
+
+--- ppt/slides/slide4.xml ---
+ESCALAS LIKERT: SATISFACCIÓN | Pregunta por el nivel de agrado o conformidad de los informantes respecto a una temática (conocida o experimentada por ellos). | Ejemplo: | “¿Qué tan satisfecho(a) está usted con la calidad del texto escolar proporcionado por el MINEDUC?” | Opciones de respuesta (Escala Likert de Satisfacción): | a) Muy satisfecho(a)  b) Satisfecho(a)   | c | ) Insatisfecho(a)   | d | ) Muy insatisfecho(a)
+
+--- ppt/slides/slide5.xml ---
+ESCALAS LIKERT: IMPORTANCIA | Indaga/consulta respecto a lo que los informantes consideran valioso/relevante, mediante preguntas tales como: | “¿Qué tan importante es para usted contar con una infraestructura adecuada para su aprendizaje?” | Opciones de respuesta (Escala Likert): | a) Muy importante. b) Importante. c) Poco importante. d) No es importante
+
+--- ppt/slides/slide6.xml ---
+ESCALAS LIKERT: FRECUENCIA/REPETICIÓN | Estas escalas están diseñadas para medir la regularidad con la que los encuestados realizan una actividad o comportamiento específico | “¿Con qué frecuencia dedica usted tiempo a la lectura fuera del horario de clases durante la semana?” | Opciones de respuesta (Escala Likert de Frecuencia): | a) Más de 4 veces a la semana. b) 2 a 3 veces a la semana. c) 1 vez a la semana. d) Nunca
+
+--- ppt/slides/slide7.xml ---
+ESCALAS LIKERT: VALOR | Este tipo de escala está diseñada para evaluar la percepción de los encuestados sobre el valor o la calidad de un objeto, documento, servicio, proceso, entre otros. | “¿Qué le parece la implementación del manual de convivencia escolar en su escuela?” | Opciones de respuesta (Escala Likert de Valor): | a) Excelente. b) Bueno. c) Regular. d) Malo
+
+--- ppt/slides/slide8.xml ---
+ESCALAS LIKERT: ACUERDO | Este tipo de escala permite medir el grado de concordancia o disconformidad de los encuestados con afirmaciones específicas, proporcionando una visión clara de sus opiniones y percepciones. | “¿Usted está de acuerdo con que la participación activa de las familias es fundamental para prevenir el  | bullying |  en la escuela?” | Opciones de respuesta (Escala Likert de Acuerdo): | a) Totalmente de acuerdo. b) De acuerdo. c) En desacuerdo. d) Totalmente en desacuerdo
+
+--- ppt/slides/slide9.xml ---
+ESCALAS LIKERT: DIFICULTAD | Este tipo de escala permite identificar las experiencias individuales en relación con la realización de actividades, ayudando a detectar posibles desafíos o barreras que puedan requerir atención. | “¿Qué tan difícil le resultó rendir la Evaluación Nacional Diagnóstica (END)?” | Opciones de respuesta (Escala Likert de Dificultad): | a) Muy fácil. b) Fácil. c) Difícil. d) Muy difícil
