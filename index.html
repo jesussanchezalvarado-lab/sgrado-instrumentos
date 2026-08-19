@@ -35,6 +35,7 @@
   .flecha-anim{animation:flecha-in .3s ease .1s both}
   .card-hover{transition:transform .18s ease,box-shadow .18s ease;position:relative}
   .card-hover:hover{transform:scale(1.025);box-shadow:0 8px 18px rgba(13,27,42,.12);z-index:2}
+  textarea::placeholder, input::placeholder{color:#9aa7b3;opacity:1}
 </style>
 </helmet>
 
@@ -294,16 +295,26 @@
   <div style="max-width:1180px;margin:0 auto">
     <p style="display:inline-block;background:#f3e8f7;color:#9F26B4;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">6 · Herramienta</p>
     <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:8px;color:#0d1b2a">Plantilla descargable de trazabilidad</h2>
-    <p style="font-size:15px;color:#55606b;margin-bottom:24px">Define tu objetivo específico y el instrumento una sola vez abajo; luego agrega las filas solo con el apartado del marco teórico, la dimensión/categoría, la posible pregunta y sus informantes. Se guarda automáticamente en este navegador y también puedes respaldarla con un clic.</p>
+    <p style="font-size:15px;color:#55606b;margin-bottom:24px">Define tu objetivo específico y el instrumento una sola vez abajo; luego agrega las filas solo con el apartado del marco teórico, la dimensión/categoría, la posible pregunta y sus informantes. Puedes arrastrar el ⠿ de cada fila para reordenarlas. Se guarda automáticamente en este navegador y también puedes respaldarla con un clic.</p>
     <div style="background:#fff;border-radius:12px;padding:20px 22px;border:1px solid #e2e6ea;margin-bottom:18px">
       <p style="font:700 11.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#0055B7;margin-bottom:8px">Objetivo específico que estás trabajando</p>
       <textarea sc-oninput="&#123;&#123; onPlantillaObjetivo &#125;&#125;" value="&#123;&#123; plantillaObjetivo &#125;&#125;" placeholder="Ej: Diseñar un instrumento que permita..." style="width:100%;min-height:56px;border:1px solid #dfe4e8;border-radius:6px;padding:10px 12px;font:14px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box;margin-bottom:20px"></textarea>
       <p style="font:700 11.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#0055B7;margin-bottom:10px">Instrumento/técnica que creen más apropiado</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <sc-for list="&#123;&#123; instrumentoOpciones &#125;&#125;" as="op" hint-placeholder-count="5">
+        <sc-for list="&#123;&#123; instrumentoOpciones &#125;&#125;" as="op" hint-placeholder-count="4">
           <button sc-onclick="&#123;&#123; op.onClick &#125;&#125;" style="padding:9px 16px;border-radius:20px;font:600 13px 'Open Sans',sans-serif;cursor:pointer" sc-style-background="&#123;&#123; op.bg &#125;&#125;" sc-style-color="&#123;&#123; op.color &#125;&#125;" sc-style-border="1.5px solid &#123;&#123; op.border &#125;&#125;">&#123;&#123; op.texto &#125;&#125;</button>
         </sc-for>
       </div>
+      <sc-if value="&#123;&#123; esLikert &#125;&#125;" hint-placeholder-val="&#123;&#123; false &#125;&#125;">
+        <div class="eslabon-anim" style="margin-top:16px;padding-top:16px;border-top:1px solid #eef0f2">
+          <p style="font:700 11.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#2f8b21;margin-bottom:10px">Tipo de escala Likert</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <sc-for list="&#123;&#123; likertTipoOpciones &#125;&#125;" as="lop" hint-placeholder-count="6">
+              <button sc-onclick="&#123;&#123; lop.onClick &#125;&#125;" style="padding:8px 14px;border-radius:20px;font:600 12.5px 'Open Sans',sans-serif;cursor:pointer" sc-style-background="&#123;&#123; lop.bg &#125;&#125;" sc-style-color="&#123;&#123; lop.color &#125;&#125;" sc-style-border="1.5px solid &#123;&#123; lop.border &#125;&#125;">&#123;&#123; lop.texto &#125;&#125;</button>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
     </div>
     <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap">
       <button sc-onclick="&#123;&#123; saveToBrowser &#125;&#125;" style="background:#166534;color:#fff;border:none;padding:11px 20px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer">Guardar en navegador</button>
@@ -317,8 +328,9 @@
       <sc-raw-table style="width:100%;border-collapse:collapse;min-width:920px">
         <sc-raw-thead>
           <sc-raw-tr style="background:#0d1b2a">
-            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:26%">Apartado del marco teórico</sc-raw-th>
-            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:20%">&#123;&#123; dimensionLabel &#125;&#125;</sc-raw-th>
+            <sc-raw-th style="width:4%"></sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:24%">Apartado del marco teórico</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:18%">&#123;&#123; dimensionLabel &#125;&#125;</sc-raw-th>
             <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:30%">&#123;&#123; preguntaLabel &#125;&#125;</sc-raw-th>
             <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:20%">Informantes</sc-raw-th>
             <sc-raw-th style="width:4%"></sc-raw-th>
@@ -326,7 +338,8 @@
         </sc-raw-thead>
         <sc-raw-tbody>
           <sc-for list="&#123;&#123; filasPlantilla &#125;&#125;" as="fila" hint-placeholder-count="3">
-            <sc-raw-tr style="border-top:1px solid #e2e6ea;vertical-align:top">
+            <sc-raw-tr draggable="true" ondragstart="&#123;&#123; fila.onDragStart &#125;&#125;" ondragover="&#123;&#123; fila.onDragOver &#125;&#125;" ondrop="&#123;&#123; fila.onDrop &#125;&#125;" ondragend="&#123;&#123; fila.onDragEnd &#125;&#125;" style="border-top:1px solid #e2e6ea;vertical-align:top;transition:opacity .15s" sc-style-opacity="&#123;&#123; fila.opacidad &#125;&#125;">
+              <sc-raw-td style="padding:6px;text-align:center;cursor:grab;color:#c3ccd4;font-size:16px;user-select:none" title="Arrastra para reordenar">⠿</sc-raw-td>
               <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onMarco &#125;&#125;" value="&#123;&#123; fila.marco &#125;&#125;" placeholder="Ej: Concepto de evaluación, Cap. I" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
               <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onDimension &#125;&#125;" value="&#123;&#123; fila.dimension &#125;&#125;" placeholder="&#123;&#123; dimensionPlaceholder &#125;&#125;" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
               <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onPreguntas &#125;&#125;" value="&#123;&#123; fila.preguntas &#125;&#125;" placeholder="&#123;&#123; preguntaPlaceholder &#125;&#125; (una sola por fila)" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
@@ -610,7 +623,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;filasPlantillaPorDefecto&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:3,&quot;min&quot;:1,&quot;max&quot;:6,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Plantilla&quot;},&quot;mostrarPistasActividad&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Actividad interactiva&quot;},&quot;revelarRespuestaInmediata&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Actividad interactiva&quot;&#125;&#125;">
 class Component extends DCLogic {
-  state = { open: {}, checklist: {}, activity: {}, diagnostico: {}, templateRows: null, plantillaObjetivo: null, plantillaInstrumento: null, showBackTop: false };
+  state = { open: {}, checklist: {}, activity: {}, diagnostico: {}, templateRows: null, plantillaObjetivo: null, plantillaInstrumento: null, plantillaLikertTipo: null, showBackTop: false };
 
   componentDidMount() {
     try {
@@ -618,7 +631,7 @@ class Component extends DCLogic {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (parsed && Array.isArray(parsed.rows)) {
-          this.setState({ templateRows: parsed.rows, plantillaObjetivo: parsed.objetivo ?? null, plantillaInstrumento: parsed.instrumento ?? null });
+          this.setState({ templateRows: parsed.rows, plantillaObjetivo: parsed.objetivo ?? null, plantillaInstrumento: parsed.instrumento ?? null, plantillaLikertTipo: parsed.likertTipo ?? null });
         }
       }
     } catch (e) {}
@@ -657,16 +670,26 @@ class Component extends DCLogic {
   toggleCheck = (id) => this.setState(s => ({ checklist: { ...s.checklist, [id]: !s.checklist[id] } }));
   selectDiagnostico = (id, idx, correctIdx) => this.setState(s => ({ diagnostico: { ...s.diagnostico, [id]: { selected: idx, correct: idx === correctIdx } } }));
 
-  defaultObjetivo() {
-    return 'Diseñar un instrumento que permita comprender la percepción de los académicos en torno a las prácticas evaluativas utilizadas durante el periodo de la pandemia COVID-19.';
-  }
   defaultInstrumento() { return 'Entrevista'; }
-  getObjetivo() { return this.state.plantillaObjetivo ?? this.defaultObjetivo(); }
+  getObjetivo() { return this.state.plantillaObjetivo ?? ''; }
   getInstrumento() { return this.state.plantillaInstrumento ?? this.defaultInstrumento(); }
+  getLikertTipo() { return this.state.plantillaLikertTipo ?? null; }
+  likertTiposRaw() {
+    return [
+      ['satisfacción','Pregunta por el nivel de agrado o conformidad respecto a una temática conocida o experimentada.','¿Qué tan satisfecho(a) está usted con la calidad del texto escolar proporcionado por el MINEDUC?',['Muy satisfecho(a)','Satisfecho(a)','Insatisfecho(a)','Muy insatisfecho(a)']],
+      ['importancia','Indaga lo que los informantes consideran valioso o relevante.','¿Qué tan importante es para usted contar con infraestructura adecuada para su aprendizaje?',['Muy importante','Importante','Poco importante','No es importante']],
+      ['frecuencia','Mide la regularidad con la que se realiza una actividad o comportamiento específico.','¿Con qué frecuencia dedica tiempo a la lectura fuera del horario de clases?',['Más de 4 veces/semana','2 a 3 veces/semana','1 vez/semana','Nunca']],
+      ['valor','Evalúa la percepción sobre el valor o calidad de un objeto, documento, servicio o proceso.','¿Qué le parece la implementación del manual de convivencia escolar?',['Excelente','Bueno','Regular','Malo']],
+      ['acuerdo','Mide el grado de concordancia o disconformidad con afirmaciones específicas.','¿Está de acuerdo con que la participación de las familias es clave para prevenir el bullying?',['Totalmente de acuerdo','De acuerdo','En desacuerdo','Totalmente en desacuerdo']],
+      ['dificultad','Identifica experiencias en relación a la realización de actividades, detectando barreras.','¿Qué tan difícil le resultó rendir la Evaluación Nacional Diagnóstica (END)?',['Muy fácil','Fácil','Difícil','Muy difícil']],
+    ];
+  }
   instrumentoConfig() {
+    const likertTipo = this.getLikertTipo();
+    const likertEjemplo = this.likertTiposRaw().find(([nombre]) => nombre === likertTipo);
     const map = {
       'Entrevista': { dimensionLabel: 'Categoría de análisis', dimensionPlaceholder: 'Ej: Adaptación al modelo virtual', preguntaLabel: 'Posible pregunta', preguntaPlaceholder: 'Ej: ¿Qué entiende por evaluación?' },
-      'Encuesta / escala Likert': { dimensionLabel: 'Dimensión', dimensionPlaceholder: 'Ej: Adaptación al modelo virtual', preguntaLabel: 'Posible enunciado', preguntaPlaceholder: 'Ej: Durante la pandemia, adapté mis prácticas evaluativas a la modalidad virtual.' },
+      'Encuesta / escala Likert': { dimensionLabel: 'Dimensión', dimensionPlaceholder: 'Ej: Adaptación al modelo virtual', preguntaLabel: 'Posible enunciado', preguntaPlaceholder: likertEjemplo ? `Ej: ${likertEjemplo[2]}` : 'Ej: Durante la pandemia, adapté mis prácticas evaluativas a la modalidad virtual.' },
       'Observación': { dimensionLabel: 'Categoría de análisis', dimensionPlaceholder: 'Ej: Manejo conductual en aula', preguntaLabel: 'Conducta/indicador a observar', preguntaPlaceholder: 'Ej: Uso de estrategias de manejo conductual durante la clase' },
       'Análisis documental': { dimensionLabel: 'Categoría de análisis', dimensionPlaceholder: 'Ej: Adecuaciones curriculares', preguntaLabel: 'Aspecto a revisar en el documento', preguntaPlaceholder: 'Ej: Menciones a adecuaciones curriculares en el PEI' },
     };
@@ -675,14 +698,14 @@ class Component extends DCLogic {
 
   defaultTemplateRows() {
     const n = Math.max(1, Math.min(6, this.props.filasPlantillaPorDefecto ?? 3));
-    const rows = [{ id: 1, marco: 'Definición de evaluación, concepto de prácticas evaluativas, tipos de prácticas evaluativas (Cap. I, subcap. II)', dimension: 'Adaptación al modelo virtual', preguntas: '¿Cómo adaptó sus prácticas evaluativas al modelo virtual?', informantes: 'Docentes de carreras pedagógicas, Sede Osorno ULAGOS' }];
-    for (let i = 0; i < n; i++) rows.push({ id: rows.length + 1, marco: '', dimension: '', preguntas: '', informantes: '' });
+    const rows = [];
+    for (let i = 0; i < n; i++) rows.push({ id: i + 1, marco: '', dimension: '', preguntas: '', informantes: '' });
     return rows;
   }
   getRows() { return this.state.templateRows || this.defaultTemplateRows(); }
 
-  browserTemplateKey = 'ulagos-instrumentos-plantilla-v2';
-  browserBackupKey = 'ulagos-instrumentos-plantilla-backup-v2';
+  browserTemplateKey = 'ulagos-instrumentos-plantilla-v3';
+  browserBackupKey = 'ulagos-instrumentos-plantilla-backup-v3';
 
   readSavedPlantilla() {
     try {
@@ -694,16 +717,16 @@ class Component extends DCLogic {
       return null;
     }
   }
-  savePlantilla(objetivo, instrumento, rows) {
-    const data = { objetivo, instrumento, rows };
+  savePlantilla(objetivo, instrumento, likertTipo, rows) {
+    const data = { objetivo, instrumento, likertTipo, rows };
     try {
       localStorage.setItem(this.browserTemplateKey, JSON.stringify(data));
       localStorage.setItem(this.browserBackupKey, JSON.stringify({ savedAt: new Date().toISOString(), ...data }));
     } catch (e) {}
-    this.setState({ templateRows: rows, plantillaObjetivo: objetivo, plantillaInstrumento: instrumento });
+    this.setState({ templateRows: rows, plantillaObjetivo: objetivo, plantillaInstrumento: instrumento, plantillaLikertTipo: likertTipo });
   }
   saveToBrowser() {
-    this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getRows());
+    this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getLikertTipo(), this.getRows());
     alert('La plantilla quedó guardada en este navegador del equipo.');
   }
   restoreFromBrowser() {
@@ -712,18 +735,43 @@ class Component extends DCLogic {
       alert('Todavía no hay una copia guardada en este navegador para restaurar.');
       return;
     }
-    this.savePlantilla(data.objetivo ?? this.defaultObjetivo(), data.instrumento ?? this.defaultInstrumento(), data.rows);
+    this.savePlantilla(data.objetivo ?? '', data.instrumento ?? this.defaultInstrumento(), data.likertTipo ?? null, data.rows);
     alert('Se restauró la última copia guardada en este navegador.');
   }
-  setObjetivo(value) { this.savePlantilla(value, this.getInstrumento(), this.getRows()); }
-  setInstrumento(value) { this.savePlantilla(this.getObjetivo(), value, this.getRows()); }
-  updateCell(rowId, field, value) { this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getRows().map(r => r.id === rowId ? { ...r, [field]: value } : r)); }
+  setObjetivo(value) { this.savePlantilla(value, this.getInstrumento(), this.getLikertTipo(), this.getRows()); }
+  setInstrumento(value) { this.savePlantilla(this.getObjetivo(), value, value === 'Encuesta / escala Likert' ? this.getLikertTipo() : null, this.getRows()); }
+  setLikertTipo(value) { this.savePlantilla(this.getObjetivo(), this.getInstrumento(), value, this.getRows()); }
+  updateCell(rowId, field, value) { this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getLikertTipo(), this.getRows().map(r => r.id === rowId ? { ...r, [field]: value } : r)); }
   addRow() {
     const rows = this.getRows();
     const nextId = Math.max(...rows.map(r => r.id)) + 1;
-    this.savePlantilla(this.getObjetivo(), this.getInstrumento(), [...rows, { id: nextId, marco: '', dimension: '', preguntas: '', informantes: '' }]);
+    this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getLikertTipo(), [...rows, { id: nextId, marco: '', dimension: '', preguntas: '', informantes: '' }]);
   }
-  removeRow(rowId) { this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getRows().filter(r => r.id !== rowId)); }
+  removeRow(rowId) { this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getLikertTipo(), this.getRows().filter(r => r.id !== rowId)); }
+  startDragRow = (rowId) => this.setState({ dragRowId: rowId });
+  endDragRow = () => this.setState({ dragRowId: null });
+  dropRow(targetRowId) {
+    const draggedId = this.state.dragRowId ?? null;
+    if (draggedId == null || draggedId === targetRowId) return;
+    const rows = this.getRows();
+    const fromIdx = rows.findIndex(r => r.id === draggedId);
+    const toIdx = rows.findIndex(r => r.id === targetRowId);
+    if (fromIdx === -1 || toIdx === -1) return;
+    const reordered = [...rows];
+    const [moved] = reordered.splice(fromIdx, 1);
+    reordered.splice(toIdx, 0, moved);
+    this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getLikertTipo(), reordered);
+    this.setState({ dragRowId: null });
+  }
+
+  instrumentoLabelCompleto() {
+    const instrumento = this.getInstrumento();
+    const likertTipo = this.getLikertTipo();
+    if (instrumento === 'Encuesta / escala Likert' && likertTipo) {
+      return `${instrumento} (de ${likertTipo})`;
+    }
+    return instrumento;
+  }
 
   buildTableHtml() {
     const rows = this.getRows();
@@ -731,7 +779,7 @@ class Component extends DCLogic {
     const header = ['Apartado marco teórico', cfg.dimensionLabel, cfg.preguntaLabel, 'Informantes'];
     const esc = (v) => String(v || '').replace(/</g, '&lt;');
     let html = `<p><strong>Objetivo específico:</strong> ${esc(this.getObjetivo())}</p>`;
-    html += `<p><strong>Instrumento/técnica seleccionado:</strong> ${esc(this.getInstrumento())}</p>`;
+    html += `<p><strong>Instrumento/técnica seleccionado:</strong> ${esc(this.instrumentoLabelCompleto())}</p>`;
     html += '<table border="1" style="border-collapse:collapse;font-family:Arial,sans-serif;margin-top:10px"><tr>' + header.map(h => `<th style="background:#0055B7;color:#fff;padding:6px">${h}</th>`).join('') + '</tr>';
     rows.forEach(r => { html += '<tr>' + [r.marco, r.dimension, r.preguntas, r.informantes].map(v => `<td style="padding:6px;vertical-align:top">${esc(v)}</td>`).join('') + '</tr>'; });
     return html + '</table>';
@@ -758,7 +806,7 @@ class Component extends DCLogic {
     const header = ['Apartado del marco teórico', cfg.dimensionLabel, cfg.preguntaLabel, 'Informantes'];
     const infoRows = [
       ['Objetivo específico:', this.getObjetivo()],
-      ['Instrumento/técnica seleccionado:', this.getInstrumento()],
+      ['Instrumento/técnica seleccionado:', this.instrumentoLabelCompleto()],
       [],
     ];
     const data = [...infoRows, header, ...rows.map(r => [r.marco, r.dimension, r.preguntas, r.informantes])];
@@ -852,7 +900,7 @@ class Component extends DCLogic {
             spacing: { line: 480, lineRule: 'auto', after: 200 },
             children: [
               new TextRun({ text: 'Instrumento/técnica seleccionado: ', bold: true, font: FONT, size: SIZE }),
-              new TextRun({ text: this.getInstrumento(), font: FONT, size: SIZE }),
+              new TextRun({ text: this.instrumentoLabelCompleto(), font: FONT, size: SIZE }),
             ],
           }),
           table,
@@ -1040,14 +1088,7 @@ class Component extends DCLogic {
 
     const recomendacionesEntrevista = ['Escucha atenta.','No caer en un interrogatorio.','Genera un clima de confianza.','No induzcas respuestas.','Evita interrupciones (notificaciones, sonidos).','No saltes de un tema a otro abruptamente.','Deja que las respuestas fluyan.','Graba el audio con más de un dispositivo.'];
 
-    const likertEscalasRaw = [
-      ['satisfacción','Pregunta por el nivel de agrado o conformidad respecto a una temática conocida o experimentada.','¿Qué tan satisfecho(a) está usted con la calidad del texto escolar proporcionado por el MINEDUC?',['Muy satisfecho(a)','Satisfecho(a)','Insatisfecho(a)','Muy insatisfecho(a)']],
-      ['importancia','Indaga lo que los informantes consideran valioso o relevante.','¿Qué tan importante es para usted contar con infraestructura adecuada para su aprendizaje?',['Muy importante','Importante','Poco importante','No es importante']],
-      ['frecuencia','Mide la regularidad con la que se realiza una actividad o comportamiento específico.','¿Con qué frecuencia dedica tiempo a la lectura fuera del horario de clases?',['Más de 4 veces/semana','2 a 3 veces/semana','1 vez/semana','Nunca']],
-      ['valor','Evalúa la percepción sobre el valor o calidad de un objeto, documento, servicio o proceso.','¿Qué le parece la implementación del manual de convivencia escolar?',['Excelente','Bueno','Regular','Malo']],
-      ['acuerdo','Mide el grado de concordancia o disconformidad con afirmaciones específicas.','¿Está de acuerdo con que la participación de las familias es clave para prevenir el bullying?',['Totalmente de acuerdo','De acuerdo','En desacuerdo','Totalmente en desacuerdo']],
-      ['dificultad','Identifica experiencias en relación a la realización de actividades, detectando barreras.','¿Qué tan difícil le resultó rendir la Evaluación Nacional Diagnóstica (END)?',['Muy fácil','Fácil','Difícil','Muy difícil']],
-    ];
+    const likertEscalasRaw = this.likertTiposRaw();
     const likertEscalas = likertEscalasRaw.map(([nombre,desc,ejemplo,opciones])=>{
       const id = 'likert-'+nombre;
       return { id, nombre, desc, ejemplo, opciones, open: !!this.state.open[id], simboloToggle: this.state.open[id] ? '−' : '+', toggle: () => this.toggleOpen(id) };
@@ -1162,6 +1203,7 @@ class Component extends DCLogic {
     });
 
     const rows = this.getRows();
+    const dragRowId = this.state.dragRowId ?? null;
     const filasPlantilla = rows.map(r => ({
       marco: r.marco, dimension: r.dimension, preguntas: r.preguntas, informantes: r.informantes,
       onMarco: (e) => this.updateCell(r.id, 'marco', e.target.value),
@@ -1169,6 +1211,11 @@ class Component extends DCLogic {
       onPreguntas: (e) => this.updateCell(r.id, 'preguntas', e.target.value),
       onInformantes: (e) => this.updateCell(r.id, 'informantes', e.target.value),
       onEliminar: () => this.removeRow(r.id),
+      opacidad: r.id === dragRowId ? '0.4' : '1',
+      onDragStart: () => this.startDragRow(r.id),
+      onDragOver: (e) => e.preventDefault(),
+      onDrop: (e) => { e.preventDefault(); this.dropRow(r.id); },
+      onDragEnd: () => this.endDragRow(),
     }));
 
     const plantillaObjetivo = this.getObjetivo();
@@ -1190,6 +1237,19 @@ class Component extends DCLogic {
       };
     });
     const instrumentoConfig = this.instrumentoConfig();
+    const esLikert = plantillaInstrumentoActual === 'Encuesta / escala Likert';
+    const likertTipoActual = this.getLikertTipo();
+    const likertTipoOpciones = this.likertTiposRaw().map(([nombre])=>{
+      const seleccionado = nombre === likertTipoActual;
+      const texto = nombre.charAt(0).toUpperCase() + nombre.slice(1);
+      return {
+        texto,
+        bg: seleccionado ? '#3FAE29' : '#fff',
+        color: seleccionado ? '#fff' : '#2f8b21',
+        border: '#3FAE29',
+        onClick: () => this.setLikertTipo(nombre),
+      };
+    });
 
     return {
       navItems, showBackTop: this.state.showBackTop, volverArriba: this.volverArriba,
@@ -1205,6 +1265,7 @@ class Component extends DCLogic {
       likertEscalas, erroresLikert, comparacionCards, ejemplosCadenas, erroresGenerales,
       checklistItems, actividadEscenarios,
       plantillaObjetivo, onPlantillaObjetivo: (e) => this.setObjetivo(e.target.value), instrumentoOpciones,
+      esLikert, likertTipoOpciones,
       dimensionLabel: instrumentoConfig.dimensionLabel, dimensionPlaceholder: instrumentoConfig.dimensionPlaceholder,
       preguntaLabel: instrumentoConfig.preguntaLabel, preguntaPlaceholder: instrumentoConfig.preguntaPlaceholder,
       filasPlantilla, addRow: () => this.addRow(), downloadWord: () => this.downloadWord(), downloadExcel: () => this.downloadExcel(), downloadPDF: () => this.downloadPDF(),
