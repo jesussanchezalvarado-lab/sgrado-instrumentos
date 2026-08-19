@@ -257,24 +257,26 @@
     </div>
     <div style="margin-top:28px;background:#f4f6f8;border-radius:14px;padding:26px 28px">
       <p style="font:700 13px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#0055B7;margin-bottom:14px">Ejemplo (plantilla institucional de trazabilidad)</p>
-      <p style="font-size:13.5px;line-height:1.6;color:#3a4551;margin:0 0 20px">En un estudio <strong>cuantitativo</strong> puede decirse: variable → dimensiones → preguntas. En uno <strong>cualitativo</strong> así: concepto → categorías → preguntas. Esto ayuda a evitar confundir el propósito de la pregunta con la lógica del diseño.</p>
-      <p style="font:700 12px 'Roboto Condensed',sans-serif;color:#9F26B4;margin-bottom:10px">Ejemplo cualitativo (entrevista)</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:22px">
-        <sc-for list="&#123;&#123; ejemploTrazabilidadCualitativo &#125;&#125;" as="campo" hint-placeholder-count="6">
-          <div class="card-hover" style="background:#fff;border-radius:8px;padding:14px 16px;border:1px solid #e2e6ea">
-            <p style="font:700 10.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px" sc-style-color="&#123;&#123; campo.color &#125;&#125;">&#123;&#123; campo.etiqueta &#125;&#125;</p>
-            <p style="font-size:13.5px;line-height:1.5;color:#3a4551;margin:0">&#123;&#123; campo.valor &#125;&#125;</p>
-          </div>
-        </sc-for>
-      </div>
-      <p style="font:700 12px 'Roboto Condensed',sans-serif;color:#3FAE29;margin-bottom:10px">Ejemplo cuantitativo (encuesta Likert)</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
-        <sc-for list="&#123;&#123; ejemploTrazabilidadCuantitativo &#125;&#125;" as="campo" hint-placeholder-count="6">
-          <div class="card-hover" style="background:#fff;border-radius:8px;padding:14px 16px;border:1px solid #e2e6ea">
-            <p style="font:700 10.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px" sc-style-color="&#123;&#123; campo.color &#125;&#125;">&#123;&#123; campo.etiqueta &#125;&#125;</p>
-            <p style="font-size:13.5px;line-height:1.5;color:#3a4551;margin:0">&#123;&#123; campo.valor &#125;&#125;</p>
-          </div>
-        </sc-for>
+      <p style="font-size:13.5px;line-height:1.6;color:#3a4551;margin:0 0 24px">En un estudio <strong>cuantitativo</strong> puede decirse: variable → dimensiones → preguntas. En uno <strong>cualitativo</strong> así: concepto → categorías → preguntas. Esto ayuda a evitar confundir el propósito de la pregunta con la lógica del diseño.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start">
+        <div style="background:#fff;border-radius:12px;padding:22px 24px;border:1px solid #e2e6ea">
+          <p style="display:inline-block;background:#f3e8f7;color:#9F26B4;font:700 11px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:18px">Ejemplo cualitativo · Entrevista</p>
+          <sc-for list="&#123;&#123; ejemploTrazabilidadCualitativo &#125;&#125;" as="campo" hint-placeholder-count="7">
+            <div style="padding:11px 0;border-bottom:1px solid #eef0f2">
+              <p style="font:700 10.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px" sc-style-color="&#123;&#123; campo.color &#125;&#125;">&#123;&#123; campo.etiqueta &#125;&#125;</p>
+              <p style="font-size:13.5px;line-height:1.5;color:#3a4551;margin:0">&#123;&#123; campo.valor &#125;&#125;</p>
+            </div>
+          </sc-for>
+        </div>
+        <div style="background:#fff;border-radius:12px;padding:22px 24px;border:1px solid #e2e6ea">
+          <p style="display:inline-block;background:#eafbe6;color:#2f8b21;font:700 11px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:18px">Ejemplo cuantitativo · Encuesta Likert</p>
+          <sc-for list="&#123;&#123; ejemploTrazabilidadCuantitativo &#125;&#125;" as="campo" hint-placeholder-count="7">
+            <div style="padding:11px 0;border-bottom:1px solid #eef0f2">
+              <p style="font:700 10.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px" sc-style-color="&#123;&#123; campo.color &#125;&#125;">&#123;&#123; campo.etiqueta &#125;&#125;</p>
+              <p style="font-size:13.5px;line-height:1.5;color:#3a4551;margin:0">&#123;&#123; campo.valor &#125;&#125;</p>
+            </div>
+          </sc-for>
+        </div>
       </div>
     </div>
   </div>
@@ -301,7 +303,7 @@
             <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:17%">Apartado del marco teórico</sc-raw-th>
             <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:14%">Instrumento/técnica</sc-raw-th>
             <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:15%">Dimensión/categoría</sc-raw-th>
-            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:17%">Posibles preguntas/enunciados</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:17%">Posible preguntas</sc-raw-th>
             <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:13%">Informantes</sc-raw-th>
             <sc-raw-th style="width:4%"></sc-raw-th>
           </sc-raw-tr>
@@ -909,8 +911,8 @@ class Component extends DCLogic {
 
     const cadenaTrazabilidadRaw = [
       ['Objetivo específico','Comprender la percepción docente sobre prácticas evaluativas','#0055B7'],
-      ['Categoría de análisis','Prácticas evaluativas docentes','#3FAE29'],
-      ['Dimensión / categoría','Adaptación al modelo virtual','#9F26B4'],
+      ['Concepto','Prácticas evaluativas docentes','#3FAE29'],
+      ['Categoría de análisis','Adaptación al modelo virtual','#9F26B4'],
       ['Instrumento','Entrevista semiestructurada','#1C6AA0'],
       ['Pregunta','"¿Cómo cambió su forma de retroalimentar tras pasar a modalidad virtual?"','#D6336C'],
     ];
@@ -927,17 +929,19 @@ class Component extends DCLogic {
       { etiqueta:'Objetivo específico', valor:'Comprender la percepción de los académicos en torno a las prácticas evaluativas utilizadas durante la pandemia COVID-19.', color:'#0055B7' },
       { etiqueta:'Apartado del marco teórico', valor:'Definición de evaluación, concepto y tipos de prácticas evaluativas (Cap. I, subcap. II).', color:'#3FAE29' },
       { etiqueta:'Instrumento / técnica', valor:'Entrevista semiestructurada.', color:'#9F26B4' },
-      { etiqueta:'Dimensión / categoría', valor:'Adaptación al modelo virtual.', color:'#1C6AA0' },
-      { etiqueta:'Posible pregunta/enunciado', valor:'¿Qué entiende por evaluación? ¿Cómo adaptó su práctica evaluativa al modelo virtual?', color:'#D6336C' },
-      { etiqueta:'Informantes', valor:'Docentes de carreras pedagógicas, Sede Osorno ULAGOS.', color:'#0055B7' },
+      { etiqueta:'Concepto', valor:'Prácticas evaluativas docentes.', color:'#1C6AA0' },
+      { etiqueta:'Categoría de análisis', valor:'Adaptación al modelo virtual.', color:'#D6336C' },
+      { etiqueta:'Posible pregunta', valor:'¿Qué entiende por evaluación? ¿Cómo adaptó su práctica evaluativa al modelo virtual?', color:'#0055B7' },
+      { etiqueta:'Informantes', valor:'Docentes de carreras pedagógicas, Sede Osorno ULAGOS.', color:'#3FAE29' },
     ];
     const ejemploTrazabilidadCuantitativo = [
-      { etiqueta:'Objetivo específico', valor:'Determinar el nivel de satisfacción de los estudiantes con la infraestructura escolar disponible.', color:'#0055B7' },
-      { etiqueta:'Apartado del marco teórico', valor:'Definición de satisfacción estudiantil, dimensiones de infraestructura escolar (Cap. II, subcap. I).', color:'#3FAE29' },
-      { etiqueta:'Instrumento / técnica', valor:'Encuesta con escala Likert.', color:'#9F26B4' },
-      { etiqueta:'Dimensión / categoría', valor:'Infraestructura y espacios de aprendizaje.', color:'#1C6AA0' },
-      { etiqueta:'Posible pregunta/enunciado', valor:'"La infraestructura de mi establecimiento favorece mi proceso de aprendizaje." (Totalmente en desacuerdo — Totalmente de acuerdo)', color:'#D6336C' },
-      { etiqueta:'Informantes', valor:'Estudiantes de enseñanza media, Liceo X.', color:'#0055B7' },
+      { etiqueta:'Objetivo específico', valor:'Determinar la adaptación de las prácticas evaluativas de los académicos al modelo virtual durante la pandemia de COVID-19.', color:'#0055B7' },
+      { etiqueta:'Apartado del marco teórico', valor:'Definición de evaluación, concepto y tipos de prácticas evaluativas (Cap. I, subcap. II).', color:'#3FAE29' },
+      { etiqueta:'Instrumento / técnica', valor:'Cuestionario / encuesta.', color:'#9F26B4' },
+      { etiqueta:'Variable', valor:'Prácticas evaluativas.', color:'#1C6AA0' },
+      { etiqueta:'Dimensión', valor:'Adaptación al modelo virtual.', color:'#D6336C' },
+      { etiqueta:'Posible enunciado', valor:'Durante la pandemia, adapté mis prácticas evaluativas a las características de la modalidad virtual.', color:'#0055B7' },
+      { etiqueta:'Participantes', valor:'Docentes de carreras pedagógicas, Sede Osorno ULAGOS.', color:'#3FAE29' },
     ];
 
     const entrevistaTiposRaw = [
@@ -995,7 +999,7 @@ class Component extends DCLogic {
 
     const ejemplosCadenasRaw = [
       ['Cadena hacia una pregunta de encuesta','#3FAE29',[['Objetivo','Medir el nivel de satisfacción estudiantil con la biblioteca'],['Variable','Satisfacción con recursos institucionales'],['Dimensión / indicador','Percepción de calidad del material bibliográfico'],['Pregunta (Likert)','"¿Qué tan satisfecho(a) está con el material bibliográfico disponible?"']]],
-      ['Cadena hacia una pregunta de entrevista','#0055B7',[['Objetivo','Comprender la percepción docente sobre la evaluación remota'],['concepto','Prácticas evaluativas docentes'],['Categoría de análisis','Cambios en la retroalimentación durante la pandemia'],['Pregunta (entrevista)','"¿Cómo cambió su forma de retroalimentar a sus estudiantes durante la modalidad virtual?"']]],
+      ['Cadena hacia una pregunta de entrevista','#0055B7',[['Objetivo','Comprender la percepción docente sobre la evaluación remota'],['Concepto','Prácticas evaluativas docentes'],['Categoría de análisis','Cambios en la retroalimentación durante la pandemia'],['Pregunta (entrevista)','"¿Cómo cambió su forma de retroalimentar a sus estudiantes durante la modalidad virtual?"']]],
     ];
     const ejemplosCadenas = ejemplosCadenasRaw.map(([titulo,color,pasosRaw])=>({
       titulo, color,
