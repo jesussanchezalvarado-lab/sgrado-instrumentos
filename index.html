@@ -257,10 +257,20 @@
     </div>
     <div style="margin-top:28px;background:#f4f6f8;border-radius:14px;padding:26px 28px">
       <p style="font:700 13px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#0055B7;margin-bottom:14px">Ejemplo (plantilla institucional de trazabilidad)</p>
-      <p style="font-size:13.5px;line-height:1.6;color:#3a4551;margin:0 0 14px">En un estudio <strong>cuantitativo</strong> puede decirse: variable → dimensiones → preguntas. En uno <strong>cualitativo</strong> así: concepto → categorías → preguntas. Esto ayuda a evitar confundir el propósito de la pregunta con la lógica del diseño.</p>
+      <p style="font-size:13.5px;line-height:1.6;color:#3a4551;margin:0 0 20px">En un estudio <strong>cuantitativo</strong> puede decirse: variable → dimensiones → preguntas. En uno <strong>cualitativo</strong> así: concepto → categorías → preguntas. Esto ayuda a evitar confundir el propósito de la pregunta con la lógica del diseño.</p>
+      <p style="font:700 12px 'Roboto Condensed',sans-serif;color:#9F26B4;margin-bottom:10px">Ejemplo cualitativo (entrevista)</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:22px">
+        <sc-for list="&#123;&#123; ejemploTrazabilidadCualitativo &#125;&#125;" as="campo" hint-placeholder-count="6">
+          <div class="card-hover" style="background:#fff;border-radius:8px;padding:14px 16px;border:1px solid #e2e6ea">
+            <p style="font:700 10.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px" sc-style-color="&#123;&#123; campo.color &#125;&#125;">&#123;&#123; campo.etiqueta &#125;&#125;</p>
+            <p style="font-size:13.5px;line-height:1.5;color:#3a4551;margin:0">&#123;&#123; campo.valor &#125;&#125;</p>
+          </div>
+        </sc-for>
+      </div>
+      <p style="font:700 12px 'Roboto Condensed',sans-serif;color:#3FAE29;margin-bottom:10px">Ejemplo cuantitativo (encuesta Likert)</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
-        <sc-for list="&#123;&#123; ejemploTrazabilidad &#125;&#125;" as="campo" hint-placeholder-count="5">
-          <div style="background:#fff;border-radius:8px;padding:14px 16px;border:1px solid #e2e6ea">
+        <sc-for list="&#123;&#123; ejemploTrazabilidadCuantitativo &#125;&#125;" as="campo" hint-placeholder-count="6">
+          <div class="card-hover" style="background:#fff;border-radius:8px;padding:14px 16px;border:1px solid #e2e6ea">
             <p style="font:700 10.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px" sc-style-color="&#123;&#123; campo.color &#125;&#125;">&#123;&#123; campo.etiqueta &#125;&#125;</p>
             <p style="font-size:13.5px;line-height:1.5;color:#3a4551;margin:0">&#123;&#123; campo.valor &#125;&#125;</p>
           </div>
@@ -287,11 +297,12 @@
       <sc-raw-table style="width:100%;border-collapse:collapse;min-width:920px">
         <sc-raw-thead>
           <sc-raw-tr style="background:#0d1b2a">
-            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:22%">Objetivo específico</sc-raw-th>
-            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:20%">Apartado del marco teórico</sc-raw-th>
-            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:18%">Instrumento/técnica</sc-raw-th>
-            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:22%">Posibles preguntas</sc-raw-th>
-            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:14%">Informantes</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:20%">Objetivo específico</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:17%">Apartado del marco teórico</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:14%">Instrumento/técnica</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:15%">Dimensión/categoría</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:17%">Posibles preguntas/enunciados</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:13%">Informantes</sc-raw-th>
             <sc-raw-th style="width:4%"></sc-raw-th>
           </sc-raw-tr>
         </sc-raw-thead>
@@ -301,7 +312,8 @@
               <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onObjetivo &#125;&#125;" value="&#123;&#123; fila.objetivo &#125;&#125;" placeholder="Ej: Comprender la percepción de..." style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
               <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onMarco &#125;&#125;" value="&#123;&#123; fila.marco &#125;&#125;" placeholder="Ej: Concepto de evaluación, Cap. I" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
               <sc-raw-td style="padding:6px"><input sc-oninput="&#123;&#123; fila.onInstrumento &#125;&#125;" value="&#123;&#123; fila.instrumento &#125;&#125;" placeholder="Ej: Entrevista" style="width:100%;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;box-sizing:border-box"></sc-raw-td>
-              <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onPreguntas &#125;&#125;" value="&#123;&#123; fila.preguntas &#125;&#125;" placeholder="Ej: ¿Qué entiende por...?" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
+              <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onDimension &#125;&#125;" value="&#123;&#123; fila.dimension &#125;&#125;" placeholder="Ej: Adaptación al modelo virtual" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
+              <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onPreguntas &#125;&#125;" value="&#123;&#123; fila.preguntas &#125;&#125;" placeholder="Ej: ¿Qué entiende por...? / Enunciado tipo Likert" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
               <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onInformantes &#125;&#125;" value="&#123;&#123; fila.informantes &#125;&#125;" placeholder="Ej: Docentes de..." style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
               <sc-raw-td style="padding:6px;text-align:center"><button sc-onclick="&#123;&#123; fila.onEliminar &#125;&#125;" title="Eliminar fila" style="background:none;border:none;color:#c0392b;font-size:18px;cursor:pointer">×</button></sc-raw-td>
             </sc-raw-tr>
@@ -626,8 +638,8 @@ class Component extends DCLogic {
 
   defaultTemplateRows() {
     const n = Math.max(1, Math.min(6, this.props.filasPlantillaPorDefecto ?? 3));
-    const rows = [{ id: 1, objetivo: '1. Comprender la percepción de los académicos, en torno a las prácticas evaluativas utilizadas durante el periodo de la pandemia COVID-19', marco: 'Definición de evaluación, concepto de prácticas evaluativas, tipos de prácticas evaluativas (Cap. I, subcap. II)', instrumento: 'Entrevista semiestructurada', preguntas: '¿Qué entiende por evaluación? ¿Por práctica evaluativa convencional? ¿Cómo adaptó sus prácticas al modelo virtual?', informantes: 'Docentes de carreras pedagógicas, Sede Osorno ULAGOS' }];
-    for (let i = 0; i < n; i++) rows.push({ id: rows.length + 1, objetivo: '', marco: '', instrumento: '', preguntas: '', informantes: '' });
+    const rows = [{ id: 1, objetivo: '1. Comprender la percepción de los académicos, en torno a las prácticas evaluativas utilizadas durante el periodo de la pandemia COVID-19', marco: 'Definición de evaluación, concepto de prácticas evaluativas, tipos de prácticas evaluativas (Cap. I, subcap. II)', instrumento: 'Entrevista semiestructurada', dimension: 'Adaptación al modelo virtual', preguntas: '¿Qué entiende por evaluación? ¿Por práctica evaluativa convencional? ¿Cómo adaptó sus prácticas al modelo virtual?', informantes: 'Docentes de carreras pedagógicas, Sede Osorno ULAGOS' }];
+    for (let i = 0; i < n; i++) rows.push({ id: rows.length + 1, objetivo: '', marco: '', instrumento: '', dimension: '', preguntas: '', informantes: '' });
     return rows;
   }
   getRows() { return this.state.templateRows || this.defaultTemplateRows(); }
@@ -670,16 +682,16 @@ class Component extends DCLogic {
   addRow() {
     const rows = this.getRows();
     const nextId = Math.max(...rows.map(r => r.id)) + 1;
-    this.saveRows([...rows, { id: nextId, objetivo: '', marco: '', instrumento: '', preguntas: '', informantes: '' }]);
+    this.saveRows([...rows, { id: nextId, objetivo: '', marco: '', instrumento: '', dimension: '', preguntas: '', informantes: '' }]);
   }
   removeRow(rowId) { this.saveRows(this.getRows().filter(r => r.id !== rowId)); }
 
   buildTableHtml() {
     const rows = this.getRows();
-    const header = ['Objetivo específico', 'Apartado marco teórico', 'Instrumento/técnica', 'Posibles preguntas', 'Informantes'];
+    const header = ['Objetivo específico', 'Apartado marco teórico', 'Instrumento/técnica', 'Dimensión/categoría', 'Posibles preguntas/enunciados', 'Informantes'];
     const esc = (v) => String(v || '').replace(/</g, '&lt;');
     let html = '<table border="1" style="border-collapse:collapse;font-family:Arial,sans-serif"><tr>' + header.map(h => `<th style="background:#0055B7;color:#fff;padding:6px">${h}</th>`).join('') + '</tr>';
-    rows.forEach(r => { html += '<tr>' + [r.objetivo, r.marco, r.instrumento, r.preguntas, r.informantes].map(v => `<td style="padding:6px;vertical-align:top">${esc(v)}</td>`).join('') + '</tr>'; });
+    rows.forEach(r => { html += '<tr>' + [r.objetivo, r.marco, r.instrumento, r.dimension, r.preguntas, r.informantes].map(v => `<td style="padding:6px;vertical-align:top">${esc(v)}</td>`).join('') + '</tr>'; });
     return html + '</table>';
   }
   waitForLib(getLib, name) {
@@ -700,10 +712,10 @@ class Component extends DCLogic {
     catch (e) { alert('La librería de Excel aún está cargando. Intenta de nuevo en unos segundos.'); return; }
 
     const rows = this.getRows();
-    const header = ['Objetivo específico', 'Apartado del marco teórico', 'Instrumento/técnica', 'Posibles preguntas', 'Informantes'];
-    const data = [header, ...rows.map(r => [r.objetivo, r.marco, r.instrumento, r.preguntas, r.informantes])];
+    const header = ['Objetivo específico', 'Apartado del marco teórico', 'Instrumento/técnica', 'Dimensión/categoría', 'Posibles preguntas/enunciados', 'Informantes'];
+    const data = [header, ...rows.map(r => [r.objetivo, r.marco, r.instrumento, r.dimension, r.preguntas, r.informantes])];
     const ws = XLSX.utils.aoa_to_sheet(data);
-    ws['!cols'] = [{ wch: 42 }, { wch: 38 }, { wch: 24 }, { wch: 48 }, { wch: 28 }];
+    ws['!cols'] = [{ wch: 40 }, { wch: 34 }, { wch: 22 }, { wch: 24 }, { wch: 38 }, { wch: 24 }];
     ws['!rows'] = [{ hpx: 22 }, ...rows.map(() => ({ hpx: 60 }))];
     const range = XLSX.utils.decode_range(ws['!ref']);
     for (let R = range.s.r; R <= range.e.r; R++) {
@@ -724,9 +736,9 @@ class Component extends DCLogic {
     const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, WidthType, BorderStyle, AlignmentType, VerticalAlign } = docx;
 
     const rows = this.getRows();
-    const headers = ['Objetivo específico', 'Apartado del marco teórico', 'Instrumento/técnica', 'Posibles preguntas', 'Informantes'];
+    const headers = ['Objetivo específico', 'Apartado del marco teórico', 'Instrumento/técnica', 'Dimensión/categoría', 'Posibles preguntas/enunciados', 'Informantes'];
     // Ancho de página A4 (11906 twips) menos márgenes de 1" (1440 c/u) = 9026 twips utilizables.
-    const colDxa = [1986, 1805, 1444, 2347, 1444];
+    const colDxa = [1700, 1500, 1100, 1300, 2126, 1300];
     const TABLE_WIDTH = colDxa.reduce((a, b) => a + b, 0);
     const FONT = 'Times New Roman';
     const SIZE = 24;
@@ -750,7 +762,7 @@ class Component extends DCLogic {
       children: headers.map((h, i) => cell(h, { header: true, top: true, bottom: true, dxa: colDxa[i] })),
     });
     const bodyRows = rows.map((r, i) => new TableRow({
-      children: [r.objetivo, r.marco, r.instrumento, r.preguntas, r.informantes].map((v, ci) =>
+      children: [r.objetivo, r.marco, r.instrumento, r.dimension, r.preguntas, r.informantes].map((v, ci) =>
         cell(v, { bottom: i === rows.length - 1, dxa: colDxa[ci] })
       ),
     }));
@@ -911,12 +923,21 @@ class Component extends DCLogic {
     }));
     const trazabilidadBoton = trazabilidadCompleta ? 'Volver a empezar ↺' : 'Revelar siguiente eslabón →';
 
-    const ejemploTrazabilidad = [
+    const ejemploTrazabilidadCualitativo = [
       { etiqueta:'Objetivo específico', valor:'Comprender la percepción de los académicos en torno a las prácticas evaluativas utilizadas durante la pandemia COVID-19.', color:'#0055B7' },
       { etiqueta:'Apartado del marco teórico', valor:'Definición de evaluación, concepto y tipos de prácticas evaluativas (Cap. I, subcap. II).', color:'#3FAE29' },
       { etiqueta:'Instrumento / técnica', valor:'Entrevista semiestructurada.', color:'#9F26B4' },
-      { etiqueta:'Posible pregunta', valor:'¿Qué entiende por evaluación? ¿Cómo adaptó su práctica evaluativa al modelo virtual?', color:'#1C6AA0' },
-      { etiqueta:'Informantes', valor:'Docentes de carreras pedagógicas, Sede Osorno ULAGOS.', color:'#D6336C' },
+      { etiqueta:'Dimensión / categoría', valor:'Adaptación al modelo virtual.', color:'#1C6AA0' },
+      { etiqueta:'Posible pregunta/enunciado', valor:'¿Qué entiende por evaluación? ¿Cómo adaptó su práctica evaluativa al modelo virtual?', color:'#D6336C' },
+      { etiqueta:'Informantes', valor:'Docentes de carreras pedagógicas, Sede Osorno ULAGOS.', color:'#0055B7' },
+    ];
+    const ejemploTrazabilidadCuantitativo = [
+      { etiqueta:'Objetivo específico', valor:'Determinar el nivel de satisfacción de los estudiantes con la infraestructura escolar disponible.', color:'#0055B7' },
+      { etiqueta:'Apartado del marco teórico', valor:'Definición de satisfacción estudiantil, dimensiones de infraestructura escolar (Cap. II, subcap. I).', color:'#3FAE29' },
+      { etiqueta:'Instrumento / técnica', valor:'Encuesta con escala Likert.', color:'#9F26B4' },
+      { etiqueta:'Dimensión / categoría', valor:'Infraestructura y espacios de aprendizaje.', color:'#1C6AA0' },
+      { etiqueta:'Posible pregunta/enunciado', valor:'"La infraestructura de mi establecimiento favorece mi proceso de aprendizaje." (Totalmente en desacuerdo — Totalmente de acuerdo)', color:'#D6336C' },
+      { etiqueta:'Informantes', valor:'Estudiantes de enseñanza media, Liceo X.', color:'#0055B7' },
     ];
 
     const entrevistaTiposRaw = [
@@ -1071,10 +1092,11 @@ class Component extends DCLogic {
 
     const rows = this.getRows();
     const filasPlantilla = rows.map(r => ({
-      objetivo: r.objetivo, marco: r.marco, instrumento: r.instrumento, preguntas: r.preguntas, informantes: r.informantes,
+      objetivo: r.objetivo, marco: r.marco, instrumento: r.instrumento, dimension: r.dimension, preguntas: r.preguntas, informantes: r.informantes,
       onObjetivo: (e) => this.updateCell(r.id, 'objetivo', e.target.value),
       onMarco: (e) => this.updateCell(r.id, 'marco', e.target.value),
       onInstrumento: (e) => this.updateCell(r.id, 'instrumento', e.target.value),
+      onDimension: (e) => this.updateCell(r.id, 'dimension', e.target.value),
       onPreguntas: (e) => this.updateCell(r.id, 'preguntas', e.target.value),
       onInformantes: (e) => this.updateCell(r.id, 'informantes', e.target.value),
       onEliminar: () => this.removeRow(r.id),
@@ -1086,7 +1108,7 @@ class Component extends DCLogic {
       pasosGuia, guiaBoton, mostrarAnteriorGuia, siguientePasoGuia: this.siguientePasoGuia, anteriorPasoGuia: this.anteriorPasoGuia,
       arbolPreguntas, rutaAgotada, rutaMostrarReiniciar, reiniciarRuta: this.reiniciarRuta,
       enfoqueFilas, enfoqueTipVisible, enfoqueTipNombre, enfoqueTipColor, enfoqueTipBg, enfoqueTipTexto,
-      cadenaTrazabilidad, ejemploTrazabilidad,
+      cadenaTrazabilidad, ejemploTrazabilidadCualitativo, ejemploTrazabilidadCuantitativo,
       trazabilidadBoton, avanzarTrazabilidad: this.avanzarTrazabilidad,
       entrevistaTipos, preguntaTipos, clasificacionPreguntas, recomendacionesEntrevista,
       likertEscalas, erroresLikert, comparacionCards, ejemplosCadenas, erroresGenerales,
