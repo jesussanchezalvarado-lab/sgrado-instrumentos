@@ -295,7 +295,7 @@
   <div style="max-width:1180px;margin:0 auto">
     <p style="display:inline-block;background:#f3e8f7;color:#9F26B4;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">6 · Herramienta</p>
     <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:8px;color:#0d1b2a">Plantilla descargable de trazabilidad</h2>
-    <p style="font-size:15px;color:#55606b;margin-bottom:24px">Define tu objetivo específico y el instrumento una sola vez abajo; luego agrega las filas solo con el apartado del marco teórico, la dimensión/categoría, la posible pregunta y sus informantes. Puedes arrastrar el ⠿ de cada fila para reordenarlas. Se guarda automáticamente en este navegador y también puedes respaldarla con un clic.</p>
+    <p style="font-size:15px;color:#55606b;margin-bottom:24px">Define tu objetivo específico y el instrumento una sola vez abajo. Si una dimensión/categoría abarca varios apartados del marco teórico, no la repitas: complétala una vez y usa "+ fila en esta dimensión" para agregar los demás debajo (se fusiona automáticamente en una sola celda, también al exportar). Puedes arrastrar el ⠿ de cada fila para reordenarlas. Se guarda automáticamente en este navegador y también puedes respaldarla con un clic.</p>
     <div style="background:#fff;border-radius:12px;padding:20px 22px;border:1px solid #e2e6ea;margin-bottom:18px">
       <p style="font:700 11.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#0055B7;margin-bottom:8px">Objetivo específico que estás trabajando</p>
       <textarea sc-oninput="&#123;&#123; onPlantillaObjetivo &#125;&#125;" value="&#123;&#123; plantillaObjetivo &#125;&#125;" placeholder="Ej: Diseñar un instrumento que permita..." style="width:100%;min-height:56px;border:1px solid #dfe4e8;border-radius:6px;padding:10px 12px;font:14px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box;margin-bottom:20px"></textarea>
@@ -329,8 +329,8 @@
         <sc-raw-thead>
           <sc-raw-tr style="background:#0d1b2a">
             <sc-raw-th style="width:4%"></sc-raw-th>
-            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:24%">Apartado del marco teórico</sc-raw-th>
             <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:18%">&#123;&#123; dimensionLabel &#125;&#125;</sc-raw-th>
+            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:24%">Apartado del marco teórico</sc-raw-th>
             <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:30%">&#123;&#123; preguntaLabel &#125;&#125;</sc-raw-th>
             <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:20%">Informantes</sc-raw-th>
             <sc-raw-th style="width:4%"></sc-raw-th>
@@ -338,10 +338,15 @@
         </sc-raw-thead>
         <sc-raw-tbody>
           <sc-for list="&#123;&#123; filasPlantilla &#125;&#125;" as="fila" hint-placeholder-count="3">
-            <sc-raw-tr draggable="true" ondragstart="&#123;&#123; fila.onDragStart &#125;&#125;" ondragover="&#123;&#123; fila.onDragOver &#125;&#125;" ondrop="&#123;&#123; fila.onDrop &#125;&#125;" ondragend="&#123;&#123; fila.onDragEnd &#125;&#125;" style="border-top:1px solid #e2e6ea;vertical-align:top;transition:opacity .15s" sc-style-opacity="&#123;&#123; fila.opacidad &#125;&#125;">
+            <sc-raw-tr draggable="true" sc-camel-ondragstart="&#123;&#123; fila.onDragStart &#125;&#125;" sc-camel-ondragover="&#123;&#123; fila.onDragOver &#125;&#125;" sc-camel-ondrop="&#123;&#123; fila.onDrop &#125;&#125;" sc-camel-ondragend="&#123;&#123; fila.onDragEnd &#125;&#125;" style="border-top:1px solid #e2e6ea;vertical-align:top;transition:opacity .15s" sc-style-opacity="&#123;&#123; fila.opacidad &#125;&#125;">
               <sc-raw-td style="padding:6px;text-align:center;cursor:grab;color:#c3ccd4;font-size:16px;user-select:none" title="Arrastra para reordenar">⠿</sc-raw-td>
+              <sc-if value="&#123;&#123; fila.mostrarDimension &#125;&#125;" hint-placeholder-val="&#123;&#123; true &#125;&#125;">
+                <sc-raw-td rowspan="&#123;&#123; fila.dimensionRowSpan &#125;&#125;" style="padding:6px;background:#fafbfc">
+                  <textarea sc-oninput="&#123;&#123; fila.onDimension &#125;&#125;" value="&#123;&#123; fila.dimension &#125;&#125;" placeholder="&#123;&#123; dimensionPlaceholder &#125;&#125;" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box;margin-bottom:6px"></textarea>
+                  <button sc-onclick="&#123;&#123; fila.onAgregarEnDimension &#125;&#125;" title="Agregar otra fila con esta misma dimensión" style="width:100%;background:#eafbe6;color:#2f8b21;border:1px dashed #ACDA90;border-radius:6px;padding:5px;font:600 11.5px 'Open Sans',sans-serif;cursor:pointer">+ fila en esta dimensión</button>
+                </sc-raw-td>
+              </sc-if>
               <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onMarco &#125;&#125;" value="&#123;&#123; fila.marco &#125;&#125;" placeholder="Ej: Concepto de evaluación, Cap. I" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
-              <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onDimension &#125;&#125;" value="&#123;&#123; fila.dimension &#125;&#125;" placeholder="&#123;&#123; dimensionPlaceholder &#125;&#125;" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
               <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onPreguntas &#125;&#125;" value="&#123;&#123; fila.preguntas &#125;&#125;" placeholder="&#123;&#123; preguntaPlaceholder &#125;&#125; (una sola por fila)" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
               <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onInformantes &#125;&#125;" value="&#123;&#123; fila.informantes &#125;&#125;" placeholder="Ej: Docentes de..." style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
               <sc-raw-td style="padding:6px;text-align:center"><button sc-onclick="&#123;&#123; fila.onEliminar &#125;&#125;" title="Eliminar fila" style="background:none;border:none;color:#c0392b;font-size:18px;cursor:pointer">×</button></sc-raw-td>
@@ -763,6 +768,30 @@ class Component extends DCLogic {
     this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getLikertTipo(), reordered);
     this.setState({ dragRowId: null });
   }
+  groupRowsByDimension(rows) {
+    const groups = [];
+    let i = 0;
+    while (i < rows.length) {
+      const dim = (rows[i].dimension || '').trim();
+      let j = i;
+      if (dim) { while (j + 1 < rows.length && (rows[j + 1].dimension || '').trim() === dim) j++; }
+      groups.push({ rows: rows.slice(i, j + 1) });
+      i = j + 1;
+    }
+    return groups;
+  }
+  updateDimensionGroup(rowIds, value) {
+    const idSet = new Set(rowIds);
+    this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getLikertTipo(), this.getRows().map(r => idSet.has(r.id) ? { ...r, dimension: value } : r));
+  }
+  addRowAfter(afterRowId, dimension) {
+    const rows = this.getRows();
+    const nextId = Math.max(...rows.map(r => r.id)) + 1;
+    const idx = rows.findIndex(r => r.id === afterRowId);
+    const newRow = { id: nextId, marco: '', dimension, preguntas: '', informantes: '' };
+    const reordered = [...rows.slice(0, idx + 1), newRow, ...rows.slice(idx + 1)];
+    this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getLikertTipo(), reordered);
+  }
 
   instrumentoLabelCompleto() {
     const instrumento = this.getInstrumento();
@@ -776,12 +805,19 @@ class Component extends DCLogic {
   buildTableHtml() {
     const rows = this.getRows();
     const cfg = this.instrumentoConfig();
-    const header = ['Apartado marco teórico', cfg.dimensionLabel, cfg.preguntaLabel, 'Informantes'];
+    const header = [cfg.dimensionLabel, 'Apartado marco teórico', cfg.preguntaLabel, 'Informantes'];
     const esc = (v) => String(v || '').replace(/</g, '&lt;');
     let html = `<p><strong>Objetivo específico:</strong> ${esc(this.getObjetivo())}</p>`;
     html += `<p><strong>Instrumento/técnica seleccionado:</strong> ${esc(this.instrumentoLabelCompleto())}</p>`;
     html += '<table border="1" style="border-collapse:collapse;font-family:Arial,sans-serif;margin-top:10px"><tr>' + header.map(h => `<th style="background:#0055B7;color:#fff;padding:6px">${h}</th>`).join('') + '</tr>';
-    rows.forEach(r => { html += '<tr>' + [r.marco, r.dimension, r.preguntas, r.informantes].map(v => `<td style="padding:6px;vertical-align:top">${esc(v)}</td>`).join('') + '</tr>'; });
+    this.groupRowsByDimension(rows).forEach(g => {
+      g.rows.forEach((r, idx) => {
+        html += '<tr>';
+        if (idx === 0) html += `<td rowspan="${g.rows.length}" style="padding:6px;vertical-align:top">${esc(r.dimension)}</td>`;
+        html += [r.marco, r.preguntas, r.informantes].map(v => `<td style="padding:6px;vertical-align:top">${esc(v)}</td>`).join('');
+        html += '</tr>';
+      });
+    });
     return html + '</table>';
   }
   waitForLib(getLib, name) {
@@ -803,18 +839,32 @@ class Component extends DCLogic {
 
     const rows = this.getRows();
     const cfg = this.instrumentoConfig();
-    const header = ['Apartado del marco teórico', cfg.dimensionLabel, cfg.preguntaLabel, 'Informantes'];
+    const header = [cfg.dimensionLabel, 'Apartado del marco teórico', cfg.preguntaLabel, 'Informantes'];
     const infoRows = [
       ['Objetivo específico:', this.getObjetivo()],
       ['Instrumento/técnica seleccionado:', this.instrumentoLabelCompleto()],
       [],
     ];
-    const data = [...infoRows, header, ...rows.map(r => [r.marco, r.dimension, r.preguntas, r.informantes])];
+    const grupos = this.groupRowsByDimension(rows);
+    const dataRows = [];
+    grupos.forEach(g => {
+      g.rows.forEach((r, idx) => {
+        dataRows.push([idx === 0 ? r.dimension : '', r.marco, r.preguntas, r.informantes]);
+      });
+    });
+    const data = [...infoRows, header, ...dataRows];
     const ws = XLSX.utils.aoa_to_sheet(data);
-    ws['!cols'] = [{ wch: 34 }, { wch: 24 }, { wch: 42 }, { wch: 24 }];
+    ws['!cols'] = [{ wch: 24 }, { wch: 34 }, { wch: 42 }, { wch: 24 }];
     ws['!rows'] = [{ hpx: 20 }, { hpx: 20 }, { hpx: 8 }, { hpx: 22 }, ...rows.map(() => ({ hpx: 60 }))];
     const range = XLSX.utils.decode_range(ws['!ref']);
     const headerRowIdx = infoRows.length;
+    const merges = [];
+    let rowCursor = headerRowIdx + 1;
+    grupos.forEach(g => {
+      if (g.rows.length > 1) merges.push({ s: { r: rowCursor, c: 0 }, e: { r: rowCursor + g.rows.length - 1, c: 0 } });
+      rowCursor += g.rows.length;
+    });
+    ws['!merges'] = merges;
     for (let R = range.s.r; R <= range.e.r; R++) {
       for (let C = range.s.c; C <= range.e.c; C++) {
         const ref = XLSX.utils.encode_cell({ r: R, c: C });
@@ -834,41 +884,48 @@ class Component extends DCLogic {
 
     const rows = this.getRows();
     const cfg = this.instrumentoConfig();
-    const headers = ['Apartado del marco teórico', cfg.dimensionLabel, cfg.preguntaLabel, 'Informantes'];
+    const headers = [cfg.dimensionLabel, 'Apartado del marco teórico', cfg.preguntaLabel, 'Informantes'];
     // Ancho de página A4 (11906 twips) menos márgenes de 1" (1440 c/u) = 9026 twips utilizables.
-    const colDxa = [2400, 1800, 3026, 1800];
+    const colDxa = [1800, 2400, 3026, 1800];
     const TABLE_WIDTH = colDxa.reduce((a, b) => a + b, 0);
     const FONT = 'Times New Roman';
     const SIZE = 24;
-    const noBorder = { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' };
     const rule = { style: BorderStyle.SINGLE, size: 6, color: '000000' };
 
-    const cell = (text, { header = false, top = false, bottom = false, dxa } = {}) => new TableCell({
+    const cell = (text, { header = false, dxa, rowSpan } = {}) => new TableCell({
       width: { size: dxa, type: WidthType.DXA },
-      borders: { top: top ? rule : noBorder, bottom: bottom ? rule : noBorder, left: noBorder, right: noBorder },
+      ...(rowSpan ? { rowSpan } : {}),
+      borders: { top: rule, bottom: rule, left: rule, right: rule },
       verticalAlign: VerticalAlign.CENTER,
       margins: { top: 120, bottom: 120, left: 100, right: 100 },
       children: [new Paragraph({
         alignment: header ? AlignmentType.CENTER : AlignmentType.LEFT,
-        spacing: { line: 480, lineRule: 'auto' },
-        children: [new TextRun({ text: text || '', font: FONT, size: SIZE })],
+        spacing: { line: 240, lineRule: 'auto' },
+        children: [new TextRun({ text: text || '', bold: header, font: FONT, size: SIZE })],
       })],
     });
 
     const headerRow = new TableRow({
       tableHeader: true,
-      children: headers.map((h, i) => cell(h, { header: true, top: true, bottom: true, dxa: colDxa[i] })),
+      children: headers.map((h, i) => cell(h, { header: true, dxa: colDxa[i] })),
     });
-    const bodyRows = rows.map((r, i) => new TableRow({
-      children: [r.marco, r.dimension, r.preguntas, r.informantes].map((v, ci) =>
-        cell(v, { bottom: i === rows.length - 1, dxa: colDxa[ci] })
-      ),
-    }));
+    const grupos = this.groupRowsByDimension(rows);
+    const bodyRows = [];
+    grupos.forEach(g => {
+      g.rows.forEach((r, idx) => {
+        const children = [];
+        if (idx === 0) children.push(cell(r.dimension, { dxa: colDxa[0], rowSpan: g.rows.length }));
+        children.push(cell(r.marco, { dxa: colDxa[1] }));
+        children.push(cell(r.preguntas, { dxa: colDxa[2] }));
+        children.push(cell(r.informantes, { dxa: colDxa[3] }));
+        bodyRows.push(new TableRow({ children }));
+      });
+    });
 
     const table = new Table({
       width: { size: TABLE_WIDTH, type: WidthType.DXA },
       columnWidths: colDxa,
-      borders: { top: noBorder, bottom: noBorder, left: noBorder, right: noBorder, insideHorizontal: noBorder, insideVertical: noBorder },
+      borders: { top: rule, bottom: rule, left: rule, right: rule, insideHorizontal: rule, insideVertical: rule },
       rows: [headerRow, ...bodyRows],
     });
 
@@ -882,35 +939,28 @@ class Component extends DCLogic {
         },
         children: [
           new Paragraph({
-            spacing: { line: 480, lineRule: 'auto' },
+            spacing: { line: 240, lineRule: 'auto' },
             children: [new TextRun({ text: 'Tabla 1', bold: true, font: FONT, size: SIZE })],
           }),
           new Paragraph({
-            spacing: { line: 480, lineRule: 'auto', after: 200 },
+            spacing: { line: 240, lineRule: 'auto', after: 200 },
             children: [new TextRun({ text: 'Trazabilidad de objetivos, marco teórico e instrumentos de investigación', italics: true, font: FONT, size: SIZE })],
           }),
           new Paragraph({
-            spacing: { line: 480, lineRule: 'auto', after: 80 },
+            spacing: { line: 240, lineRule: 'auto', after: 80 },
             children: [
               new TextRun({ text: 'Objetivo específico: ', bold: true, font: FONT, size: SIZE }),
               new TextRun({ text: this.getObjetivo(), font: FONT, size: SIZE }),
             ],
           }),
           new Paragraph({
-            spacing: { line: 480, lineRule: 'auto', after: 200 },
+            spacing: { line: 240, lineRule: 'auto', after: 200 },
             children: [
               new TextRun({ text: 'Instrumento/técnica seleccionado: ', bold: true, font: FONT, size: SIZE }),
               new TextRun({ text: this.instrumentoLabelCompleto(), font: FONT, size: SIZE }),
             ],
           }),
           table,
-          new Paragraph({
-            spacing: { line: 480, lineRule: 'auto', before: 200 },
-            children: [
-              new TextRun({ text: 'Nota. ', italics: true, font: FONT, size: SIZE }),
-              new TextRun({ text: 'Elaboración propia. Describe aquí la fuente de los datos, el procedimiento seguido para construir el instrumento y cualquier otra aclaración pertinente para esta tabla.', font: FONT, size: SIZE }),
-            ],
-          }),
         ],
       }],
     });
@@ -1204,19 +1254,29 @@ class Component extends DCLogic {
 
     const rows = this.getRows();
     const dragRowId = this.state.dragRowId ?? null;
-    const filasPlantilla = rows.map(r => ({
-      marco: r.marco, dimension: r.dimension, preguntas: r.preguntas, informantes: r.informantes,
-      onMarco: (e) => this.updateCell(r.id, 'marco', e.target.value),
-      onDimension: (e) => this.updateCell(r.id, 'dimension', e.target.value),
-      onPreguntas: (e) => this.updateCell(r.id, 'preguntas', e.target.value),
-      onInformantes: (e) => this.updateCell(r.id, 'informantes', e.target.value),
-      onEliminar: () => this.removeRow(r.id),
-      opacidad: r.id === dragRowId ? '0.4' : '1',
-      onDragStart: () => this.startDragRow(r.id),
-      onDragOver: (e) => e.preventDefault(),
-      onDrop: (e) => { e.preventDefault(); this.dropRow(r.id); },
-      onDragEnd: () => this.endDragRow(),
-    }));
+    const filasPlantilla = [];
+    this.groupRowsByDimension(rows).forEach(g => {
+      const groupIds = g.rows.map(x => x.id);
+      const lastIdInGroup = g.rows[g.rows.length - 1].id;
+      g.rows.forEach((r, idx) => {
+        filasPlantilla.push({
+          marco: r.marco, dimension: r.dimension, preguntas: r.preguntas, informantes: r.informantes,
+          onMarco: (e) => this.updateCell(r.id, 'marco', e.target.value),
+          onDimension: (e) => this.updateDimensionGroup(groupIds, e.target.value),
+          onPreguntas: (e) => this.updateCell(r.id, 'preguntas', e.target.value),
+          onInformantes: (e) => this.updateCell(r.id, 'informantes', e.target.value),
+          onEliminar: () => this.removeRow(r.id),
+          opacidad: r.id === dragRowId ? '0.4' : '1',
+          onDragStart: () => this.startDragRow(r.id),
+          onDragOver: (e) => e.preventDefault(),
+          onDrop: (e) => { e.preventDefault(); this.dropRow(r.id); },
+          onDragEnd: () => this.endDragRow(),
+          mostrarDimension: idx === 0,
+          dimensionRowSpan: g.rows.length,
+          onAgregarEnDimension: () => this.addRowAfter(lastIdInGroup, r.dimension),
+        });
+      });
+    });
 
     const plantillaObjetivo = this.getObjetivo();
     const plantillaInstrumentoActual = this.getInstrumento();
