@@ -295,7 +295,7 @@
   <div style="max-width:1180px;margin:0 auto">
     <p style="display:inline-block;background:#f3e8f7;color:#9F26B4;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">6 · Herramienta</p>
     <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:8px;color:#0d1b2a">Plantilla descargable de trazabilidad</h2>
-    <p style="font-size:15px;color:#55606b;margin-bottom:24px">Define tu objetivo específico y el instrumento una sola vez abajo. Si una dimensión/categoría abarca varios apartados del marco teórico, no la repitas: complétala una vez y usa "+ fila en esta dimensión" para agregar los demás debajo (se fusiona automáticamente en una sola celda, también al exportar). Puedes arrastrar el ⠿ de cada fila para reordenarlas. Se guarda automáticamente en este navegador y también puedes respaldarla con un clic.</p>
+    <p style="font-size:15px;color:#55606b;margin-bottom:24px">Define tu objetivo específico y el instrumento una sola vez abajo. Si una dimensión/categoría abarca varios apartados del marco teórico, usa "+ Añadir dimensión" para copiarla en una nueva fila y evitar reescribirla; al exportar, las filas con la misma dimensión se fusionan automáticamente en una sola celda. Puedes arrastrar el ⠿ de cada fila para reordenarlas. Se guarda automáticamente en este navegador y también puedes respaldarla con un clic.</p>
     <div style="background:#fff;border-radius:12px;padding:20px 22px;border:1px solid #e2e6ea;margin-bottom:18px">
       <p style="font:700 11.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#0055B7;margin-bottom:8px">Objetivo específico que estás trabajando</p>
       <textarea sc-oninput="&#123;&#123; onPlantillaObjetivo &#125;&#125;" value="&#123;&#123; plantillaObjetivo &#125;&#125;" placeholder="Ej: Diseñar un instrumento que permita..." style="width:100%;min-height:56px;border:1px solid #dfe4e8;border-radius:6px;padding:10px 12px;font:14px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box;margin-bottom:20px"></textarea>
@@ -340,12 +340,10 @@
           <sc-for list="&#123;&#123; filasPlantilla &#125;&#125;" as="fila" hint-placeholder-count="3">
             <sc-raw-tr draggable="true" sc-camel-ondragstart="&#123;&#123; fila.onDragStart &#125;&#125;" sc-camel-ondragover="&#123;&#123; fila.onDragOver &#125;&#125;" sc-camel-ondrop="&#123;&#123; fila.onDrop &#125;&#125;" sc-camel-ondragend="&#123;&#123; fila.onDragEnd &#125;&#125;" style="border-top:1px solid #e2e6ea;vertical-align:top;transition:opacity .15s" sc-style-opacity="&#123;&#123; fila.opacidad &#125;&#125;">
               <sc-raw-td style="padding:6px;text-align:center;cursor:grab;color:#c3ccd4;font-size:16px;user-select:none" title="Arrastra para reordenar">⠿</sc-raw-td>
-              <sc-if value="&#123;&#123; fila.mostrarDimension &#125;&#125;" hint-placeholder-val="&#123;&#123; true &#125;&#125;">
-                <sc-raw-td rowspan="&#123;&#123; fila.dimensionRowSpan &#125;&#125;" style="padding:6px;background:#fafbfc">
-                  <textarea sc-oninput="&#123;&#123; fila.onDimension &#125;&#125;" value="&#123;&#123; fila.dimension &#125;&#125;" placeholder="&#123;&#123; dimensionPlaceholder &#125;&#125;" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box;margin-bottom:6px"></textarea>
-                  <button sc-onclick="&#123;&#123; fila.onAgregarEnDimension &#125;&#125;" title="Agregar otra fila con esta misma dimensión" style="width:100%;background:#eafbe6;color:#2f8b21;border:1px dashed #ACDA90;border-radius:6px;padding:5px;font:600 11.5px 'Open Sans',sans-serif;cursor:pointer">+ fila en esta dimensión</button>
-                </sc-raw-td>
-              </sc-if>
+              <sc-raw-td style="padding:6px;background:#fafbfc">
+                <textarea sc-oninput="&#123;&#123; fila.onDimension &#125;&#125;" value="&#123;&#123; fila.dimension &#125;&#125;" placeholder="&#123;&#123; dimensionPlaceholder &#125;&#125;" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box;margin-bottom:6px"></textarea>
+                <button sc-onclick="&#123;&#123; fila.onAgregarEnDimension &#125;&#125;" title="Agregar otra fila con esta misma dimensión" style="width:100%;background:#eafbe6;color:#2f8b21;border:1px dashed #ACDA90;border-radius:6px;padding:5px;font:600 11.5px 'Open Sans',sans-serif;cursor:pointer">+ Añadir dimensión</button>
+              </sc-raw-td>
               <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onMarco &#125;&#125;" value="&#123;&#123; fila.marco &#125;&#125;" placeholder="Ej: Concepto de evaluación, Cap. I" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
               <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onPreguntas &#125;&#125;" value="&#123;&#123; fila.preguntas &#125;&#125;" placeholder="&#123;&#123; preguntaPlaceholder &#125;&#125; (una sola por fila)" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
               <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onInformantes &#125;&#125;" value="&#123;&#123; fila.informantes &#125;&#125;" placeholder="Ej: Docentes de..." style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
@@ -779,10 +777,6 @@ class Component extends DCLogic {
       i = j + 1;
     }
     return groups;
-  }
-  updateDimensionGroup(rowIds, value) {
-    const idSet = new Set(rowIds);
-    this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getLikertTipo(), this.getRows().map(r => idSet.has(r.id) ? { ...r, dimension: value } : r));
   }
   addRowAfter(afterRowId, dimension) {
     const rows = this.getRows();
@@ -1254,29 +1248,20 @@ class Component extends DCLogic {
 
     const rows = this.getRows();
     const dragRowId = this.state.dragRowId ?? null;
-    const filasPlantilla = [];
-    this.groupRowsByDimension(rows).forEach(g => {
-      const groupIds = g.rows.map(x => x.id);
-      const lastIdInGroup = g.rows[g.rows.length - 1].id;
-      g.rows.forEach((r, idx) => {
-        filasPlantilla.push({
-          marco: r.marco, dimension: r.dimension, preguntas: r.preguntas, informantes: r.informantes,
-          onMarco: (e) => this.updateCell(r.id, 'marco', e.target.value),
-          onDimension: (e) => this.updateDimensionGroup(groupIds, e.target.value),
-          onPreguntas: (e) => this.updateCell(r.id, 'preguntas', e.target.value),
-          onInformantes: (e) => this.updateCell(r.id, 'informantes', e.target.value),
-          onEliminar: () => this.removeRow(r.id),
-          opacidad: r.id === dragRowId ? '0.4' : '1',
-          onDragStart: () => this.startDragRow(r.id),
-          onDragOver: (e) => e.preventDefault(),
-          onDrop: (e) => { e.preventDefault(); this.dropRow(r.id); },
-          onDragEnd: () => this.endDragRow(),
-          mostrarDimension: idx === 0,
-          dimensionRowSpan: g.rows.length,
-          onAgregarEnDimension: () => this.addRowAfter(lastIdInGroup, r.dimension),
-        });
-      });
-    });
+    const filasPlantilla = rows.map(r => ({
+      marco: r.marco, dimension: r.dimension, preguntas: r.preguntas, informantes: r.informantes,
+      onMarco: (e) => this.updateCell(r.id, 'marco', e.target.value),
+      onDimension: (e) => this.updateCell(r.id, 'dimension', e.target.value),
+      onPreguntas: (e) => this.updateCell(r.id, 'preguntas', e.target.value),
+      onInformantes: (e) => this.updateCell(r.id, 'informantes', e.target.value),
+      onEliminar: () => this.removeRow(r.id),
+      opacidad: r.id === dragRowId ? '0.4' : '1',
+      onDragStart: () => this.startDragRow(r.id),
+      onDragOver: (e) => e.preventDefault(),
+      onDrop: (e) => { e.preventDefault(); this.dropRow(r.id); },
+      onDragEnd: () => this.endDragRow(),
+      onAgregarEnDimension: () => this.addRowAfter(r.id, r.dimension),
+    }));
 
     const plantillaObjetivo = this.getObjetivo();
     const plantillaInstrumentoActual = this.getInstrumento();
