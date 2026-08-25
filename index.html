@@ -692,7 +692,7 @@ class Component extends DCLogic {
     return [
       ['satisfacción','Pregunta por el nivel de agrado o conformidad respecto a una temática conocida o experimentada.','¿Qué tan satisfecho(a) está usted con la calidad del texto escolar proporcionado por el MINEDUC?',['Muy insatisfecho(a)','Insatisfecho(a)','Satisfecho(a)','Muy satisfecho(a)']],
       ['importancia','Indaga lo que los informantes consideran valioso o relevante.','¿Qué tan importante es para usted contar con infraestructura adecuada para su aprendizaje?',['No es importante','Poco importante','Importante','Muy importante']],
-      ['frecuencia','Mide la regularidad con la que se realiza una actividad o comportamiento específico.','¿Con qué frecuencia dedica tiempo a la lectura fuera del horario de clases?',['Nunca','1 vez/semana','2 a 3 veces/semana','Más de 4 veces/semana']],
+      ['frecuencia','Mide la regularidad con la que se realiza una actividad o comportamiento específico.','¿Con qué frecuencia dedica tiempo a la lectura fuera del horario de clases?',['Nunca','A veces','Frecuentemente','Siempre']],
       ['valor','Evalúa la percepción sobre el valor o calidad de un objeto, documento, servicio o proceso.','¿Qué le parece la implementación del manual de convivencia escolar?',['Malo','Regular','Bueno','Excelente']],
       ['acuerdo','Mide el grado de concordancia o disconformidad con afirmaciones específicas.','¿Está de acuerdo con que la participación de las familias es clave para prevenir el bullying?',['Totalmente en desacuerdo','En desacuerdo','De acuerdo','Totalmente de acuerdo']],
       ['dificultad','Identifica experiencias en relación a la realización de actividades, detectando barreras.','¿Qué tan difícil le resultó rendir la Evaluación Nacional Diagnóstica (END)?',['Muy fácil','Fácil','Difícil','Muy difícil']],
@@ -814,7 +814,8 @@ class Component extends DCLogic {
     const rows = this.getRows();
     const cfg = this.instrumentoConfig();
     const likertTiposRaw = this.likertTiposRaw();
-    const header = ['Apartado marco teórico', cfg.dimensionLabel, cfg.preguntaLabel];
+    const esLikert = this.getInstrumento() === 'Encuesta / escala Likert';
+    const header = ['Apartado marco teórico', cfg.dimensionLabel, cfg.preguntaLabel, ...(esLikert ? ['Indicadores de respuesta'] : [])];
     const esc = (v) => String(v || '').replace(/</g, '&lt;');
     let html = `<p><strong>Objetivo específico:</strong> ${esc(this.getObjetivo())}</p>`;
     html += `<p><strong>Instrumento/técnica seleccionado:</strong> ${esc(this.instrumentoLabelCompleto())}</p>`;
@@ -823,13 +824,14 @@ class Component extends DCLogic {
     this.groupRows(rows).forEach(g => {
       const likertEjemplo = likertTiposRaw.find(([nombre]) => nombre === g[0].likertTipo);
       const escalaHtml = likertEjemplo
-        ? `<br><span style="font-size:11px;color:#555">Escala (${esc(likertEjemplo[0])}): ${likertEjemplo[3].map((t, i) => `${i + 1}=${esc(t)}`).join(' · ')}</span>`
+        ? likertEjemplo[3].map((t, i) => `${i + 1} = ${esc(t)}`).join('<br>')
         : '';
       g.forEach((r, idx) => {
         html += '<tr>';
         html += `<td style="padding:6px;vertical-align:top">${esc(r.marco)}</td>`;
-        if (idx === 0) html += `<td rowspan="${g.length}" style="padding:6px;vertical-align:top">${esc(r.dimension)}${escalaHtml}</td>`;
+        if (idx === 0) html += `<td rowspan="${g.length}" style="padding:6px;vertical-align:top">${esc(r.dimension)}</td>`;
         html += `<td style="padding:6px;vertical-align:top">${esc(r.preguntas)}</td>`;
+        if (esLikert && idx === 0) html += `<td rowspan="${g.length}" style="padding:6px;vertical-align:top;font-size:12px">${escalaHtml}</td>`;
         html += '</tr>';
       });
     });
@@ -855,7 +857,8 @@ class Component extends DCLogic {
     const rows = this.getRows();
     const cfg = this.instrumentoConfig();
     const likertTiposRaw = this.likertTiposRaw();
-    const header = ['Apartado del marco teórico', cfg.dimensionLabel, cfg.preguntaLabel];
+    const esLikert = this.getInstrumento() === 'Encuesta / escala Likert';
+    const header = ['Apartado del marco teórico', cfg.dimensionLabel, cfg.preguntaLabel, ...(esLikert ? ['Indicadores de respuesta'] : [])];
     const infoRows = [
       ['Objetivo específico:', this.getObjetivo()],
       ['Instrumento/técnica seleccionado:', this.instrumentoLabelCompleto()],
@@ -866,23 +869,30 @@ class Component extends DCLogic {
     const dataRows = [];
     grupos.forEach(g => {
       const likertEjemplo = likertTiposRaw.find(([nombre]) => nombre === g[0].likertTipo);
-      const dimensionTexto = likertEjemplo
-        ? `${g[0].dimension}\nEscala (${likertEjemplo[0]}): ${likertEjemplo[3].map((t, i) => `${i + 1}=${t}`).join(' · ')}`
-        : g[0].dimension;
+      const escalaTexto = likertEjemplo
+        ? likertEjemplo[3].map((t, i) => `${i + 1} = ${t}`).join('\n')
+        : '';
       g.forEach((r, idx) => {
-        dataRows.push([r.marco, idx === 0 ? dimensionTexto : '', r.preguntas]);
+        const fila = [r.marco, idx === 0 ? g[0].dimension : '', r.preguntas];
+        if (esLikert) fila.push(idx === 0 ? escalaTexto : '');
+        dataRows.push(fila);
       });
     });
     const data = [...infoRows, header, ...dataRows];
     const ws = XLSX.utils.aoa_to_sheet(data);
-    ws['!cols'] = [{ wch: 34 }, { wch: 26 }, { wch: 42 }];
+    ws['!cols'] = esLikert
+      ? [{ wch: 32 }, { wch: 22 }, { wch: 36 }, { wch: 26 }]
+      : [{ wch: 34 }, { wch: 26 }, { wch: 42 }];
     ws['!rows'] = [{ hpx: 20 }, { hpx: 20 }, { hpx: 20 }, { hpx: 8 }, { hpx: 22 }, ...rows.map(() => ({ hpx: 60 }))];
     const range = XLSX.utils.decode_range(ws['!ref']);
     const headerRowIdx = infoRows.length;
     const merges = [];
     let rowCursor = headerRowIdx + 1;
     grupos.forEach(g => {
-      if (g.length > 1) merges.push({ s: { r: rowCursor, c: 1 }, e: { r: rowCursor + g.length - 1, c: 1 } });
+      if (g.length > 1) {
+        merges.push({ s: { r: rowCursor, c: 1 }, e: { r: rowCursor + g.length - 1, c: 1 } });
+        if (esLikert) merges.push({ s: { r: rowCursor, c: 3 }, e: { r: rowCursor + g.length - 1, c: 3 } });
+      }
       rowCursor += g.length;
     });
     ws['!merges'] = merges;
@@ -906,9 +916,10 @@ class Component extends DCLogic {
     const rows = this.getRows();
     const cfg = this.instrumentoConfig();
     const likertTiposRaw = this.likertTiposRaw();
-    const headers = ['Apartado del marco teórico', cfg.dimensionLabel, cfg.preguntaLabel];
+    const esLikert = this.getInstrumento() === 'Encuesta / escala Likert';
+    const headers = ['Apartado del marco teórico', cfg.dimensionLabel, cfg.preguntaLabel, ...(esLikert ? ['Indicadores de respuesta'] : [])];
     // Ancho de página A4 (11906 twips) menos márgenes de 1" (1440 c/u) = 9026 twips utilizables.
-    const colDxa = [3200, 2200, 3626];
+    const colDxa = esLikert ? [2400, 1700, 3026, 1900] : [3200, 2200, 3626];
     const TABLE_WIDTH = colDxa.reduce((a, b) => a + b, 0);
     const FONT = 'Times New Roman';
     const SIZE = 24;
@@ -927,22 +938,16 @@ class Component extends DCLogic {
       })],
     });
 
-    const dimensionCell = (text, escalaText, dxa, rowSpan) => new TableCell({
+    const multilineCell = (lines, dxa, rowSpan) => new TableCell({
       width: { size: dxa, type: WidthType.DXA },
       ...(rowSpan ? { rowSpan } : {}),
       borders: { top: rule, bottom: rule, left: rule, right: rule },
       verticalAlign: VerticalAlign.CENTER,
       margins: { top: 120, bottom: 120, left: 100, right: 100 },
-      children: [
-        new Paragraph({
-          spacing: { line: 240, lineRule: 'auto' },
-          children: [new TextRun({ text: text || '', font: FONT, size: SIZE })],
-        }),
-        ...(escalaText ? [new Paragraph({
-          spacing: { line: 240, lineRule: 'auto', before: 80 },
-          children: [new TextRun({ text: escalaText, italics: true, font: FONT, size: SIZE - 4 })],
-        })] : []),
-      ],
+      children: (lines.length ? lines : ['']).map(line => new Paragraph({
+        spacing: { line: 240, lineRule: 'auto' },
+        children: [new TextRun({ text: line, font: FONT, size: SIZE - 4 })],
+      })),
     });
 
     const headerRow = new TableRow({
@@ -953,14 +958,13 @@ class Component extends DCLogic {
     const bodyRows = [];
     grupos.forEach(g => {
       const likertEjemplo = likertTiposRaw.find(([nombre]) => nombre === g[0].likertTipo);
-      const escalaText = likertEjemplo
-        ? `Escala (${likertEjemplo[0]}): ${likertEjemplo[3].map((t, i) => `${i + 1}=${t}`).join(' · ')}`
-        : '';
+      const escalaLineas = likertEjemplo ? likertEjemplo[3].map((t, i) => `${i + 1} = ${t}`) : [];
       g.forEach((r, idx) => {
         const children = [];
         children.push(cell(r.marco, { dxa: colDxa[0] }));
-        if (idx === 0) children.push(dimensionCell(r.dimension, escalaText, colDxa[1], g.length));
+        if (idx === 0) children.push(cell(r.dimension, { dxa: colDxa[1], rowSpan: g.length }));
         children.push(cell(r.preguntas, { dxa: colDxa[2] }));
+        if (esLikert && idx === 0) children.push(multilineCell(escalaLineas, colDxa[3], g.length));
         bodyRows.push(new TableRow({ children }));
       });
     });
