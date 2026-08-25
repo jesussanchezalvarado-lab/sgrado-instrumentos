@@ -712,8 +712,8 @@ class Component extends DCLogic {
   }
   getRows() { return this.state.templateRows || this.defaultTemplateRows(); }
 
-  browserTemplateKey = 'ulagos-instrumentos-plantilla-v4';
-  browserBackupKey = 'ulagos-instrumentos-plantilla-backup-v4';
+  browserTemplateKey = 'ulagos-instrumentos-plantilla-v5';
+  browserBackupKey = 'ulagos-instrumentos-plantilla-backup-v5';
 
   readSavedPlantilla() {
     try {
@@ -760,7 +760,7 @@ class Component extends DCLogic {
   updateCell(rowId, field, value) { this.savePlantilla({ rows: this.getRows().map(r => r.id === rowId ? { ...r, [field]: value } : r) }); }
   addRow() {
     const rows = this.getRows();
-    const nextId = Math.max(...rows.map(r => r.id)) + 1;
+    const nextId = Math.max(0, ...rows.map(r => r.id)) + 1;
     this.savePlantilla({ rows: [...rows, { id: nextId, groupId: nextId, marco: '', dimension: '', preguntas: '' }] });
   }
   removeRow(rowId) { this.savePlantilla({ rows: this.getRows().filter(r => r.id !== rowId) }); }
@@ -793,7 +793,7 @@ class Component extends DCLogic {
   }
   addRowAfter(afterRowId, groupId, dimension) {
     const rows = this.getRows();
-    const nextId = Math.max(...rows.map(r => r.id)) + 1;
+    const nextId = Math.max(0, ...rows.map(r => r.id)) + 1;
     const idx = rows.findIndex(r => r.id === afterRowId);
     const newRow = { id: nextId, groupId, marco: '', dimension, preguntas: '' };
     const reordered = [...rows.slice(0, idx + 1), newRow, ...rows.slice(idx + 1)];
