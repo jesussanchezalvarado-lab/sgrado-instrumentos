@@ -295,11 +295,11 @@
   <div style="max-width:1180px;margin:0 auto">
     <p style="display:inline-block;background:#f3e8f7;color:#9F26B4;font:700 12px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:18px">6 · Herramienta</p>
     <h2 style="font-size:clamp(26px,3.2vw,36px);margin-bottom:8px;color:#0d1b2a">Plantilla descargable de trazabilidad</h2>
-    <p style="font-size:15px;color:#55606b;margin-bottom:24px">Define tu objetivo específico y el instrumento una sola vez abajo. Si una dimensión/categoría abarca varios apartados del marco teórico, usa "+ Añadir dimensión" para copiarla en una nueva fila y evitar reescribirla; al exportar, las filas con la misma dimensión se fusionan automáticamente en una sola celda. Puedes arrastrar el ⠿ de cada fila para reordenarlas. Se guarda automáticamente en este navegador y también puedes respaldarla con un clic.</p>
+    <p style="font-size:15px;color:#55606b;margin-bottom:24px">Define tu objetivo específico, el instrumento y tus informantes/participantes. Cada tarjeta es una dimensión/categoría: empiezas con 3 de ejemplo. Usa "+ Agregar dimensión" (arriba) para sumar una nueva tarjeta, o "+ Fila en esta dimensión" (dentro de cada tarjeta) si esa misma dimensión abarca varios apartados del marco teórico o preguntas. Puedes arrastrar el ⠿ de cada fila para reordenarla dentro de su tarjeta. Al exportar, cada tarjeta se convierte en una sola celda de dimensión fusionada. Se guarda automáticamente en este navegador y también puedes respaldarla con un clic.</p>
     <div style="background:#fff;border-radius:12px;padding:20px 22px;border:1px solid #e2e6ea;margin-bottom:18px">
       <p style="font:700 11.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#0055B7;margin-bottom:8px">Objetivo específico que estás trabajando</p>
       <textarea sc-oninput="&#123;&#123; onPlantillaObjetivo &#125;&#125;" value="&#123;&#123; plantillaObjetivo &#125;&#125;" placeholder="Ej: Diseñar un instrumento que permita..." style="width:100%;min-height:56px;border:1px solid #dfe4e8;border-radius:6px;padding:10px 12px;font:14px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box;margin-bottom:20px"></textarea>
-      <p style="font:700 11.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#0055B7;margin-bottom:10px">Instrumento/técnica que creen más apropiado</p>
+      <p style="font:700 11.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#0055B7;margin-bottom:10px">Instrumento/técnica</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
         <sc-for list="&#123;&#123; instrumentoOpciones &#125;&#125;" as="op" hint-placeholder-count="4">
           <button sc-onclick="&#123;&#123; op.onClick &#125;&#125;" style="padding:9px 16px;border-radius:20px;font:600 13px 'Open Sans',sans-serif;cursor:pointer" sc-style-background="&#123;&#123; op.bg &#125;&#125;" sc-style-color="&#123;&#123; op.color &#125;&#125;" sc-style-border="1.5px solid &#123;&#123; op.border &#125;&#125;">&#123;&#123; op.texto &#125;&#125;</button>
@@ -315,6 +315,10 @@
           </div>
         </div>
       </sc-if>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid #eef0f2">
+        <p style="font:700 11.5px 'Open Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#0055B7;margin-bottom:8px">&#123;&#123; informantesLabel &#125;&#125;</p>
+        <textarea sc-oninput="&#123;&#123; onPlantillaInformantes &#125;&#125;" value="&#123;&#123; plantillaInformantes &#125;&#125;" placeholder="&#123;&#123; informantesPlaceholder &#125;&#125;" style="width:100%;min-height:56px;border:1px solid #dfe4e8;border-radius:6px;padding:10px 12px;font:14px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea>
+      </div>
     </div>
     <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap">
       <button sc-onclick="&#123;&#123; saveToBrowser &#125;&#125;" style="background:#166534;color:#fff;border:none;padding:11px 20px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer">Guardar en navegador</button>
@@ -322,36 +326,36 @@
       <button sc-onclick="&#123;&#123; downloadExcel &#125;&#125;" style="background:#0055B7;color:#fff;border:none;padding:11px 20px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer">Descargar Excel</button>
       <button sc-onclick="&#123;&#123; downloadWord &#125;&#125;" style="background:#fff;color:#0055B7;border:1.5px solid #0055B7;padding:11px 20px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer">Descargar Word</button>
       <button sc-onclick="&#123;&#123; downloadPDF &#125;&#125;" style="background:#fff;color:#9F26B4;border:1.5px solid #9F26B4;padding:11px 20px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer">Descargar PDF</button>
-      <button sc-onclick="&#123;&#123; addRow &#125;&#125;" style="background:#eafbe6;color:#2f8b21;border:1.5px solid #ACDA90;padding:11px 20px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer;margin-left:auto">+ Agregar fila</button>
+      <button sc-onclick="&#123;&#123; addRow &#125;&#125;" style="background:#eafbe6;color:#2f8b21;border:1.5px solid #ACDA90;padding:11px 20px;border-radius:8px;font:700 13.5px 'Open Sans',sans-serif;cursor:pointer;margin-left:auto">+ Agregar dimensión</button>
     </div>
-    <div style="overflow-x:auto;background:#fff;border-radius:12px;border:1px solid #e2e6ea">
-      <sc-raw-table style="width:100%;border-collapse:collapse;min-width:920px">
-        <sc-raw-thead>
-          <sc-raw-tr style="background:#0d1b2a">
-            <sc-raw-th style="width:4%"></sc-raw-th>
-            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:18%">&#123;&#123; dimensionLabel &#125;&#125;</sc-raw-th>
-            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:24%">Apartado del marco teórico</sc-raw-th>
-            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:30%">&#123;&#123; preguntaLabel &#125;&#125;</sc-raw-th>
-            <sc-raw-th style="text-align:left;padding:12px 14px;color:#fff;font:700 12px 'Open Sans',sans-serif;width:20%">Informantes</sc-raw-th>
-            <sc-raw-th style="width:4%"></sc-raw-th>
-          </sc-raw-tr>
-        </sc-raw-thead>
-        <sc-raw-tbody>
-          <sc-for list="&#123;&#123; filasPlantilla &#125;&#125;" as="fila" hint-placeholder-count="3">
-            <sc-raw-tr draggable="true" sc-camel-ondragstart="&#123;&#123; fila.onDragStart &#125;&#125;" sc-camel-ondragover="&#123;&#123; fila.onDragOver &#125;&#125;" sc-camel-ondrop="&#123;&#123; fila.onDrop &#125;&#125;" sc-camel-ondragend="&#123;&#123; fila.onDragEnd &#125;&#125;" style="border-top:1px solid #e2e6ea;vertical-align:top;transition:opacity .15s" sc-style-opacity="&#123;&#123; fila.opacidad &#125;&#125;">
-              <sc-raw-td style="padding:6px;text-align:center;cursor:grab;color:#c3ccd4;font-size:16px;user-select:none" title="Arrastra para reordenar">⠿</sc-raw-td>
-              <sc-raw-td style="padding:6px;background:#fafbfc">
-                <textarea sc-oninput="&#123;&#123; fila.onDimension &#125;&#125;" value="&#123;&#123; fila.dimension &#125;&#125;" placeholder="&#123;&#123; dimensionPlaceholder &#125;&#125;" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box;margin-bottom:6px"></textarea>
-                <button sc-onclick="&#123;&#123; fila.onAgregarEnDimension &#125;&#125;" title="Agregar otra fila con esta misma dimensión" style="width:100%;background:#eafbe6;color:#2f8b21;border:1px dashed #ACDA90;border-radius:6px;padding:5px;font:600 11.5px 'Open Sans',sans-serif;cursor:pointer">+ Añadir dimensión</button>
-              </sc-raw-td>
-              <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onMarco &#125;&#125;" value="&#123;&#123; fila.marco &#125;&#125;" placeholder="Ej: Concepto de evaluación, Cap. I" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
-              <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onPreguntas &#125;&#125;" value="&#123;&#123; fila.preguntas &#125;&#125;" placeholder="&#123;&#123; preguntaPlaceholder &#125;&#125; (una sola por fila)" style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
-              <sc-raw-td style="padding:6px"><textarea sc-oninput="&#123;&#123; fila.onInformantes &#125;&#125;" value="&#123;&#123; fila.informantes &#125;&#125;" placeholder="Ej: Docentes de..." style="width:100%;min-height:64px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea></sc-raw-td>
-              <sc-raw-td style="padding:6px;text-align:center"><button sc-onclick="&#123;&#123; fila.onEliminar &#125;&#125;" title="Eliminar fila" style="background:none;border:none;color:#c0392b;font-size:18px;cursor:pointer">×</button></sc-raw-td>
-            </sc-raw-tr>
-          </sc-for>
-        </sc-raw-tbody>
-      </sc-raw-table>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <sc-for list="&#123;&#123; gruposPlantilla &#125;&#125;" as="grupo" hint-placeholder-count="3">
+        <div class="card-hover" style="background:#fff;border:1.5px solid #b8d4ef;border-radius:12px;overflow:hidden">
+          <div style="background:#eaf2fb;padding:14px 16px;border-bottom:1.5px solid #b8d4ef">
+            <p style="font:700 10.5px 'Open Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0055B7;margin-bottom:6px">&#123;&#123; dimensionLabel &#125;&#125;</p>
+            <textarea sc-oninput="&#123;&#123; grupo.onDimension &#125;&#125;" value="&#123;&#123; grupo.dimension &#125;&#125;" placeholder="&#123;&#123; dimensionPlaceholder &#125;&#125;" style="width:100%;min-height:48px;border:1.5px solid #8fb8e6;border-radius:6px;padding:8px 10px;font:700 14px 'Roboto Condensed',sans-serif;color:#0d1b2a;background:#fff;resize:vertical;box-sizing:border-box"></textarea>
+          </div>
+          <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px">
+            <sc-for list="&#123;&#123; grupo.filas &#125;&#125;" as="fila" hint-placeholder-count="2">
+              <div draggable="true" sc-camel-ondragstart="&#123;&#123; fila.onDragStart &#125;&#125;" sc-camel-ondragover="&#123;&#123; fila.onDragOver &#125;&#125;" sc-camel-ondrop="&#123;&#123; fila.onDrop &#125;&#125;" sc-camel-ondragend="&#123;&#123; fila.onDragEnd &#125;&#125;" style="display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;transition:opacity .15s" sc-style-opacity="&#123;&#123; fila.opacidad &#125;&#125;">
+                <span style="cursor:grab;color:#c3ccd4;font-size:16px;padding-top:8px;user-select:none" title="Arrastra para reordenar">⠿</span>
+                <div style="flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+                  <div>
+                    <p style="font:700 10px 'Open Sans',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#9aa7b3;margin-bottom:4px">Apartado del marco teórico</p>
+                    <textarea sc-oninput="&#123;&#123; fila.onMarco &#125;&#125;" value="&#123;&#123; fila.marco &#125;&#125;" placeholder="Ej: Concepto de evaluación, Cap. I" style="width:100%;min-height:56px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea>
+                  </div>
+                  <div>
+                    <p style="font:700 10px 'Open Sans',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#9aa7b3;margin-bottom:4px">&#123;&#123; preguntaLabel &#125;&#125;</p>
+                    <textarea sc-oninput="&#123;&#123; fila.onPreguntas &#125;&#125;" value="&#123;&#123; fila.preguntas &#125;&#125;" placeholder="&#123;&#123; preguntaPlaceholder &#125;&#125; (una sola por fila)" style="width:100%;min-height:56px;border:1px solid #dfe4e8;border-radius:6px;padding:8px;font:13px 'Open Sans',sans-serif;resize:vertical;box-sizing:border-box"></textarea>
+                  </div>
+                </div>
+                <button sc-onclick="&#123;&#123; fila.onEliminar &#125;&#125;" title="Eliminar fila" style="background:none;border:none;color:#c0392b;font-size:18px;cursor:pointer;padding-top:4px">×</button>
+              </div>
+            </sc-for>
+            <button sc-onclick="&#123;&#123; grupo.onAgregarFila &#125;&#125;" style="align-self:flex-start;background:#eafbe6;color:#2f8b21;border:1px dashed #ACDA90;border-radius:6px;padding:7px 14px;font:600 12px 'Open Sans',sans-serif;cursor:pointer">+ Fila en esta dimensión</button>
+          </div>
+        </div>
+      </sc-for>
     </div>
   </div>
 </section>
@@ -626,7 +630,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;filasPlantillaPorDefecto&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:3,&quot;min&quot;:1,&quot;max&quot;:6,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Plantilla&quot;},&quot;mostrarPistasActividad&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Actividad interactiva&quot;},&quot;revelarRespuestaInmediata&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Actividad interactiva&quot;&#125;&#125;">
 class Component extends DCLogic {
-  state = { open: {}, checklist: {}, activity: {}, diagnostico: {}, templateRows: null, plantillaObjetivo: null, plantillaInstrumento: null, plantillaLikertTipo: null, showBackTop: false };
+  state = { open: {}, checklist: {}, activity: {}, diagnostico: {}, templateRows: null, plantillaObjetivo: null, plantillaInstrumento: null, plantillaLikertTipo: null, plantillaInformantes: null, showBackTop: false };
 
   componentDidMount() {
     try {
@@ -634,7 +638,7 @@ class Component extends DCLogic {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (parsed && Array.isArray(parsed.rows)) {
-          this.setState({ templateRows: parsed.rows, plantillaObjetivo: parsed.objetivo ?? null, plantillaInstrumento: parsed.instrumento ?? null, plantillaLikertTipo: parsed.likertTipo ?? null });
+          this.setState({ templateRows: parsed.rows, plantillaObjetivo: parsed.objetivo ?? null, plantillaInstrumento: parsed.instrumento ?? null, plantillaLikertTipo: parsed.likertTipo ?? null, plantillaInformantes: parsed.informantes ?? null });
         }
       }
     } catch (e) {}
@@ -677,6 +681,7 @@ class Component extends DCLogic {
   getObjetivo() { return this.state.plantillaObjetivo ?? ''; }
   getInstrumento() { return this.state.plantillaInstrumento ?? this.defaultInstrumento(); }
   getLikertTipo() { return this.state.plantillaLikertTipo ?? null; }
+  getInformantes() { return this.state.plantillaInformantes ?? ''; }
   likertTiposRaw() {
     return [
       ['satisfacción','Pregunta por el nivel de agrado o conformidad respecto a una temática conocida o experimentada.','¿Qué tan satisfecho(a) está usted con la calidad del texto escolar proporcionado por el MINEDUC?',['Muy satisfecho(a)','Satisfecho(a)','Insatisfecho(a)','Muy insatisfecho(a)']],
@@ -691,10 +696,10 @@ class Component extends DCLogic {
     const likertTipo = this.getLikertTipo();
     const likertEjemplo = this.likertTiposRaw().find(([nombre]) => nombre === likertTipo);
     const map = {
-      'Entrevista': { dimensionLabel: 'Categoría de análisis', dimensionPlaceholder: 'Ej: Adaptación al modelo virtual', preguntaLabel: 'Posible pregunta', preguntaPlaceholder: 'Ej: ¿Qué entiende por evaluación?' },
-      'Encuesta / escala Likert': { dimensionLabel: 'Dimensión', dimensionPlaceholder: 'Ej: Adaptación al modelo virtual', preguntaLabel: 'Posible enunciado', preguntaPlaceholder: likertEjemplo ? `Ej: ${likertEjemplo[2]}` : 'Ej: Durante la pandemia, adapté mis prácticas evaluativas a la modalidad virtual.' },
-      'Observación': { dimensionLabel: 'Categoría de análisis', dimensionPlaceholder: 'Ej: Manejo conductual en aula', preguntaLabel: 'Conducta/indicador a observar', preguntaPlaceholder: 'Ej: Uso de estrategias de manejo conductual durante la clase' },
-      'Análisis documental': { dimensionLabel: 'Categoría de análisis', dimensionPlaceholder: 'Ej: Adecuaciones curriculares', preguntaLabel: 'Aspecto a revisar en el documento', preguntaPlaceholder: 'Ej: Menciones a adecuaciones curriculares en el PEI' },
+      'Entrevista': { dimensionLabel: 'Categoría de análisis', dimensionPlaceholder: 'Ej: Adaptación al modelo virtual', preguntaLabel: 'Posible pregunta', preguntaPlaceholder: 'Ej: ¿Qué entiende por evaluación?', informantesLabel: 'Informantes', informantesPlaceholder: 'Ej: Docentes de carreras pedagógicas, Sede Osorno ULAGOS' },
+      'Encuesta / escala Likert': { dimensionLabel: 'Dimensión', dimensionPlaceholder: 'Ej: Adaptación al modelo virtual', preguntaLabel: 'Posible enunciado', preguntaPlaceholder: likertEjemplo ? `Ej: ${likertEjemplo[2]}` : 'Ej: Durante la pandemia, adapté mis prácticas evaluativas a la modalidad virtual.', informantesLabel: 'Participantes', informantesPlaceholder: 'Ej: Estudiantes de enseñanza media, Liceo X' },
+      'Observación': { dimensionLabel: 'Categoría de análisis', dimensionPlaceholder: 'Ej: Manejo conductual en aula', preguntaLabel: 'Conducta/indicador a observar', preguntaPlaceholder: 'Ej: Uso de estrategias de manejo conductual durante la clase', informantesLabel: 'Informantes', informantesPlaceholder: 'Ej: Estudiantes de 2° medio, en horario de clases' },
+      'Análisis documental': { dimensionLabel: 'Categoría de análisis', dimensionPlaceholder: 'Ej: Adecuaciones curriculares', preguntaLabel: 'Aspecto a revisar en el documento', preguntaPlaceholder: 'Ej: Menciones a adecuaciones curriculares en el PEI', informantesLabel: 'Informantes', informantesPlaceholder: 'Ej: Proyecto Educativo Institucional, Liceo X' },
     };
     return map[this.getInstrumento()] || map['Entrevista'];
   }
@@ -702,13 +707,13 @@ class Component extends DCLogic {
   defaultTemplateRows() {
     const n = Math.max(1, Math.min(6, this.props.filasPlantillaPorDefecto ?? 3));
     const rows = [];
-    for (let i = 0; i < n; i++) rows.push({ id: i + 1, marco: '', dimension: '', preguntas: '', informantes: '' });
+    for (let i = 0; i < n; i++) rows.push({ id: i + 1, groupId: i + 1, marco: '', dimension: '', preguntas: '' });
     return rows;
   }
   getRows() { return this.state.templateRows || this.defaultTemplateRows(); }
 
-  browserTemplateKey = 'ulagos-instrumentos-plantilla-v3';
-  browserBackupKey = 'ulagos-instrumentos-plantilla-backup-v3';
+  browserTemplateKey = 'ulagos-instrumentos-plantilla-v4';
+  browserBackupKey = 'ulagos-instrumentos-plantilla-backup-v4';
 
   readSavedPlantilla() {
     try {
@@ -720,16 +725,23 @@ class Component extends DCLogic {
       return null;
     }
   }
-  savePlantilla(objetivo, instrumento, likertTipo, rows) {
-    const data = { objetivo, instrumento, likertTipo, rows };
+  savePlantilla(patch) {
+    const data = {
+      objetivo: this.getObjetivo(),
+      instrumento: this.getInstrumento(),
+      likertTipo: this.getLikertTipo(),
+      informantes: this.getInformantes(),
+      rows: this.getRows(),
+      ...patch,
+    };
     try {
       localStorage.setItem(this.browserTemplateKey, JSON.stringify(data));
       localStorage.setItem(this.browserBackupKey, JSON.stringify({ savedAt: new Date().toISOString(), ...data }));
     } catch (e) {}
-    this.setState({ templateRows: rows, plantillaObjetivo: objetivo, plantillaInstrumento: instrumento, plantillaLikertTipo: likertTipo });
+    this.setState({ templateRows: data.rows, plantillaObjetivo: data.objetivo, plantillaInstrumento: data.instrumento, plantillaLikertTipo: data.likertTipo, plantillaInformantes: data.informantes });
   }
   saveToBrowser() {
-    this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getLikertTipo(), this.getRows());
+    this.savePlantilla({});
     alert('La plantilla quedó guardada en este navegador del equipo.');
   }
   restoreFromBrowser() {
@@ -738,53 +750,54 @@ class Component extends DCLogic {
       alert('Todavía no hay una copia guardada en este navegador para restaurar.');
       return;
     }
-    this.savePlantilla(data.objetivo ?? '', data.instrumento ?? this.defaultInstrumento(), data.likertTipo ?? null, data.rows);
+    this.savePlantilla({ objetivo: data.objetivo ?? '', instrumento: data.instrumento ?? this.defaultInstrumento(), likertTipo: data.likertTipo ?? null, informantes: data.informantes ?? '', rows: data.rows });
     alert('Se restauró la última copia guardada en este navegador.');
   }
-  setObjetivo(value) { this.savePlantilla(value, this.getInstrumento(), this.getLikertTipo(), this.getRows()); }
-  setInstrumento(value) { this.savePlantilla(this.getObjetivo(), value, value === 'Encuesta / escala Likert' ? this.getLikertTipo() : null, this.getRows()); }
-  setLikertTipo(value) { this.savePlantilla(this.getObjetivo(), this.getInstrumento(), value, this.getRows()); }
-  updateCell(rowId, field, value) { this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getLikertTipo(), this.getRows().map(r => r.id === rowId ? { ...r, [field]: value } : r)); }
+  setObjetivo(value) { this.savePlantilla({ objetivo: value }); }
+  setInstrumento(value) { this.savePlantilla({ instrumento: value, likertTipo: value === 'Encuesta / escala Likert' ? this.getLikertTipo() : null }); }
+  setLikertTipo(value) { this.savePlantilla({ likertTipo: value }); }
+  setInformantes(value) { this.savePlantilla({ informantes: value }); }
+  updateCell(rowId, field, value) { this.savePlantilla({ rows: this.getRows().map(r => r.id === rowId ? { ...r, [field]: value } : r) }); }
   addRow() {
     const rows = this.getRows();
     const nextId = Math.max(...rows.map(r => r.id)) + 1;
-    this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getLikertTipo(), [...rows, { id: nextId, marco: '', dimension: '', preguntas: '', informantes: '' }]);
+    this.savePlantilla({ rows: [...rows, { id: nextId, groupId: nextId, marco: '', dimension: '', preguntas: '' }] });
   }
-  removeRow(rowId) { this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getLikertTipo(), this.getRows().filter(r => r.id !== rowId)); }
+  removeRow(rowId) { this.savePlantilla({ rows: this.getRows().filter(r => r.id !== rowId) }); }
   startDragRow = (rowId) => this.setState({ dragRowId: rowId });
   endDragRow = () => this.setState({ dragRowId: null });
   dropRow(targetRowId) {
     const draggedId = this.state.dragRowId ?? null;
     if (draggedId == null || draggedId === targetRowId) return;
     const rows = this.getRows();
-    const fromIdx = rows.findIndex(r => r.id === draggedId);
-    const toIdx = rows.findIndex(r => r.id === targetRowId);
-    if (fromIdx === -1 || toIdx === -1) return;
-    const reordered = [...rows];
-    const [moved] = reordered.splice(fromIdx, 1);
-    reordered.splice(toIdx, 0, moved);
-    this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getLikertTipo(), reordered);
+    const dragged = rows.find(r => r.id === draggedId);
+    const target = rows.find(r => r.id === targetRowId);
+    if (!dragged || !target) return;
+    const withoutDragged = rows.filter(r => r.id !== draggedId);
+    const insertAt = withoutDragged.findIndex(r => r.id === targetRowId);
+    const movedRow = { ...dragged, groupId: target.groupId };
+    const reordered = [...withoutDragged.slice(0, insertAt), movedRow, ...withoutDragged.slice(insertAt)];
+    this.savePlantilla({ rows: reordered });
     this.setState({ dragRowId: null });
   }
-  groupRowsByDimension(rows) {
+  groupRows(rows) {
     const groups = [];
     let i = 0;
     while (i < rows.length) {
-      const dim = (rows[i].dimension || '').trim();
       let j = i;
-      if (dim) { while (j + 1 < rows.length && (rows[j + 1].dimension || '').trim() === dim) j++; }
-      groups.push({ rows: rows.slice(i, j + 1) });
+      while (j + 1 < rows.length && rows[j + 1].groupId === rows[i].groupId) j++;
+      groups.push(rows.slice(i, j + 1));
       i = j + 1;
     }
     return groups;
   }
-  addRowAfter(afterRowId, dimension) {
+  addRowAfter(afterRowId, groupId, dimension) {
     const rows = this.getRows();
     const nextId = Math.max(...rows.map(r => r.id)) + 1;
     const idx = rows.findIndex(r => r.id === afterRowId);
-    const newRow = { id: nextId, marco: '', dimension, preguntas: '', informantes: '' };
+    const newRow = { id: nextId, groupId, marco: '', dimension, preguntas: '' };
     const reordered = [...rows.slice(0, idx + 1), newRow, ...rows.slice(idx + 1)];
-    this.savePlantilla(this.getObjetivo(), this.getInstrumento(), this.getLikertTipo(), reordered);
+    this.savePlantilla({ rows: reordered });
   }
 
   instrumentoLabelCompleto() {
@@ -799,16 +812,17 @@ class Component extends DCLogic {
   buildTableHtml() {
     const rows = this.getRows();
     const cfg = this.instrumentoConfig();
-    const header = [cfg.dimensionLabel, 'Apartado marco teórico', cfg.preguntaLabel, 'Informantes'];
+    const header = [cfg.dimensionLabel, 'Apartado marco teórico', cfg.preguntaLabel];
     const esc = (v) => String(v || '').replace(/</g, '&lt;');
     let html = `<p><strong>Objetivo específico:</strong> ${esc(this.getObjetivo())}</p>`;
     html += `<p><strong>Instrumento/técnica seleccionado:</strong> ${esc(this.instrumentoLabelCompleto())}</p>`;
+    html += `<p><strong>${esc(cfg.informantesLabel)}:</strong> ${esc(this.getInformantes())}</p>`;
     html += '<table border="1" style="border-collapse:collapse;font-family:Arial,sans-serif;margin-top:10px"><tr>' + header.map(h => `<th style="background:#0055B7;color:#fff;padding:6px">${h}</th>`).join('') + '</tr>';
-    this.groupRowsByDimension(rows).forEach(g => {
-      g.rows.forEach((r, idx) => {
+    this.groupRows(rows).forEach(g => {
+      g.forEach((r, idx) => {
         html += '<tr>';
-        if (idx === 0) html += `<td rowspan="${g.rows.length}" style="padding:6px;vertical-align:top">${esc(r.dimension)}</td>`;
-        html += [r.marco, r.preguntas, r.informantes].map(v => `<td style="padding:6px;vertical-align:top">${esc(v)}</td>`).join('');
+        if (idx === 0) html += `<td rowspan="${g.length}" style="padding:6px;vertical-align:top">${esc(r.dimension)}</td>`;
+        html += [r.marco, r.preguntas].map(v => `<td style="padding:6px;vertical-align:top">${esc(v)}</td>`).join('');
         html += '</tr>';
       });
     });
@@ -833,30 +847,31 @@ class Component extends DCLogic {
 
     const rows = this.getRows();
     const cfg = this.instrumentoConfig();
-    const header = [cfg.dimensionLabel, 'Apartado del marco teórico', cfg.preguntaLabel, 'Informantes'];
+    const header = [cfg.dimensionLabel, 'Apartado del marco teórico', cfg.preguntaLabel];
     const infoRows = [
       ['Objetivo específico:', this.getObjetivo()],
       ['Instrumento/técnica seleccionado:', this.instrumentoLabelCompleto()],
+      [`${cfg.informantesLabel}:`, this.getInformantes()],
       [],
     ];
-    const grupos = this.groupRowsByDimension(rows);
+    const grupos = this.groupRows(rows);
     const dataRows = [];
     grupos.forEach(g => {
-      g.rows.forEach((r, idx) => {
-        dataRows.push([idx === 0 ? r.dimension : '', r.marco, r.preguntas, r.informantes]);
+      g.forEach((r, idx) => {
+        dataRows.push([idx === 0 ? r.dimension : '', r.marco, r.preguntas]);
       });
     });
     const data = [...infoRows, header, ...dataRows];
     const ws = XLSX.utils.aoa_to_sheet(data);
-    ws['!cols'] = [{ wch: 24 }, { wch: 34 }, { wch: 42 }, { wch: 24 }];
-    ws['!rows'] = [{ hpx: 20 }, { hpx: 20 }, { hpx: 8 }, { hpx: 22 }, ...rows.map(() => ({ hpx: 60 }))];
+    ws['!cols'] = [{ wch: 24 }, { wch: 34 }, { wch: 42 }];
+    ws['!rows'] = [{ hpx: 20 }, { hpx: 20 }, { hpx: 20 }, { hpx: 8 }, { hpx: 22 }, ...rows.map(() => ({ hpx: 60 }))];
     const range = XLSX.utils.decode_range(ws['!ref']);
     const headerRowIdx = infoRows.length;
     const merges = [];
     let rowCursor = headerRowIdx + 1;
     grupos.forEach(g => {
-      if (g.rows.length > 1) merges.push({ s: { r: rowCursor, c: 0 }, e: { r: rowCursor + g.rows.length - 1, c: 0 } });
-      rowCursor += g.rows.length;
+      if (g.length > 1) merges.push({ s: { r: rowCursor, c: 0 }, e: { r: rowCursor + g.length - 1, c: 0 } });
+      rowCursor += g.length;
     });
     ws['!merges'] = merges;
     for (let R = range.s.r; R <= range.e.r; R++) {
@@ -878,9 +893,9 @@ class Component extends DCLogic {
 
     const rows = this.getRows();
     const cfg = this.instrumentoConfig();
-    const headers = [cfg.dimensionLabel, 'Apartado del marco teórico', cfg.preguntaLabel, 'Informantes'];
+    const headers = [cfg.dimensionLabel, 'Apartado del marco teórico', cfg.preguntaLabel];
     // Ancho de página A4 (11906 twips) menos márgenes de 1" (1440 c/u) = 9026 twips utilizables.
-    const colDxa = [1800, 2400, 3026, 1800];
+    const colDxa = [2200, 3200, 3626];
     const TABLE_WIDTH = colDxa.reduce((a, b) => a + b, 0);
     const FONT = 'Times New Roman';
     const SIZE = 24;
@@ -903,15 +918,14 @@ class Component extends DCLogic {
       tableHeader: true,
       children: headers.map((h, i) => cell(h, { header: true, dxa: colDxa[i] })),
     });
-    const grupos = this.groupRowsByDimension(rows);
+    const grupos = this.groupRows(rows);
     const bodyRows = [];
     grupos.forEach(g => {
-      g.rows.forEach((r, idx) => {
+      g.forEach((r, idx) => {
         const children = [];
-        if (idx === 0) children.push(cell(r.dimension, { dxa: colDxa[0], rowSpan: g.rows.length }));
+        if (idx === 0) children.push(cell(r.dimension, { dxa: colDxa[0], rowSpan: g.length }));
         children.push(cell(r.marco, { dxa: colDxa[1] }));
         children.push(cell(r.preguntas, { dxa: colDxa[2] }));
-        children.push(cell(r.informantes, { dxa: colDxa[3] }));
         bodyRows.push(new TableRow({ children }));
       });
     });
@@ -948,10 +962,17 @@ class Component extends DCLogic {
             ],
           }),
           new Paragraph({
-            spacing: { line: 240, lineRule: 'auto', after: 200 },
+            spacing: { line: 240, lineRule: 'auto', after: 80 },
             children: [
               new TextRun({ text: 'Instrumento/técnica seleccionado: ', bold: true, font: FONT, size: SIZE }),
               new TextRun({ text: this.instrumentoLabelCompleto(), font: FONT, size: SIZE }),
+            ],
+          }),
+          new Paragraph({
+            spacing: { line: 240, lineRule: 'auto', after: 200 },
+            children: [
+              new TextRun({ text: `${cfg.informantesLabel}: `, bold: true, font: FONT, size: SIZE }),
+              new TextRun({ text: this.getInformantes(), font: FONT, size: SIZE }),
             ],
           }),
           table,
@@ -1248,22 +1269,30 @@ class Component extends DCLogic {
 
     const rows = this.getRows();
     const dragRowId = this.state.dragRowId ?? null;
-    const filasPlantilla = rows.map(r => ({
-      marco: r.marco, dimension: r.dimension, preguntas: r.preguntas, informantes: r.informantes,
-      onMarco: (e) => this.updateCell(r.id, 'marco', e.target.value),
-      onDimension: (e) => this.updateCell(r.id, 'dimension', e.target.value),
-      onPreguntas: (e) => this.updateCell(r.id, 'preguntas', e.target.value),
-      onInformantes: (e) => this.updateCell(r.id, 'informantes', e.target.value),
-      onEliminar: () => this.removeRow(r.id),
-      opacidad: r.id === dragRowId ? '0.4' : '1',
-      onDragStart: () => this.startDragRow(r.id),
-      onDragOver: (e) => e.preventDefault(),
-      onDrop: (e) => { e.preventDefault(); this.dropRow(r.id); },
-      onDragEnd: () => this.endDragRow(),
-      onAgregarEnDimension: () => this.addRowAfter(r.id, r.dimension),
-    }));
+    const gruposPlantilla = this.groupRows(rows).map(grupoRows => {
+      const groupIds = grupoRows.map(r => r.id);
+      const lastId = grupoRows[grupoRows.length - 1].id;
+      const groupId = grupoRows[0].groupId;
+      return {
+        dimension: grupoRows[0].dimension,
+        onDimension: (e) => this.savePlantilla({ rows: this.getRows().map(r => groupIds.includes(r.id) ? { ...r, dimension: e.target.value } : r) }),
+        onAgregarFila: () => this.addRowAfter(lastId, groupId, grupoRows[0].dimension),
+        filas: grupoRows.map(r => ({
+          marco: r.marco, preguntas: r.preguntas,
+          onMarco: (e) => this.updateCell(r.id, 'marco', e.target.value),
+          onPreguntas: (e) => this.updateCell(r.id, 'preguntas', e.target.value),
+          onEliminar: () => this.removeRow(r.id),
+          opacidad: r.id === dragRowId ? '0.4' : '1',
+          onDragStart: () => this.startDragRow(r.id),
+          onDragOver: (e) => e.preventDefault(),
+          onDrop: (e) => { e.preventDefault(); this.dropRow(r.id); },
+          onDragEnd: () => this.endDragRow(),
+        })),
+      };
+    });
 
     const plantillaObjetivo = this.getObjetivo();
+    const plantillaInformantes = this.getInformantes();
     const plantillaInstrumentoActual = this.getInstrumento();
     const instrumentoOpcionesRaw = [
       ['Entrevista','#0055B7'],
@@ -1311,9 +1340,11 @@ class Component extends DCLogic {
       checklistItems, actividadEscenarios,
       plantillaObjetivo, onPlantillaObjetivo: (e) => this.setObjetivo(e.target.value), instrumentoOpciones,
       esLikert, likertTipoOpciones,
+      plantillaInformantes, onPlantillaInformantes: (e) => this.setInformantes(e.target.value),
       dimensionLabel: instrumentoConfig.dimensionLabel, dimensionPlaceholder: instrumentoConfig.dimensionPlaceholder,
       preguntaLabel: instrumentoConfig.preguntaLabel, preguntaPlaceholder: instrumentoConfig.preguntaPlaceholder,
-      filasPlantilla, addRow: () => this.addRow(), downloadWord: () => this.downloadWord(), downloadExcel: () => this.downloadExcel(), downloadPDF: () => this.downloadPDF(),
+      informantesLabel: instrumentoConfig.informantesLabel, informantesPlaceholder: instrumentoConfig.informantesPlaceholder,
+      gruposPlantilla, addRow: () => this.addRow(), downloadWord: () => this.downloadWord(), downloadExcel: () => this.downloadExcel(), downloadPDF: () => this.downloadPDF(),
     };
   }
 }
